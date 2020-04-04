@@ -77,4 +77,6 @@ gem 'font-awesome-sass', '~> 5.4.1'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'rspec-rails', '~> 3.6'
+gem 'carrierwave'
+gem 'rubocop', '~> 0.35.1'
 

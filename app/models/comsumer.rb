@@ -1,0 +1,2 @@
+class Comsumer < ApplicationRecord
+end

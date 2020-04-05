@@ -1,0 +1,2 @@
+module Consumer::FermersHelper
+end

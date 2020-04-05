@@ -1,0 +1,2 @@
+module Fermer::AddressesHelper
+end

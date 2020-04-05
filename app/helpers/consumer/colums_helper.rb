@@ -1,0 +1,2 @@
+module Consumer::ColumsHelper
+end

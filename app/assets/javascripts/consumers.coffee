@@ -3,12 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'turbolinks:load', ->
-  $('#fermer_postcode').jpostal({
-    postcode : ['#fermer_postcode' ],
+  $('#consumer_postcode').jpostal({
+    postcode : ['#consumer_postcode' ],
     address  : {
-                  '#fermer_prefecture_code' : "%3",
-            	  '#fermer_address_city' : "%4",
-     		      '#fermer_address_street' : "%5%6",
-      		    	'#fermer_address_building' : "%7"
+                  '#consumer_prefecture_code' : "%3",
+            	  '#consumer_address_city' : "%4",
+     		      '#consumer_address_street' : "%5%6",
+      		    	'#consumer_address_building' : "%7"
                 }
   })

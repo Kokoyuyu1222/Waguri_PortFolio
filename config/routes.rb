@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     get '/search' => 'searches#search'
     resources :searches,only: [:index]
     resources :products
-    resourc es :columes
+    resources :columes
     resources :columes_comments,only: [:index,:show]
     resources :columes_favorites,only: [:index]
     resources :products_comments,only: [:index,:show]

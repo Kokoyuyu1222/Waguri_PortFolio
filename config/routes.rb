@@ -1,64 +1,64 @@
 Rails.application.routes.draw do
-  namespace :consumer do
-    get 'cart_products/index'
-  end
-  namespace :fermer do
-    get 'follows/index'
-  end
-  namespace :consumer do
-    get 'follows/index'
-  end
-  namespace :consumer do
-    get 'colums/index'
-  end
-  namespace :consumer do
-    get 'fermers/index'
-  end
-  namespace :consumer do
-    get 'products/index'
-  end
-  namespace :consumer do
-    get 'addresses/index'
-  end
-  namespace :fermer do
-    get 'addresses/index'
-  end
-  namespace :fermer do
-    get 'brands/index'
-  end
-  namespace :fermer do
-    get 'categories/index'
-  end
-  namespace :admin do
-    get 'columes/index'
-  end
-  namespace :fermer do
-    get 'consumers/index'
-  end
-  namespace :fermer do
-    get 'columes/index'
-  end
-  namespace :fermer do
-    get 'products/index'
-  end
-  namespace :admin do
-    get 'fermers/index'
-  end
-  namespace :admin do
-    get 'consumers/index'
-  end
-  namespace :admin do
-    get 'products/index'
-  end
-  namespace :admin do
-    get 'brands/index'
-  end
-  namespace :admin do
-    get 'categories/index'
-  end
-  devise_for :admins
-  get 'comsumers/index'
-  devise_for :fermers
-  devise_for :consumers
+  devise_for :admins, controllers: {
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
+    registrations: 'admins/registrations'
+  }
+  devise_for :consumers, controllers: {
+    sessions:      'consumers/sessions',
+    passwords:     'consumers/passwords',
+    registrations: 'consumers/registrations'
+  }
+
+  devise_for :fermers, controllers: {
+    sessions:      'fermers/sessions',
+    passwords:     'fermers/passwords',
+    registrations: 'fermers/registrations'
+  }
+
+  namespace :consumers do
+    get 'consumers/withdraw'=> 'members#withdraw'
+    patch 'consumers/change' => 'members#change'
+    put 'consumers/change' => 'members#change'
+    resources :consumers,only: [:index,:edit,:update,:show]
+    resources :cart_products,only: [:index,:create,:update,:destroy]
+    resources :addresses ,only: [:show,:index,:edit,:update,:create,:destroy]
+    resources :products ,only: [:show,:index]
+    get 'orders/confirm' => 'orders#confirm'
+    get 'orders/finish' => 'orders#finish'
+    resources :orders ,only: [:new,:create,:index,:show]
+  delete 'consumers/cart_products/destroy_all'  => 'cart_products#destroy_all'
+end
+  namespace :fermers do
+  get 'homes/top'
+  get '/search' => 'searches#search'
+  resources :searches,only: [:index]
+  resources :products
+  resources :columes
+  resources :columes_comments,only: [:index,:show]
+  resources :columes_favorites,only: [:index]
+  resources :products_comments,only: [:index,:show]
+  resources :products_favorites,only: [:index]
+  resources :order_products,only: [:update]
+ resources :orders,only: [:show,:index,:update]
+ resources :consumers,only: [:show,:index]
+ resources :addresses ,only: [:show,:index,:edit,:update,:create,:destroy]
+end
+
+namespace :admins do
+  get 'homes/top'
+  get '/search' => 'searches#search'
+  resources :searches,only: [:index]
+  resources :categories,only: [:index,:create,:edit,:update,:destroy]
+  resources :brands,only: [:index,:create,:edit,:update,:destroy]
+  resources :products,only: [:index,:show,:destroy]
+ resources :orders,only: [:show,:index,:destroy]
+ resources :members,only: [:show,:index,:edit,:update]
+ resources :columes,omly: [:index,:show,:destroy]
+ resources :columes_comments,only: [:index,:show]
+  resources :products_comments,only: [:index,:show]
+end
+root 'homes#top'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,2 @@
+module Fermer::BrandsHelper
+end

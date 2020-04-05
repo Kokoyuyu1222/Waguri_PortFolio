@@ -1,0 +1,2 @@
+module Fermer::ConsumersHelper
+end

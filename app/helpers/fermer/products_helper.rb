@@ -1,0 +1,2 @@
+module Fermer::ProductsHelper
+end

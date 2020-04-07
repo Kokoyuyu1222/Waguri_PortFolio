@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Fermers::ConfirmationsController < Devise::ConfirmationsController
+  layout 'fermer'
   # GET /resource/confirmation/new
   # def new
   #   super

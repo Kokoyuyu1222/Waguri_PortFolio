@@ -2,28 +2,62 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="field">
+    <label >姓</label>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+    <label >名</label>
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+  </div>
+  <div class="field">
+    <label >セイ</label>
+    <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "kana_last_name" %>
+    <label >メイ</label>
+    <%= f.text_field :kana_first_name, autofocus: true, autocomplete: "kana_first_name" %>
+  </div>
+  <div class="field">
+      <%= f.radio_button :gender, :men %>
+      <%= f.label :gender, "男性"%>
+      <%= f.radio_button :gender, :female %>
+      <%= f.label :gender, "女性" %>
+  </div>
+  <div class="field">
+      <%= f.radio_button :age, :ten %>
+      <%= f.label :age, "10代"%>
+      <%= f.radio_button :age, :twenty %>
+      <%= f.label :age, "20代" %>
+      <%= f.radio_button :age, :thirty %>
+      <%= f.label :age, "30代" %>
+      <%= f.radio_button :age, :forty %>
+      <%= f.label :age, "40代" %>
+      <%= f.radio_button :age, :fifty %>
+      <%= f.label :age, "50代以上" %>
+  </div>
+  <div class="field">
+    <label >電話番号</label>
+    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+  </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <label >メールアドレス</label>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
   <div class="field">
-     <%= f.label :postcode %><br />
+     <label >郵便番号</label>
      <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode" %>   </div>
 <div class="field">
-     <%= f.label :prefecture_code %><br />
+     <label >都道府県</label>
      <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name %>
 </div>
 <div class="field">
-     <%= f.label :address_city %><br />
+     <label >市町村</label>
      <%= f.text_field :address_city, autofocus: true, autocomplete: "address_city" %>
 </div>
 <div class="field">
-     <%= f.label :address_street %><br />
+    <label >番地</label>
      <%= f.text_field :address_street, autofocus: true, autocomplete: "address_street" %>
 </div>
 <div class="field">
-     <%= f.label :address_building %><br />
+     <label >建物</label>
      <%= f.text_field :address_building, autofocus: true, autocomplete: "address_building" %>
 </div>
 

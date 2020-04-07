@@ -2,6 +2,22 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="field">
+    <%= f.label :kana_last_name %><br />
+    <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "姓" %>
+    <%= f.label :kana_first_name %><br />
+    <%= f.text_field :kana_first_name, autofocus: true, autocomplete: "名" %>
+  </div>
+  <div class="field">
+    <%= f.label :kana_last_name %><br />
+    <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "姓" %>
+    <%= f.label :kana_first_name %><br />
+    <%= f.text_field :kana_first_name, autofocus: true, autocomplete: "名" %>
+  </div>
+  <div class="field">
+    <%= f.label :garden %><br />
+    <%= f.text_field :garden, autofocus: true, autocomplete: "農園名" %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -13,19 +29,23 @@
 <div class="field">
      <%= f.label :prefecture_code %><br />
      <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name %>
-</div>     
+</div>
 <div class="field">
      <%= f.label :address_city %><br />
      <%= f.text_field :address_city, autofocus: true, autocomplete: "address_city" %>   
-</div>     
+</div>
 <div class="field">
      <%= f.label :address_street %><br />
      <%= f.text_field :address_street, autofocus: true, autocomplete: "address_street" %>   
-</div>     
+</div>
 <div class="field">
      <%= f.label :address_building %><br />
      <%= f.text_field :address_building, autofocus: true, autocomplete: "address_building" %>   
 </div> 
+<div class="field">
+    <%= f.label :home_page %><br />
+    <%= f.text_field :home_page, autofocus: true, autocomplete: "home_page" %>
+  </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

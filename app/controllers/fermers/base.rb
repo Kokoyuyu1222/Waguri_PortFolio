@@ -1,3 +1,3 @@
-class Fermer::Base < ApplicationController
+class Fermers::BaseController < ApplicationController
      layout 'fermer'
 end

@@ -1,2 +1,35 @@
-<h1>Admin::Categories#index</h1>
-<p>Find me in app/views/admin/categories/index.html.erb</p>
+<div class="container">
+	<div class="col-md-6" style="margin-bottom: 50px;">
+		<%= form_with(model: @categories, url:admins_categories_path,  local: true)  do |f| %>
+		<%= f.label :カテゴリー %>
+		<%= f.text_field :name %>
+		<label>
+			<%= f.radio_button :status, :published %>
+			<%= f.label :status, "無効"%>
+		</label>
+		<label>
+			<%= f.radio_button :status, :draft %>
+			<%= f.label :status, "有効" %>
+		</label>
+		<%= f.submit "変更を保存", class:"btn-outline-primary btn-sm"%>
+		<% end %>
+	</div>
+	<div class="col-md-6">
+		<table class="table">
+			<tr>
+				<th>カテゴリー</th>
+				<th>状態</th>
+				<th></th>
+			</tr>
+			<%if @categories.present? %>
+			<% @categories.each do |category| %>
+			<tr>
+				<td><%= category.name %></td>
+				<td><%= category.status_i18n %></td>
+				<td><%= link_to "編集する",edit_admins_category_path(category) %></td>
+			</tr>
+			<% end %>
+			<% end %>
+		</table>
+	</div>
+</div>

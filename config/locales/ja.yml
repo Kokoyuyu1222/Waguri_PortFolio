@@ -1,0 +1,47 @@
+ja:
+  enums:
+    consumer:
+      gender:
+        man: 男性
+        woman: 女性
+      age:
+        ten: 10代
+        twenty: 20代
+        thirty: 30代
+        forty: 40代
+    order_product:
+      product_status:
+        not_create: 着手不可
+        wait_create: 制作待ち
+        create: 製作中
+        finish: 制作完了
+    order:
+      order_status:
+        wait: 入金待ち
+        confirm: 入金確認中
+        start: 製作中
+        preparation: 配送準備中
+        finish: 配送完了
+      payment_method:
+        card: クレジットカード
+        bank: 銀行振込
+    categoty:
+      status:
+        published: 無効
+        draft: 有効
+    brand:
+      status:
+        published: 無効
+        draft: 有効
+    member:
+      withdraw:
+        published: 有効
+        draft: 無効
+    product:
+      sale_status:
+        sale: 販売中
+        sold_out: 売り切れ
+　time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%m/%d %H:%M"

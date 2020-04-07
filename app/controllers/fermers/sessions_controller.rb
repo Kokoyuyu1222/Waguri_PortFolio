@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Fermers::SessionsController < Devise::SessionsController
+  layout 'fermer'
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

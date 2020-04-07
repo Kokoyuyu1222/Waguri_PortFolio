@@ -3,6 +3,9 @@ class Fermer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+         enum withdraw: { draft: false, published: true }
+
 include JpPrefecture
   jp_prefecture :prefecture_code
 

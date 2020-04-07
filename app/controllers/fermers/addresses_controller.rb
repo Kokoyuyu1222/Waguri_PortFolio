@@ -1,4 +1,5 @@
-class Fermer::AddressesController < ApplicationController
+class Fermers::AddressesController < ApplicationController
+	layout 'fermer'
   def index
   end
 end

@@ -20,7 +20,8 @@ Rails.application.routes.draw do
     get 'consumers/withdraw'=> 'members#withdraw'
     patch 'consumers/change' => 'members#change'
     put 'consumers/change' => 'members#change'
-    resources :consumers,only: [:index,:edit,:update,:show]
+    resources :consumers,only: [:edit,:update,:show]
+    resources :fermers,only:[:index,:show]
     resources :cart_products,only: [:index,:create,:update,:destroy]
     resources :addresses ,only: [:show,:index,:edit,:update,:create,:destroy]
     resources :products ,only: [:show,:index]
@@ -30,8 +31,7 @@ Rails.application.routes.draw do
     delete 'consumers/cart_products/destroy_all'  => 'cart_products#destroy_all'
   end
   namespace :fermers do
-    get 'homes/top'
-    get '/search' => 'searches#search'
+    resources :fermers,only:[:show,:edit,:update]
     resources :searches,only: [:index]
     resources :products
     resources :columes
@@ -59,6 +59,4 @@ Rails.application.routes.draw do
     resources :products_comments,only: [:index,:show]
   end
   root 'homes#top'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

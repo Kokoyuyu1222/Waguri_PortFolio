@@ -1,12 +1,13 @@
 class Admins::BrandsController < ApplicationController
   layout 'admin'
   def index
+    @categories = Category.where(category_status: "draft")
   	@brands = Brand.all
   	@brand = Brand.new
   end
 
   def create
-  	@brand = Brand.new(genre_params)
+  	@brand = Brand.new(brand_params)
     @brand.save
 	redirect_back(fallback_location: admins_brands_path(@brand))
   end
@@ -26,6 +27,6 @@ class Admins::BrandsController < ApplicationController
   end
   private
     def brand_params
-		params.require(:brand).permit(:name,:status,:category_id)
+		params.require(:brand).permit(:name,:brand_status,:category_id)
 	end
 end

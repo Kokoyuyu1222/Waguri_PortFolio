@@ -1,4 +1,4 @@
 class Category < ApplicationRecord
 	has_many :brands,dependent: :destroy
-	enum status: { draft: false, published: true }
+	enum category_status: { draft: 0, published: 1 }
 end

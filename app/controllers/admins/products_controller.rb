@@ -1,4 +1,5 @@
-class Admin::ProductsController < ApplicationController
+class Admins::ProductsController < ApplicationController
+	layout 'admin'
   def index
   end
 end

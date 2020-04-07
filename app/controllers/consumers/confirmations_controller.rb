@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Consumers::ConfirmationsController < Devise::ConfirmationsController
+  layout 'consumer'
   # GET /resource/confirmation/new
   # def new
   #   super

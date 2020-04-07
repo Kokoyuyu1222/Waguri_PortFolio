@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Fermers::PasswordsController < Devise::PasswordsController
+  layout 'fermer'
   # GET /resource/password/new
   # def new
   #   super

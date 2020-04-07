@@ -35,11 +35,11 @@ class DeviseCreateConsumers < ActiveRecord::Migration[5.2]
       t.string :first_name
       t.string :last_name
       t.string :kana_first_name
-      t.string :kna_last_name
+      t.string :kana_last_name
       t.string :phone
       t.integer :gender
       t.integer :age
-      t.integer :withdraw, default: 0
+      t.boolean :withdraw, default: false, null: false
       t.integer :postcode
       t.integer :prefecture_code
       t.string :address_city

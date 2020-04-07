@@ -49,11 +49,11 @@ ActiveRecord::Schema.define(version: 2020_04_04_045300) do
     t.string "first_name"
     t.string "last_name"
     t.string "kana_first_name"
-    t.string "kna_last_name"
+    t.string "kana_last_name"
     t.string "phone"
     t.integer "gender"
     t.integer "age"
-    t.integer "withdraw", default: 0
+    t.boolean "withdraw", default: false, null: false
     t.integer "postcode"
     t.integer "prefecture_code"
     t.string "address_city"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2020_04_04_045300) do
     t.string "kana_first_name"
     t.string "kana_last_name"
     t.string "phone"
-    t.integer "withdraw", default: 0
+    t.boolean "withdraw", default: false, null: false
     t.integer "postcode"
     t.integer "prefecture_code"
     t.string "address_city"

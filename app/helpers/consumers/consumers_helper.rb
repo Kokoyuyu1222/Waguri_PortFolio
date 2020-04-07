@@ -1,0 +1,2 @@
+module Consumers::ConsumersHelper
+end

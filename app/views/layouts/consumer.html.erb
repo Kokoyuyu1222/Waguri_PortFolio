@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>namespace - consumer</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+	<header class="navbar-brand-center" style="background-color: #FFAD90;">
+    <div class="navbar-nav ml-auto mr-auto">
+      <% if consumer_signed_in? %>
+      <nav>
+        <ul>
+          <h2 class="navbar-brand navbar-right">WAGURI</h2>
+        </ul>
+        <ul>
+          <div class="nav-list-item"></div>
+          <li class="nav-list-item"><p>ようこそ、
+           <%= current_consumer.last_name %>
+         さん！</p></li>
+         <li class="nav-list-item"><%= link_to 'マイページ', consumers_consumer_path(current_consumer), class: "nav-link disabled" %></li>
+
+         <li class="nav-list-item"><%= link_to '商品一覧',consumers_products_path, class: "nav-link disabled" %></li>
+
+         <li class="nav-list-item"><%= link_to 'カート',  consumers_cart_products_path(current_consumer), class: "nav-link disabled" %></li>
+
+         <li class="nav-list-item"><%= link_to 'ログアウト', destroy_consumer_session_path, method: :delete,class: "nav-link disabled" %></li>
+       </ul>
+     </nav>
+
+     <% else %>
+     <nav>
+      <ul>
+        <h2 class="navbar-brand navbar-right　text-right">WAGURI</h2>
+        　<div class="nav-list-item" style="margin-right: 700px;"></div>
+        <li class="nav-list-item"><%= link_to '商品一覧', consumers_products_path, class: "nav-link disabled" %></li>
+
+        <li class="nav-list-item"><%= link_to '新規登録', new_consumer_registration_path, class: "nav-link disabled" %></li>
+
+        <li class="nav-list-item"><%= link_to 'ログイン', new_consumer_session_path, class: "nav-link disabled" %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<% content_for :content do %>
+<%= yield %>
+<% end %>
+<%= render template: "layouts/application" %>
+</body>
+</html>

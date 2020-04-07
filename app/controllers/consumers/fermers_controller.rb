@@ -1,4 +1,5 @@
-class Consumer::FermersController < ApplicationController
+class Consumers::FermersController < ApplicationController
+	layout 'consumer'
   def index
   end
 end

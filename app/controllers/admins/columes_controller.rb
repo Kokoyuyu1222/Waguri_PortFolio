@@ -1,4 +1,5 @@
-class Admin::ColumesController < ApplicationController
+class Admins::ColumesController < ApplicationController
+	layout 'admin'
   def index
   end
 end

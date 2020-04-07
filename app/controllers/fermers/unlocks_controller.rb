@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Fermers::UnlocksController < Devise::UnlocksController
+  layout 'fermer'
   # GET /resource/unlock/new
   # def new
   #   super

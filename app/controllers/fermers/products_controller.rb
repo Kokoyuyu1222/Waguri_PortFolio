@@ -1,4 +1,5 @@
-class Fermer::ProductsController < ApplicationController
+class Fermers::ProductsController < ApplicationController
+	layout 'fermer'
   def index
   end
 end

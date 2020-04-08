@@ -10,6 +10,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
     	t.integer :fermer_id
     	t.integer :sale_status,defolut: 0
     	t.integer :unit_price
+      t.text :introduction
 
 
       t.timestamps

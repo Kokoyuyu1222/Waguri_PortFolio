@@ -11,9 +11,11 @@ class Fermers::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   def create
+     super
+     @fermer = current_fermer
+     @fermer.update(name: @fermer.first_name + @fermer.last_name)
+   end
 
   # GET /resource/edit
   # def edit

@@ -9,6 +9,9 @@ ja:
         twenty: 20代
         thirty: 30代
         forty: 40代
+      withdraw:
+        published: 有効
+        draft: 無効
     order_product:
       product_status:
         not_create: 着手不可
@@ -33,7 +36,7 @@ ja:
       brand_status:
         published: 無効
         draft: 有効
-    member:
+    fermer:
       withdraw:
         published: 有効
         draft: 無効

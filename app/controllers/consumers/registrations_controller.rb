@@ -11,9 +11,11 @@ class Consumers::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   def create
+     super
+      @consumer = current_consumer
+      @consumer.update(name: @consumer.last_name + @consumer.first_name)
+   end
 
   # GET /resource/edit
   # def edit

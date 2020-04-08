@@ -3,6 +3,12 @@ class Fermers::FermersController < ApplicationController
   def show
   	@fermer = Fermer.find(params[:id])
   end
+  def edit
+  	
+  end
+  def update
+  	
+  end
 
   private
   def fermer_params

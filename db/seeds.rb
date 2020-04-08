@@ -9,3 +9,13 @@
 Admin.create!(email: "Waguri.PortFolio@gmail.com",
              password:  "Waguri202002",
              password_confirmation: "Waguri202002")
+
+
+orange = Category.create(:name => "みかん")
+
+
+orange_red = orange.children.create(:name=>"ブラッドオレンジ")
+orange_quick = orange.children.create(:name=>"早生みかん")
+
+orange_reds.children.create([{:name=>"1Kg箱"},{:name=>"2Kg箱"},{:name=>"3Kg箱"}])
+orange_quick.children.create([{:name=>"1Kg箱"},{:name=>"2Kg箱"},{:name=>"3Kg箱"}])

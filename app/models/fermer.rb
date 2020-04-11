@@ -4,7 +4,10 @@ class Fermer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+        has_many :columns, dependent: :destroy
+
          enum withdraw: { draft: false, published: true }
+
 
 include JpPrefecture
   jp_prefecture :prefecture_code

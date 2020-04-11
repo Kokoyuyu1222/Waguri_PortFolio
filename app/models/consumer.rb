@@ -9,6 +9,8 @@ class Consumer < ApplicationRecord
   enum age: { ten: 0,twenty: 1,thirty: 2, forty: 3,fifty: 4}
 
 
+
+
   include JpPrefecture
   jp_prefecture :prefecture_code
 

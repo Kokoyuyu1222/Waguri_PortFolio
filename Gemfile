@@ -74,10 +74,11 @@ gem 'enum_help'
 gem 'payjp'
 gem 'jp_prefecture'
 gem 'font-awesome-sass', '~> 5.4.1'
-gem "refile", require: "refile/rails", github: 'manfe/refile'
-gem "refile-mini_magick"
+gem "refile", github: 'refile/refile', require: "refile/rails"
+gem "refile-mini_magick", github: 'refile/refile-mini_magick'
 gem 'rspec-rails', '~> 3.6'
 gem 'carrierwave'
 gem 'rubocop', '~> 0.35.1'
 gem 'ancestry'
+gem 'rails-i18n'
 

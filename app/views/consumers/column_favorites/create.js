@@ -1,0 +1,1 @@
+$(".column_<%= @column.id %>").html("<%= j(render 'consumers/colun_favorites/favorite_form',  column: @column ) %>");

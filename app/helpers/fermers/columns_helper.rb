@@ -1,0 +1,2 @@
+module Fermers::ColumnsHelper
+end

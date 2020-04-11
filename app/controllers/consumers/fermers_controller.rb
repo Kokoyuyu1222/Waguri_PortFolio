@@ -1,7 +1,7 @@
 class Consumers::FermersController < ApplicationController
 	layout 'consumer'
   def index
-  	@fermers = Fermer.all
+  	@fermers = Fermer.all 
   end
   def show
   	@fermer = Fermer.find(params[:id])

@@ -1,0 +1,5 @@
+<%= form_with model: column do |f| %>
+
+
+  <%= f.fields_for :column_images do |i|  %>
+   <%= i.attachment_field :image, multiple: true, name: "images_attributes[0][image][]" %>

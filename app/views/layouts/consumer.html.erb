@@ -20,6 +20,7 @@
            <%= current_consumer.last_name %>
          さん！</p></li>
          <li class="nav-list-item"><%= link_to 'マイページ', consumers_consumer_path(current_consumer), class: "nav-link disabled" %></li>
+         <li class="nav-list-item"><%= link_to '農園一覧',consumers_fermers_path, class: "nav-link disabled" %></li>
 
          <li class="nav-list-item"><%= link_to '商品一覧',consumers_products_path, class: "nav-link disabled" %></li>
 

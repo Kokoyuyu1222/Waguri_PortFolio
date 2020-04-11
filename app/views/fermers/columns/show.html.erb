@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="row">
+		<div>
+					<% @column.column_image.each do |image| %>
+					<%= attachment_image_tag image, :image, :fill, 200, 200 %>
+					<% else %>
+					<%= image_tag 'no_image.jpg', size: '200x200' %>
+					<% end %>
+		</div>
+		<table class="table">
+			<tr>
+				<th></th>
+				<th>名前</th>
+				<th>タイトル</th>
+				<th>本文</th>
+			</tr>
+			<tr>
+				<td>
+					<%= @column.fermer.name %>
+				</td>
+				<td><%= link_to @column.title, fermers_column_path %></td>
+				<td><%= @column.body %>
+				</td>
+				<% if current_fermer.id == @fermer.id %>
+				<td><%= link_to "Edit",edit_fermers_column_path(@column), class: "btn-sm btn-success" %></td>
+				<td><%= link_to "Destroy",fermers_fermer_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %></td>
+				<% end %>
+			</tr>
+		</table>
+	</div>
+</div>

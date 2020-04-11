@@ -21,7 +21,10 @@ Rails.application.routes.draw do
     patch 'consumers/change' => 'members#change'
     put 'consumers/change' => 'members#change'
     resources :consumers,only: [:edit,:update,:show]
-    resources :fermers,only:[:index,:show]
+    resources :fermers
+    resources :columns
+    resources :columns_comments,only: [:index,:show,:create,:destroy]
+    resources :columns_favorites,only: [:index]
     resources :cart_products,only: [:index,:create,:update,:destroy]
     resources :addresses ,only: [:show,:index,:edit,:update,:create,:destroy]
     resources :products ,only: [:show,:index]
@@ -34,15 +37,18 @@ Rails.application.routes.draw do
     resources :fermers,only:[:show,:edit,:update]
     resources :searches,only: [:index]
     resources :products
-    resources :columes
-    resources :columes_comments,only: [:index,:show]
-    resources :columes_favorites,only: [:index]
+    post 'products/filter_brand' => 'products#filter_brand'
+    resources :columns
+    resources :columns_comments,only: [:index,:show]
+    resources :columns_favorites,only: [:index]
     resources :products_comments,only: [:index,:show]
     resources :products_favorites,only: [:index]
     resources :order_products,only: [:update]
     resources :orders,only: [:show,:index,:update]
     resources :consumers,only: [:show,:index]
     resources :addresses ,only: [:show,:index,:edit,:update,:create,:destroy]
+    patch 'fermers/change' => 'fermers#change'
+    put 'fermers/change' => 'fermers#change'
   end
 
   namespace :admins do

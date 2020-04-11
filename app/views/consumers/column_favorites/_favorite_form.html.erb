@@ -1,0 +1,10 @@
+<% if column.favorited_by?(current_consumer) %>
+
+    <%= link_to 'いいね外す',column_favorites_path(column), method: :delete,remote: true  %><%= column.favorites.count %>
+      <i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></i>
+<% else %>
+
+    <%= link_to 'いいねする',column_favorites_path(column), method: :post,remote: true  %><%= column.favorites.count %>
+      <i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i>
+
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_08_083241) do
+ActiveRecord::Schema.define(version: 2020_04_11_143653) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -39,6 +39,39 @@ ActiveRecord::Schema.define(version: 2020_04_08_083241) do
     t.datetime "updated_at", null: false
     t.string "ancestry"
     t.index ["ancestry"], name: "index_categories_on_ancestry"
+  end
+
+  create_table "colume_images", force: :cascade do |t|
+    t.integer "column_id"
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "column_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "fermer_id"
+    t.integer "consumer_id"
+    t.integer "column_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "column_favorites", force: :cascade do |t|
+    t.integer "fermer_id"
+    t.integer "consumer_id"
+    t.integer "column_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "columns", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.integer "fermer_id"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "consumers", force: :cascade do |t|
@@ -97,7 +130,7 @@ ActiveRecord::Schema.define(version: 2020_04_08_083241) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.integer "iamge_id"
+    t.string "image"
     t.integer "brand_id"
     t.integer "category_id"
     t.integer "quantity"

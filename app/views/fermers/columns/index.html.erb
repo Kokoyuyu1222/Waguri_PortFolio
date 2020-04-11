@@ -1,0 +1,22 @@
+<table class="table">
+		<tr>
+			<th>投稿日</th>
+			<th>タイトル</th>
+			<th>本文</th>
+		</tr>
+		<%if @columns.present? %>
+		<% @columns.each do |column| %>
+		<tr>
+			<td><%= l column.created_at, format: :short %></td>
+			<td>
+				<%= column.title %>
+			</td>
+			<td><%= column.body %></td>
+		</tr>
+		<% end %>
+		<% end %>
+	</table>
+	<div class="text-right">
+	<%= link_to "新規作成",new_fermers_column_path,class: "btn btn-success col-xs-12"%>
+	</div>
+</div>

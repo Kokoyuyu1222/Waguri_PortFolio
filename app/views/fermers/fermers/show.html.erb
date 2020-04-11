@@ -1,5 +1,45 @@
 <h1>マイページ</h1>
-<%= link_to "商品作成する",fermers_products_path %>
+<div class="row" style= "width: 80%; margin: 20px auto;">
+	<div class="form-horizontal">
+		<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">マイページ</h4>
+	</div>
+</div>
+
+<div class="show-container" style="width:50%; margin: 20px auto;">
+	<table class="table table-bordered">
+		<tr>
+			<th style=“background-color: #DAD7D7; border-bottom: 1px solid #fff;“>氏名</th>
+			<td><%= @fermer.name %></td>
+		</tr>
+		<tr>
+			<th style=“background-color: #DAD7D7; border-bottom: 1px solid #fff;“>電話番号</th>
+			<td><%= @fermer.phone %></td>
+		</tr>
+		<tr>
+			<th style=“background-color: #DAD7D7; border-bottom: 1px solid #fff;“>メールアドレス</th>
+			<td style=“border-bottom: 1px solid #DAD7D7;“><%= @fermer.email %></td>
+		</tr>
+	</table>
+
+	<table>
+		<td><h5>登録情報</h5>
+			<%= link_to '編集する', edit_fermers_fermer_path, class: "btn btn-outline-primary" %>
+	</table>
+
+	<hr>
+	<th><h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">配送元</h4>
+		<%= link_to fermers_address_path do %>
+		一覧を見る<span class="glyphicon glyphicon-chevron-right"></span>
+		<% end %>
+		<hr>
+		<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">注文履歴</h4>
+		<%= link_to fermers_orders_path do %>
+		一覧を見る<span class="glyphicon glyphicon-chevron-right"></span>
+		<% end %>
+		<%= link_to "商品作成する",fermers_products_path %>
+	</th>
+</div>
+
 
 
 

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Fermers::RegistrationsController < Devise::RegistrationsController
+  protect_from_forgery
   layout 'fermer'
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
@@ -14,7 +15,7 @@ class Fermers::RegistrationsController < Devise::RegistrationsController
    def create
      super
      @fermer = current_fermer
-     @fermer.update(name: @fermer.first_name + @fermer.last_name)
+     @fermer.update(name: @fermer.last_name + @fermer.first_name)
    end
 
   # GET /resource/edit

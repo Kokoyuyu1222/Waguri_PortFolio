@@ -1,0 +1,73 @@
+<div class="row" style= "width: 80%; margin: 20px auto;">
+  <div class="form-horizontal">
+    <h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">プロフィール編集画面</h4>
+  </div>
+</div>
+
+<div class="row my-3">
+  <div class="offset-3 col-6">
+
+    <%= form_for(@fermer, url:fermers_fermer_path,  local: true) do |f| %>
+    <div class="form-group">
+      <%= f.label :氏名, class: "brown-border px-3" %>
+      <div class="row">
+        <%= f.text_field :last_name, class: "form-control col-4"%>
+        <%= f.text_field :first_name, class: "brown-border px-3" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :フリガナ, class: "brown-border px-3" %>
+      <div class="row">y
+        <%= f.text_field :kana_last_name, class: "form-control offset-1 col-4"%>
+          <%= f.text_field :kana_first_name, class: "form-control col-4"%>
+      </div>
+    </div>
+    <div class="form-group">
+    <%= f.label :農園名, class: "brown-border px-3" %>
+    <%= f.text_field :garden, class: "form-control offset-1 col-8"%>
+  </div>
+  <div class="form-group">
+    <%= f.label :ホームページ, class: "brown-border px-3" %>
+    <%= f.text_field :home_page, class: "form-control offset-1 col-8"%>
+  </div>
+  <div class="form-group">
+    <%= f.label :電話番号, class: "brown-border px-3" %>
+    <%= f.text_field :phone, class: "form-control offset-1 col-8"%>
+  </div>
+  <div class="form-group">
+    <%= f.label :メールアドレス, class: "brown-border px-3" %>
+    <%= f.email_field :email, class: "form-control offset-1 col-8"%>
+  </div>
+  <div class="field">
+   <%= f.label :郵便番号, class: "brown-border px-3" %>
+   <%= f.text_field :postcode, class: "form-control offset-1 col-8"%>
+ </div>
+ <div class="field">
+   <%= f.label :都道府県, class: "brown-border px-3" %>
+   <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name %>
+ </div>
+ <div class="field">
+   <%= f.label :市町村, class: "brown-border px-3" %>
+   <%= f.text_field :address_city, class: "form-control offset-1 col-8" %>
+ </div>
+ <div class="field">
+  <%= f.label :番地, class: "brown-border px-3" %>
+  <%= f.text_field :address_street, class: "form-control offset-1 col-8" %>
+</div>
+<div class="field">
+ <%= f.label :建物, class: "brown-border px-3" %>
+ <%= f.text_field :address_building, class: "form-control offset-1 col-8" %>
+</div>
+
+
+<div class="row">
+  <%= f.submit "編集内容を保存する", class: "btn btn-outline-success offset-3 mt-3" %>
+</div>
+<% end %>
+
+</div>
+
+<div class="col-2 d-flex flex-column align-items-end">
+  <%= link_to "退会する" ,  fermers_fermers_withdraw_path,method: :get, class: "btn btn-danger mt-auto" %>
+</div>
+</div>

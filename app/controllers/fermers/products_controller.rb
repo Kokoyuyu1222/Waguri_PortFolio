@@ -3,14 +3,15 @@ class Fermers::ProductsController < ApplicationController
   def index
   	if params[:category_id]
       @products = Product.where(category_id: params[:category_id])
-      @categories = Producte.eager_load({:brand => :category}).where(category_status: "draft")
+      # @categories = Producte.all.includes({:brand => :category}).where(category_status: "draft")
     else
-      @products = Product.joins(:category).where("(category_status = ?)",false)
-      @categories = Product.joins({:brand => :category}).where(category_status: "draft")
+      @products = Product.includes(brand: :category).where(categories: {category_status: false})
+      # @categories = Product.all.includes({:brand => :category}).where(category_status: "draft")
     end
   end
   def new
   	@product = Product.new
+    @product.product_images.build
     @categories = Category.where(category_status: 'draft').order("name")
     @brands = Brand.where(brand_status: 'draft').order("name")
     @category = Category.new
@@ -20,17 +21,16 @@ class Fermers::ProductsController < ApplicationController
     @product.category_id = params["category"]["id"]
     @categories = Category.where(category_status: 'draft').order("name")
     @brands = Brand.where(brand_status: 'draft')
-      .where(category_id: params["category"]["id"])
-      .order("name")
+    .where(category_id: params["category"]["id"])
+    .order("name")
     @category = Category.new
     @category.id = params["category"]["id"]
     render "new"
   end
   def create
-    binding.pry
   	@product = Product.new(product_params)
     @product.save
-    redirect_to fermers_products_path(@product)
+    redirect_to fermers_product_path(@product)
   end
   def show
   	@product = Product.find(params[:id])
@@ -53,6 +53,6 @@ class Fermers::ProductsController < ApplicationController
  end
  private
  def product_params
-   params.require(:product).permit(:name,:sale_status,:introduction,:category_id,:brand_id,:quantity,:stock_id,:fermer_id,:unit_price, {images: []})
+   params.require(:product).permit(:name,:sale_status,:introduction,:category_id,:brand_id,:quantity,:stock_id,:fermer_id,:unit_price, product_images_images: [])
  end
 end

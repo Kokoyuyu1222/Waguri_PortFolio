@@ -34,7 +34,7 @@ class DeviseCreateFermers < ActiveRecord::Migration[5.2]
 
       t.string :name
       t.string :garden
-      t.integer :profile_image_id
+      t.string :profile_image_id
       t.string :first_name
       t.string :last_name
       t.string :kana_first_name

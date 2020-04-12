@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_143653) do
+ActiveRecord::Schema.define(version: 2020_04_12_153840) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(version: 2020_04_11_143653) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cart_products", force: :cascade do |t|
+    t.integer "consumer_id"
+    t.integer "product_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.integer "category_status"
@@ -39,13 +47,6 @@ ActiveRecord::Schema.define(version: 2020_04_11_143653) do
     t.datetime "updated_at", null: false
     t.string "ancestry"
     t.index ["ancestry"], name: "index_categories_on_ancestry"
-  end
-
-  create_table "colume_images", force: :cascade do |t|
-    t.integer "column_id"
-    t.string "image_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "column_comments", force: :cascade do |t|
@@ -65,11 +66,17 @@ ActiveRecord::Schema.define(version: 2020_04_11_143653) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "column_images", force: :cascade do |t|
+    t.integer "column_id"
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "columns", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.integer "fermer_id"
-    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -94,7 +101,7 @@ ActiveRecord::Schema.define(version: 2020_04_11_143653) do
     t.string "address_city"
     t.string "address_street"
     t.string "address_building"
-    t.integer "profile_image_id"
+    t.string "profile_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_consumers_on_email", unique: true
@@ -109,7 +116,7 @@ ActiveRecord::Schema.define(version: 2020_04_11_143653) do
     t.datetime "remember_created_at"
     t.string "name"
     t.string "garden"
-    t.integer "profile_image_id"
+    t.string "profile_image_id"
     t.string "first_name"
     t.string "last_name"
     t.string "kana_first_name"
@@ -128,9 +135,15 @@ ActiveRecord::Schema.define(version: 2020_04_11_143653) do
     t.index ["reset_password_token"], name: "index_fermers_on_reset_password_token", unique: true
   end
 
+  create_table "product_images", force: :cascade do |t|
+    t.string "image_id"
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.string "image"
     t.integer "brand_id"
     t.integer "category_id"
     t.integer "quantity"

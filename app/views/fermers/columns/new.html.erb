@@ -1,2 +1,16 @@
 <h1>ブログ記事新規追加</h1>
-<%= render partial: "fermers/columns/_form", locals: { column: @column } %>
+<%= form_for(@column,url:fermers_columns_path) do |f| %>
+<% if @column.errors.any? %>
+
+	<h3><%= @column.errors.count %>error occurrence</h3>
+	<ul>
+		<% @column.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+<% end %>
+<p>記事タイトル:<%= f.text_field :title %></p>
+<p>記事本文:<%= f.text_field :body %></p>
+<p>記事画像:<%= f.attachment_field :column_images_images, multiple: true %></p>
+<%= f.submit %>
+<% end %>

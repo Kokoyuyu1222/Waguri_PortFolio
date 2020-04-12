@@ -1,2 +1,40 @@
-<h1>Consumer::Products#index</h1>
-<p>Find me in app/views/consumer/products/index.html.erb</p>
+<table>
+	<tr>
+		<th>商品名</th>
+		<th>価格</th>
+		<th>ブランド</th>
+		<th>カテゴリー</th>
+		<th>農園名</th>
+		<th>ホームページ</th>
+	</tr>
+	<%if @products.present? %>
+	<% @products.each do |product| %>
+	<tr>
+		<td>
+			<%= link_to(consumers_product_path(product)) do %>
+			  <% if product.product_images.present? %>
+			    <% product.product_images.each do |image| %>
+			      <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+			    <% end %>
+			  <% else %>
+			    <%= image_tag 'no_image.jpg',size: '200*200'%>
+			  <% end %>
+			  <%= product.name %>
+			<% end %>
+		</td>
+		<td><%= product.unit_price %></td>
+		<td><%= product.brand.name %></td>
+		<td><%= product.brand.category.name %></td>
+		<td>
+			<%= link_to(consumers_fermer_path(product)) do %>
+			<%= product.name %>
+			<% end %>
+		</td>
+		<td><%= product.name %></td>
+	</div>
+    <% end %>
+    <% end %>
+    </tr>
+
+</table>
+

@@ -1,0 +1,53 @@
+<div class= "container">
+	<div class="row" style= "width: 100%; margin: 20px auto;">
+		<div class= "col-md-9">
+			<% if @product.product_images.present? %>
+			  <% @product.product_images.each do |image| %>
+			    <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+			  <% end %>
+			<% else %>
+			    <%= image_tag 'no_image.jpg',size: '200*200'%>
+			<% end %>
+		</div>
+
+		<div class= "col-md-3"style=" margin-top: 50px;">
+			<table class="table table-condensed">
+				<tr>
+					<th>商品名</th>
+					<td><%= @product.name %></td>
+				</tr>
+				<tr>
+					<th>商品説明</th>
+					<td><%= @product.introduction %></td>
+				</tr>
+				<tr>
+					<th>カテゴリー</th>
+					<td><%= @product.brand.category.name %></td>
+				</tr>
+				<tr>
+					<th>ブランド</th>
+					<td><%= @product.brand.name %></td>
+				</tr>
+				<tr>
+					<th>税込価格</th>
+					<td><%= @product.unit_price %>円</td>
+				</tr>
+				<tr>
+					<th>販売ステータス</th>
+					<td><%= @product.sale_status_i18n %></td>
+				</tr>
+			</table>
+				<%= form_with(model:@cart,url: consumers_cart_products_path,local: true,method: :POST) do |f| %>
+
+				<tr>
+					<th><%= f.label  :quantity, "個数選択" %>
+						<%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10]%></th>
+						<%= f.hidden_field :product_id, :value => @product.id%>
+						<th><%= f.submit "カートに入れる", class: "btn btn-primary" %></th>
+					</tr>
+					<% end %>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

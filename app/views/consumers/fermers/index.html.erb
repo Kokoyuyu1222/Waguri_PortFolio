@@ -3,6 +3,7 @@
 		<th>農園名</th>
 		<th>事業主</th>
 		<th>ホームページ</th>
+		<th>記事</th>
 	</tr>
 	<%if @fermers.present? %>
 	<% @fermers.each do |fermer| %>
@@ -10,7 +11,10 @@
 		<td><%= link_to fermer.garden, consumers_fermer_path(fermer) %></td>
 		<td><%= fermer.name %></td>
 		<td><%= fermer.home_page %></td>
+		<td><%= link_to "記事を見に行く",consumers_columns_path(fermer)%>
+   </div></td>
 	</tr>
 	<% end %>
 	<% end %>
+
 </table>

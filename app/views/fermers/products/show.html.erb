@@ -1,0 +1,57 @@
+<div class="row" style= "width: 80%; margin: 20px auto;">
+	<div class="form-horizontal">
+		<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">商品詳細画面</h4>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row" style="width: 80%; margin: 50px auto;">
+		<div class= "col-md-6">
+			<% if @product.product_images.present? %>
+			  <% @product.product_images.each do |image| %>
+			    <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+			  <% end %>
+			<% else %>
+			    <%= image_tag 'no_image.jpg',size: '200*200'%>
+			<% end %>
+		</div>
+		<div class= "col-md-6">
+			<table class="table table-condensed">
+				<tr>
+					<th>商品名</th>
+					<td><%= @product.name %></td>
+				</tr>
+				<tr>
+					<th>商品説明</th>
+					<td><%= @product.introduction %></td>
+				</tr>
+				<tr>
+					<th>カテゴリー</th>
+					<td><%= @product.brand.category.name %></td>
+				</tr>
+				<tr>
+					<th>ブランド</th>
+					<td><%= @product.brand.name %></td>
+				</tr>
+				<tr>
+					<th>税込価格</th>
+					<td><%= @product.unit_price %>円</td>
+				</tr>
+				<tr>
+					<th>販売ステータス</th>
+					<td><%= @product.sale_status_i18n %></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+	<div class="container">
+		<table>
+			<td><%= link_to "⇦戻る",fermers_products_path %></td>
+		</table>
+		<tabel>
+			<div class="text-right">
+		<td><%= link_to "編集する" ,edit_fermers_product_path(@product),class: "btn btn-primary col-xs-12" %></td>
+		<td><%= link_to "削除する",fermers_product_path(@product.id), method: :delete, data: { confirm:"Are you sure?"} , :class =>"btn btn-danger" %></td>
+</table>

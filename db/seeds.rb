@@ -100,7 +100,7 @@ Category.create!(name: "りんご",category_status: "draft")
   Brand.create!(name:"ジョナゴールド",brand_status:"draft",category_id: 4)
   Brand.create!(name:"王林",brand_status:"draft",category_id: 4)
 
-Column.create!(title:"桃の花の間引き作業",
-               body:"4月５日に桃の花間引きを行った。新木の作業ゆえに、慎重に将来の桃の枝の幹を計算し、間引き、剪定を行う",
-               feremer_id: 1 )
+# Column.create!(title:"桃の花の間引き作業",
+#                body:"4月５日に桃の花間引きを行った。新木の作業ゆえに、慎重に将来の桃の枝の幹を計算し、間引き、剪定を行う",
+#                feremer_id: 1 )
 

@@ -5,6 +5,7 @@ class Fermer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
         has_many :columns, dependent: :destroy
+        has_many :products, dependent: :destroy
 
          enum withdraw: { draft: false, published: true }
 

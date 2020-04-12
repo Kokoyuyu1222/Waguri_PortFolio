@@ -1,9 +1,4 @@
 ja:
-  activerecord:
-    attributes:
-      entry_image:
-        new_data: 画像ファイル
-        alt_text: 代替テキスト
   enums:
     consumer:
       gender:

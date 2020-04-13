@@ -21,3 +21,4 @@ include JpPrefecture
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
 end
+

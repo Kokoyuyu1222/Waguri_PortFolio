@@ -46,6 +46,7 @@ class DeviseCreateConsumers < ActiveRecord::Migration[5.2]
       t.string :address_street
       t.string :address_building
       t.string :profile_image_id
+      t.string :address
 
 
       t.timestamps null: false

@@ -1,0 +1,2 @@
+module Consumers::OrdersHelper
+end

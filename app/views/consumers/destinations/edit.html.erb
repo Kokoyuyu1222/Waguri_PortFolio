@@ -1,0 +1,47 @@
+<div class="row" style= "width: 80%; margin: 20px auto;">
+	<div class="form-horizontal">
+		<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">配送先編集</h4>
+	</div>
+</div>
+<div class="edit-container" style="width:50%; margin: 20px auto;">
+
+	<%= form_for(@destination, url: consumers_destination_path, local: true) do |f| %>
+	<table class="table table-bordered">
+        <tr>
+            <th>郵便番号(ハイフンなし)</th>
+            <th>都道府県</th>
+            <th>市町村</th>
+            <th>番地</th>
+            <th>建物</th>
+            <th>宛名</th>
+        </tr>
+      <tr>
+          <td><%= f.text_field :postcode, style: "width: 40%;" %></td>
+       <td>
+        <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name %>
+    </td>
+
+
+
+   <td>
+    <%= f.text_field :address_city, autofocus: true, autocomplete: "address_city" %>
+</td>
+
+
+  <td>
+    <%= f.text_field :address_street, autofocus: true, autocomplete: "address_street" %>
+</td>
+
+
+   <td>
+    <%= f.text_field :address_building, autofocus: true, autocomplete: "address_building" %>
+</td>
+   <td>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+</td>
+
+</table>
+	<div class="text-right">
+		<%= f.submit class: "btn btn-primary col-xs-12" %>
+	</div>
+	<% end %>

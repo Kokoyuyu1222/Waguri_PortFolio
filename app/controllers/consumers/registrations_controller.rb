@@ -11,10 +11,12 @@ class Consumers::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
+
    def create
      super
       @consumer = current_consumer
       @consumer.update(name: @consumer.last_name + @consumer.first_name)
+      @consumer.update(address: @consumer.prefecture_name +  @consumer.address_city + @consumer.address_street + @consumer.address_building)
    end
 
   # GET /resource/edit

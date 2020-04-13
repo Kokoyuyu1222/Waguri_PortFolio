@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
 	belongs_to :brand
 	belongs_to :fermer
+	has_many :product_comments, dependent: :destroy
 	has_many :cart_products
 	has_many :order_products
 	has_many :orders, through: :order_products

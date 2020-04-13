@@ -1,0 +1,2 @@
+module Consumers::DestinationsHelper
+end

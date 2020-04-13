@@ -1,0 +1,50 @@
+<div class="row" style= "width: 80%; margin: 20px auto;">
+  <div  class= "col-md-9">
+    <div class="row" style= "width: 100%; margin: 20px auto;">
+      <div class="form-horizontal">
+        <h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">注文履歴一覧</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="index-container" style="width:80%; margin: 20px auto;">
+  <div class="row" style= "width: 80%; margin: 20px auto;">
+  <table  class="table table-bordered ">
+    <tr>
+      <th>注文日</th>
+      <th>配送先</th>
+      <th>宛先</th>
+      <th>写真</th>
+      <th>注文商品</th>
+      <th>支払い金額</th>
+      <th>ステータス</th>
+      <th>注文詳細</th>
+    </tr>
+    <% @orders.each do |order| %>
+    <tr>
+      <td><%= l order.created_at, format: :short %></td>
+      <td>〒<%= order.postcode %><br>
+        <%= order.address %><br>
+        <%= order.name %>
+      </td>
+      <td><% order.order_products.each do |order_product| %>
+        <td>
+              <% if order_product.product.product_images.present? %>
+                    <%= attachment_image_tag order_product.product.product_images.first, :image, :fill, 100, 100 %>
+                <% else %>
+                  <%= image_tag 'no_image.jpg',size: '100*100'%>
+            <% end %>
+          </td>
+        <td>
+        <%= order_product.product.name %>
+        <% end %></td>
+        <td><%= order.billing_amount %>円</td>
+        <td><%= order.order_status_i18n  %></td>
+        <td><%= link_to "表示する",consumers_order_path(order.id) %></td>
+        <% end %>
+    </tr>
+  </table>
+</div>
+</div>

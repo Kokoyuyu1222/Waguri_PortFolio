@@ -25,7 +25,8 @@ Consumer.create!(email:"yk.rk1222@gmail.com",
                  prefecture_code: 30,
                  address_city:"紀の川市桃山町市場",
                  address_street:"222",
-                 address_building:"201号室"
+                 address_building:"201号室",
+                 address:"和歌山県 紀の川市桃山町市場 222 201号室"
   )
 Consumer.create!(email:"nagoyuto0109@gmail.com",
                  password:  "Wagayama",
@@ -43,7 +44,8 @@ Consumer.create!(email:"nagoyuto0109@gmail.com",
                  prefecture_code: 30,
                  address_city:"紀の川市桃山町市場",
                  address_street:"4444",
-                 address_building:"308号室"
+                 address_building:"308号室",
+                 address:"和歌山県 紀の川市桃山町市場 444 308号室"
   )
 Fermer.create!(email:"takoyaki.boys202002@gmail.com",
                  password:  "FermerTest",
@@ -61,7 +63,8 @@ Fermer.create!(email:"takoyaki.boys202002@gmail.com",
                  prefecture_code:30,
                  address_city:"紀の川市桃山町市場",
                  address_street:"6666666",
-                 address_building:""
+                 address_building:"",
+                 address:"和歌山県 紀の川市桃山町市場 6666666"
   )
 Fermer.create!(email:"konishi.peach@gmail.com",
                  password:  "FermerTes2",
@@ -79,7 +82,8 @@ Fermer.create!(email:"konishi.peach@gmail.com",
                  prefecture_code:30,
                  address_city:"紀の川市桃山町市場",
                  address_street:"555555",
-                 address_building:""
+                 address_building:"",
+                 address:"和歌山県 紀の川市桃山町市場 555555"
   )
 
 

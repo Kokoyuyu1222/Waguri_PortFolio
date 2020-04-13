@@ -16,6 +16,7 @@ class Fermers::RegistrationsController < Devise::RegistrationsController
      super
      @fermer = current_fermer
      @fermer.update(name: @fermer.last_name + @fermer.first_name)
+     @fermer.update(address: @fermer.prefecture_name +  @fermer.address_city + @fermer.address_street + @fermer.address_building)
    end
 
   # GET /resource/edit

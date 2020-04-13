@@ -29,6 +29,7 @@ class Fermers::ProductsController < ApplicationController
   end
   def create
   	@product = Product.new(product_params)
+    @product.fermer_id = current_fermer.id
     @product.save
     redirect_to fermers_product_path(@product)
   end

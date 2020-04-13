@@ -43,7 +43,7 @@ class Consumers::CartProductsController < ApplicationController
   private
 
     def cart_product_params
-	  params.require(:cart_product).permit(:consumer_id,:product_id,:quantity)
+	  params.require(:cart_product).permit(:consumer_id,:product_id,:quantity,:unit_price)
     end
 
   end

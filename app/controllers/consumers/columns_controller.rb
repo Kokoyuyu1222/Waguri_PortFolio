@@ -10,10 +10,10 @@ class Consumers::ColumnsController < ApplicationController
 
 	def show
 		@column = Column.find(params[:id])
-		@consumer = Consumer.find(@column.consumer_id)
+		@consumer = Consumer.find(@column.fermer_id)
 		@comment = ColumnComment.new
 		@comments = @column.column_comments
-		@favorite = Favorite.new
+		@favorite = ColumnFavorite.new
 	end
 	private
 	def column_params

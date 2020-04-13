@@ -14,6 +14,7 @@
 				<ul class="nav-list">
 					<li><h2 class="navbar-brand navbar-right">WAGURI</h2></li>
 					<div class= "nav-list-item logo"></div>
+					<li class="nav-list-item"><%= link_to 'マイページ', fermers_fermer_path(current_fermer), class: "nav-link disabled" %></li>
 					<li class="nav-list-item"><%= link_to '商品一覧', fermers_products_path, class: "nav-link disabled" %></li>
 					<li class="nav-list-item"><%= link_to '会員一覧', fermers_consumers_path, class: "nav-link disabled" %></li>
 					<li class="nav-list-item"><%= link_to '記事作成', fermers_columns_path, class: "nav-link disabled" %></li>

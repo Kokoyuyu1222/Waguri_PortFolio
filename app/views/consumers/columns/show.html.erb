@@ -5,8 +5,7 @@
 		<table class="table">
 			<tr>
 				<td>
-					<%= link_to (@column.fermer) do %>
-					<%= attachment_image_tag(@column.fermer, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %><br>
+					<%= link_to(consumers_fermer_path(@consumer)) do %>
 					<%= @column.fermer.name %>
 					<% end %>
 				</td>
@@ -21,8 +20,8 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>name</th>
-						<th>comment</th>
+						<th>投稿者</th>
+						<th>コメント</th>
 						<th colspan="3"></th>
 					</tr>
 				</thead>

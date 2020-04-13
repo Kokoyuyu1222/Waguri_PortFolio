@@ -1,0 +1,8 @@
+<%= form_with(model:[product, comment],url: consumers_product_product_comments_path(product_id: product.id) ) do |f| %>
+  <div>
+    <%= f.text_area :comment ,rows:'5', class: "form-control",placeholder: "コメントをここに"%>
+  </div>
+  <div class="actions">
+    <%= f.submit "コメントをする" %>
+  </div>
+<% end %>

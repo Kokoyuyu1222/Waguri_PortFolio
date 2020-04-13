@@ -17,7 +17,7 @@
 					<%if @columns.present? %>
 					<% @columns.each do |column| %>
 					<tr>
-						<td><%= link_to column.title, fermers_column_path(column) %></td>
+						<td><%= link_to column.title, consumers_column_path(column) %></td>
 						<td><%= column.body %></td>
 					</tr>
 					<% end %>

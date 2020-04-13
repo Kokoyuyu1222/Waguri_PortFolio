@@ -13,9 +13,7 @@
 		<td>
 			<%= link_to(consumers_product_path(product)) do %>
 			  <% if product.product_images.present? %>
-			    <% product.product_images.each do |image| %>
-			      <%= attachment_image_tag image, :image, :fill, 200, 200 %>
-			    <% end %>
+			      <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
 			  <% else %>
 			    <%= image_tag 'no_image.jpg',size: '200*200'%>
 			  <% end %>

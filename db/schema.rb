@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_12_153840) do
+ActiveRecord::Schema.define(version: 2020_04_13_144608) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -102,10 +102,24 @@ ActiveRecord::Schema.define(version: 2020_04_12_153840) do
     t.string "address_street"
     t.string "address_building"
     t.string "profile_image_id"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_consumers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_consumers_on_reset_password_token", unique: true
+  end
+
+  create_table "destinations", force: :cascade do |t|
+    t.integer "consumer_id"
+    t.integer "postcode"
+    t.string "name"
+    t.integer "prefecture_code"
+    t.string "address_city"
+    t.string "address_street"
+    t.string "address_building"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "fermers", force: :cascade do |t|
@@ -129,10 +143,47 @@ ActiveRecord::Schema.define(version: 2020_04_12_153840) do
     t.string "address_street"
     t.string "address_building"
     t.string "home_page"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_fermers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_fermers_on_reset_password_token", unique: true
+  end
+
+  create_table "order_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "quantity"
+    t.integer "product_status", default: 0
+    t.integer "price"
+    t.integer "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "consumer_id"
+    t.integer "order_status", default: 0
+    t.integer "payment_method"
+    t.string "name"
+    t.string "phone"
+    t.integer "postcode"
+    t.integer "prefecture_code"
+    t.string "address_city"
+    t.string "address_street"
+    t.string "address_building"
+    t.integer "postage", default: 800
+    t.integer "billing_amount"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "consumer_id"
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "product_images", force: :cascade do |t|

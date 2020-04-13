@@ -17,6 +17,8 @@ class Consumers::ProductsController < ApplicationController
   def show
   	@product = Product.find(params[:id])
     @cart = CartProduct.new
+    @comment = ProductComment.new
+    @comments = @product.product_comments
   end
   private
   def product_params

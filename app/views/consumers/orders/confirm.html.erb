@@ -21,77 +21,109 @@
         <% amount = 0 %>
         <% sum = 0 %>
         <%if @cart_products.present? %>
-        <% @cart_products.each do |cart_product| %>
-        <tr>
-          <td>
-              <% if cart_product.product.product_images.present? %>
+          <% @cart_products.each do |cart_product| %>
+            <tr>
+              <td>
+                <% if cart_product.product.product_images.present? %>
                     <%= attachment_image_tag cart_product.product.product_images.first, :image, :fill, 100, 100 %>
                 <% else %>
-                  <%= image_tag 'no_image.jpg',size: '100*100'%>
-            <% end %>
-          </td>
-          <td><%= cart_product.product.name %></td>
-          <td><%= (cart_product.product.unit_price * 1.1).round  %>円</td>
-          <td>
-            <%= cart_product.quantity %></td>
-            <td><%= (cart_product.product.unit_price * 1.10 * cart_product.quantity).to_i.to_s(:delimited) %>円 </td>
-          </tr>
+                    <%= image_tag 'no_image.jpg',size: '100*100'%>
+                <% end %>
+              </td>
+              <td><%= cart_product.product.name %></td>
+              <td><%= (cart_product.product.unit_price * 1.1).round  %>円</td>
+              <td>
+                <%= cart_product.quantity %>
+              </td>
+              <td>
+                <%= (cart_product.product.unit_price * 1.10 * cart_product.quantity).to_i.to_s(:delimited) %>円
+              </td>
+            </tr>
           <% end %>
-          <% end %>
-        </table>
-      </div>
+        <% end %>
+      </table>
+    </div>
 
-      <div class= "col-md-5">
-        <table class="table table-bordered ">
-          <tr>
-            <th>送料</th>
-            <td><%= @order.postage %>円</td>
-          </tr>
-          <tr>
-            <th>合計</th>
-            <td><%= sum = (@total_price * 1.1).round %>円</td>
-          </tr>
-          <tr>
-            <th>請求金額</th>
-            <td><%= amount = ((@total_price * 1.1).round + @order.postage )%>円</td>
-          </tr>
-        </table>
-      </div>
-
-      <div class="container">
-        <h4><u>支払い方法</u></h4>
-        <div><%= @order.payment_method_i18n %>
-        </div><br>
-        <h4><u>お届け先</u></h4>
-        <div>〒<%= @order.postcode %><br>
+    <div class= "col-md-5">
+      <table class="table table-bordered ">
+        <tr>
+          <th>送料</th>
+          <td><%= @order.postage %>円</td>
+        </tr>
+        <tr>
+          <th>合計</th>
+          <td><%= sum = (@total_price * 1.1).round %>円</td>
+        </tr>
+        <tr>
+          <th>請求金額</th>
+          <td><%= amount = ((@total_price * 1.1).round + @order.postage )%>円</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <h4><u>支払い方法</u></h4>
+    <div>
+      <%= @order.payment_method_i18n %>
+    </div>
+    <h4><u>お届け先</u></h4>
+    <div>〒<%= @order.postcode %><br>
           <%= @order.address %><br>
           <%= @order.name %>
-        </div>
-
-      <%= form_for(@order,url:consumers_orders_path,method: :post) do |f| %>
-      <%= f.hidden_field :postcode %>
-      <%= f.hidden_field :prefecture_code %>
-      <%= f.hidden_field :address_city %>
-      <%= f.hidden_field :address_street %>
-      <%= f.hidden_field :address_building %>
-      <%= f.hidden_field :name %>
-      <%= f.hidden_field :payment_method %>
-      <%= f.hidden_field :billing_amount, :value => sum.to_i  %>
-      <%= f.hidden_field :postage %>
-      <% @cart_products.each do |cart_product| %>
-      <%= f.fields_for :order_products do |o| %>
-      <%= o.hidden_field :product_id, :value => cart_product.product_id %>
-      <%= o.hidden_field :consumer_id, :value => current_consumer.id %>
-      <%= o.hidden_field :quantity, :value => cart_product.quantity %>
-      <%= o.hidden_field :unit_price, :value => cart_product.product.unit_price %>
-      <%= o.hidden_field :name, :value => cart_product.product.name %>
-      <% end %>
-      <% end %>
-      <div class="clearfix"></div>
-      <div class="text-center">
-        <%= f.submit "購入を確定する" ,class:"btn btn-primary btn-lg center-block" %>
-        <% end %>
-      </div>
     </div>
+    <%if @order.payment_method == "bank"%>
+      <%= form_for(@order,url:consumers_orders_path,method: :post) do |f| %>
+        <%= f.hidden_field :postcode %>
+        <%= f.hidden_field :prefecture_code %>
+        <%= f.hidden_field :address_city %>
+        <%= f.hidden_field :address_street %>
+        <%= f.hidden_field :address_building %>
+        <%= f.hidden_field :name %>
+        <%= f.hidden_field :payment_method %>
+        <%= f.hidden_field :billing_amount, :value => sum.to_i  %>
+        <%= f.hidden_field :postage %>
+        <% @cart_products.each do |cart_product| %>
+          <%= f.fields_for :order_products do |o| %>
+            <%= o.hidden_field :product_id, :value => cart_product.product_id %>
+            <%= o.hidden_field :consumer_id, :value => current_consumer.id %>
+            <%= o.hidden_field :quantity, :value => cart_product.quantity %>
+            <%= o.hidden_field :unit_price, :value => cart_product.product.unit_price %>
+            <%= o.hidden_field :name, :value => cart_product.product.name %>
+          <% end %>
+        <% end %>
+        <%= f.submit "購入を確定する" ,class:"btn btn-primary btn-lg center-block" %>
+      <% end %>
+    <% else %>
+      <%= form_for(@order,url:consumers_orders_pay_path,method: :post) do |f| %>
+        <%= f.hidden_field :postcode %>
+        <%= f.hidden_field :prefecture_code %>
+        <%= f.hidden_field :address_city %>
+        <%= f.hidden_field :address_street %>
+        <%= f.hidden_field :address_building %>
+        <%= f.hidden_field :name %>
+        <%= f.hidden_field :payment_method %>
+        <%= f.hidden_field :billing_amount, :value => sum.to_i  %>
+        <%= f.hidden_field :postage %>
+        <% @cart_products.each do |cart_product| %>
+          <%= f.fields_for :order_products do |o| %>
+            <%= o.hidden_field :product_id, :value => cart_product.product_id %>
+            <%= o.hidden_field :consumer_id, :value => current_consumer.id %>
+            <%= o.hidden_field :quantity, :value => cart_product.quantity %>
+            <%= o.hidden_field :unit_price, :value => cart_product.product.unit_price %>
+            <%= o.hidden_field :name, :value => cart_product.product.name %>
+          <% end %>
+        <% end %>
+        <script
+          type="text/javascript"
+          src="https://checkout.pay.jp/"
+          class="payjp-button"
+          data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>"
+          data-submit-text="トークンを作成する"
+          data-partial="true">
+        </script>
+      <% end %>
+    <% end %>
   </div>
 </div>

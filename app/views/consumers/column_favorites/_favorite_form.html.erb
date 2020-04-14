@@ -1,9 +1,9 @@
 <% if column.favorited_by?(current_consumer) %>
 
-    <%= link_to 'いいね外す',consumers_column_column_favorites_path(column, redirect_id: 0), method: :delete,remote: true  %><%= column.column_favorites.count %>
+    <%= link_to 'いいね外す',consumers_column_column_favorites_path(column, redirect_id: 0), method: :delete,remote: true, class: "column_#{column.id}" %><%= column.column_favorites.count %>
       <i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></i>
 <% else %>
-    <%= link_to 'いいねする',consumers_column_column_favorites_path(column, redirect_id: 0), method: :post,remote: true  %><%= column.column_favorites.count %>
+    <%= link_to 'いいねする',consumers_column_column_favorites_path(column, redirect_id: 0), method: :post,remote: true, class: "column_#{column.id}" %><%= column.column_favorites.count %>
       <i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i>
 
 <% end %>

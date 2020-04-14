@@ -66,6 +66,23 @@ class Consumers::OrdersController < ApplicationController
 	def finish
 	end
 
+	def pay
+		Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+  		Payjp::Charge.create(
+    	:postcode => params[:postcode],
+    	:prefecture_code => params[:prefecture_code],
+    	:address_city => params[:address_city],
+    	:address_street => params[:address_street],
+    	:address_building => params[:address_building],
+    	:name => params[:name],
+    	:payment_method => params[:payment_method],
+    	:billing_amount => params[:billing_amount],
+    	:billing_amount => params[:billing_amount],
+    	:card => params['payjp-token'],
+    	:currency => 'jpy'
+    	 )
+	end
+
 	private
 	def order_params
 		params.require(:order).permit(:consumer_id,:order_status,:payment_method,:address,

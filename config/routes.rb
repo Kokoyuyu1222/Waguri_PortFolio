@@ -34,6 +34,7 @@ Rails.application.routes.draw do
         resource :product_favorites,only: [:create,:destroy], shallow: true
       end
       get 'orders/confirm' => 'orders#confirm'
+      post 'orders/pay' => 'orders#pay'
       get 'orders/finish' => 'orders#finish'
       resources :orders ,only: [:new,:create,:index,:show]
       delete 'consumers/cart_products/destroy_all'  => 'cart_products#destroy_all'

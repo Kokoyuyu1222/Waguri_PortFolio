@@ -6,6 +6,7 @@ class Consumer < ApplicationRecord
   has_many :cart_products, dependent: :destroy
   has_many :destinations, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :cards, dependent: :destroy
 
   has_many :column_comments, dependent: :destroy
   has_many :column_comment_columns,through: :column_comments, source: 'column'

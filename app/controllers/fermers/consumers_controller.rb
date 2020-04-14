@@ -1,6 +1,6 @@
 class Fermers::ConsumersController < ApplicationController
 	layout 'fermer'
   def index
-  	@consumers = 
+  	@consumers
   end
 end

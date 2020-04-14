@@ -77,7 +77,6 @@ class Consumers::OrdersController < ApplicationController
     	:name => params[:name],
     	:payment_method => params[:payment_method],
     	:billing_amount => params[:billing_amount],
-    	:billing_amount => params[:billing_amount],
     	:card => params['payjp-token'],
     	:currency => 'jpy'
     	 )

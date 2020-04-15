@@ -18,7 +18,7 @@ class Consumers::FermerReviewsController < ApplicationController
 		@review = current_consumer.fermer_reviews.find(params[:id])
 		if @book_review.user != current_user
            redirect_to request.referer
-        end
+        else
 		@comment.destroy
 	   end
 	end

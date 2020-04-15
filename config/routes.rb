@@ -24,11 +24,9 @@ Rails.application.routes.draw do
       resources :consumers,only: [:edit,:update,:show]
       resources :cards,only: [:edit,:update,:create,:show]
       resources :fermers do
-        member do
-          post "add", to: "book_marks#create"
-        end
+        resources :fermer_reviews,only: [:index,:show,:create,:destroy]
+        resource :book_marks,only: [:create,:destroy]
       end
-      resources :book_marks,only: [:destroy]
       resources :columns do
         resource :column_comments,only: [:index,:show,:create,:destroy], shallow: true
         resource :column_favorites,only: [:create,:destroy], shallow: true

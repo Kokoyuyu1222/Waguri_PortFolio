@@ -8,6 +8,7 @@ class Fermer < ApplicationRecord
 
         has_many :columns, dependent: :destroy
         has_many :products, dependent: :destroy
+        has_many :fermer_reviews, dependent: :destroy
 
          enum withdraw: { draft: false, published: true }
 

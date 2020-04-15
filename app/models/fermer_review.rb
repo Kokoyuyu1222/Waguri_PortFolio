@@ -1,0 +1,2 @@
+class FermerReview < ApplicationRecord
+end

@@ -4,6 +4,8 @@ class CreateProductComments < ActiveRecord::Migration[5.2]
       t.text :comment
       t.integer :consumer_id
       t.integer :product_id
+      t.string :title
+      t.float :rate
 
       t.timestamps
     end

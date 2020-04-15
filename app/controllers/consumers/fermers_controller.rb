@@ -1,10 +1,13 @@
 class Consumers::FermersController < ApplicationController
 	layout 'consumer'
   def index
-  	@fermers = Fermer.all 
+  	@fermers = Fermer.all
+    @consumer = current_consumer
+    @bookmarks = Bookmark.where(consumer_id: @consumer.id).all
   end
   def show
   	@fermer = Fermer.find(params[:id])
+    @book_mark = BookMark.new
   end
   private
   def fermer_params

@@ -23,9 +23,12 @@
 	<table>
 		<td><h5>登録情報</h5>
 			<%= link_to '編集する', edit_consumers_consumer_path, class: "btn btn-outline-primary" %>
+		</td>
+		<td><h5>カード情報登録</h5>
+			<%= render partial: 'consumers/cards/form', locals: { card: @card } %>
+		</td>
 	</table>
 
-	<hr>
 	<th><h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">配送先</h4>
 		<%= link_to consumers_destinations_path do %>
 		一覧を見る<span class="glyphicon glyphicon-chevron-right"></span>

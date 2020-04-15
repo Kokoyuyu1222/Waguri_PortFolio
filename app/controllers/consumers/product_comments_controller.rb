@@ -18,7 +18,7 @@ class Consumers::ProductCommentsController < ApplicationController
 		@comment = current_consumer.product_comments.find(params[:id])
 		if @book_comment.user != current_user
            redirect_to request.referer
-        end
+        else
 		@comment.destroy
 	   end
 	end

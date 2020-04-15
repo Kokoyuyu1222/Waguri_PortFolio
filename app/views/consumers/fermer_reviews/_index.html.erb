@@ -1,0 +1,42 @@
+<% reviews.each do |review| %>
+    <div class="row comments">
+      <div class="col-md-2 comments-consumer">
+        <td class="posts-title"><%= link_to "#{review.consumer.name}さん", consumers_consumer_path(review.consumer.id) %></td>
+        <td class="posts-prof"><%= review.consumer.gender_i18n %> <%= review.consumer.age_i18n %></td>
+      </div>
+      <div class="col-md-6 mb-3">
+        <div class=" comments-consumer">
+          <td><%= l review.created_at, format: :short %></td>
+          <td class="mb-3">評価：<%= review.rate %>点 | <%= review.title %></td>
+
+          <!--星評価-->
+         <td id="star-rate-<%= review.id %>"></td>
+          <script>
+          $('#star-rate-<%= review.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= review.rate %>,
+          });
+          </script>
+        <!--/星評価-->
+         <td><%= review.comment %></td>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <%= link_to consumers_fermer_path(review.fermer) do %>
+          <div class="comments-product">
+            <td><%=  review.fermer.name %></td>
+          </div>
+        <%end %>
+      </div>
+      <td class="col-md-12 edit-button">
+        <% if current_consumer == review.consumer %>
+          <%= link_to '口コミを削除',  consumers_fermer_fermer_review_path(fermer_id:@fermer, id: review.id), method: :delete, class:'btn btn-default' %>
+        <% end %>
+      </td>
+    </div>
+  <% end %>

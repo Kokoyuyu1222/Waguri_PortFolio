@@ -11,6 +11,9 @@ class Consumer < ApplicationRecord
   has_many :book_marks, dependent: :destroy
   has_many :book_mark_fermers, through: :book_marks, source: 'fermer'
 
+  has_many :fermer_reviews, dependent: :destroy
+  has_many :fermer_review_fermers,through: :fermer_reviews, source: 'fermer'
+
   has_many :column_comments, dependent: :destroy
   has_many :column_comment_columns,through: :column_comments, source: 'column'
 

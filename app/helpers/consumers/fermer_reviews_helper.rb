@@ -1,0 +1,2 @@
+module Consumers::FermerReviewsHelper
+end

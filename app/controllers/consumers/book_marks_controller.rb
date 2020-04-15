@@ -3,11 +3,11 @@ class Consumers::BookMarksController < ApplicationController
 	def create
       @fermer = Fermer.find(params[:fermer_id])
       @book_mark = @fermer.book_marks.new(consumer_id: current_consumer.id)
-      @book_marke.save
+      @book_mark.save
   end
   def destroy
       @fermer = Fermer.find(params[:fermer_id])
-      @book_mark = current_consumer.book_marks.find_by(book_mark_id: @book_mark.id)
+      @book_mark = current_consumer.book_marks.find_by(fermer_id: @fermer.id)
       @book_mark.destroy!
   end
 

@@ -2,6 +2,7 @@ class Consumers::ConsumersController < ApplicationController
  layout 'consumer'
   def show
   	@consumer = Consumer.find(params[:id])
+    @card = Card.new
   end
   def edit
   	@consumer = Consumer.find(params[:id])

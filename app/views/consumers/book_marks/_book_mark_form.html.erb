@@ -1,0 +1,9 @@
+<% if fermer.book_marked_by?(current_consumer) %>
+
+    <%= link_to 'お気に入りを外す',consumers_book_mark_path(fermer, redirect_id: 0), method: :delete,remote: true, class: "fermer_#{fermer.id}" %>
+      <i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></i>
+<% else %>
+    <%= link_to 'お気に入りにする',add_consumers_fermer_path(fermer, redirect_id: 0), method: :post,remote: true, class: "fermer_#{fermer.id}" %>
+      <i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i>
+
+<% end %>

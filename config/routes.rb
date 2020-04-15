@@ -22,7 +22,13 @@ Rails.application.routes.draw do
       patch 'consumers/change' => 'members#change'
       put 'consumers/change' => 'members#change'
       resources :consumers,only: [:edit,:update,:show]
-      resources :fermers
+      resources :cards,only: [:edit,:update,:create,:show]
+      resources :fermers do
+        member do
+          post "add", to: "book_marks#create"
+        end
+      end
+      resources :book_marks,only: [:destroy]
       resources :columns do
         resource :column_comments,only: [:index,:show,:create,:destroy], shallow: true
         resource :column_favorites,only: [:create,:destroy], shallow: true
@@ -30,8 +36,8 @@ Rails.application.routes.draw do
       resources :cart_products,only: [:index,:create,:update,:destroy]
       resources :destinations ,only: [:show,:index,:edit,:update,:create,:destroy]
       resources :products ,only: [:show,:index] do
-        resource :product_comments,only: [:show,:create,:destroy], shallow: true
-        resource :product_favorites,only: [:create,:destroy], shallow: true
+        resource :product_comment,only: [:show,:create,:destroy], shallow: true
+        resource :product_favorite,only: [:create,:destroy], shallow: true
       end
       get 'orders/confirm' => 'orders#confirm'
       post 'orders/pay' => 'orders#pay'

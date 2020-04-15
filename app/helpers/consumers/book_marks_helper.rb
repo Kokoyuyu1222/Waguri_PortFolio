@@ -1,0 +1,2 @@
+module Consumers::BookMarksHelper
+end

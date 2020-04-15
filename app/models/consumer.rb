@@ -8,6 +8,9 @@ class Consumer < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :cards, dependent: :destroy
 
+  has_many :book_marks, dependent: :destroy
+  has_many :book_mark_fermers, through: :book_marks, source: 'fermer'
+
   has_many :column_comments, dependent: :destroy
   has_many :column_comment_columns,through: :column_comments, source: 'column'
 
@@ -23,6 +26,10 @@ class Consumer < ApplicationRecord
 
   def favorited_by?(column_id)
     column_favorites.where(colmn_id: column_id).exists?
+  end
+
+  def book_marked_by?(fermer_id)
+    book_marks.where(fermer_id: fermer_id).exists?
   end
 
 

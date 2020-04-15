@@ -3,11 +3,17 @@ class Fermer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+        has_many :book_marks, dependent: :destroy
+        has_many :consumers, through: :book_marks
 
         has_many :columns, dependent: :destroy
         has_many :products, dependent: :destroy
 
          enum withdraw: { draft: false, published: true }
+
+        def book_marked_by?(consumer)
+          book_marks.where(consumer_id: consumer.id).exists?
+        end
 
 
 include JpPrefecture

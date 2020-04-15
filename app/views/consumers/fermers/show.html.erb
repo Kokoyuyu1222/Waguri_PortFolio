@@ -23,5 +23,12 @@
 	<div>
 			<%= link_to "この農園の記事へ", consumers_columns_path(@fermer) %>
 	</div>
+	<div>
+			<%= link_to "この農園の商品へ", consumers_products_path(@fermer) %>
+	</div>
+
+	<div>
+			<%= render 'consumers/book_marks/book_mark_form' ,fermer: @fermer, book_mark: @book_mark %>
+	</div>
 </div>
 

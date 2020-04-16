@@ -7,10 +7,16 @@ class Consumers::OrdersController < ApplicationController
 		@destination = Destination.where(consumer_id: current_consumer)
 	end
 	def create
-		binding.pry
 		@order = Order.new(order_params)
 		@order.consumer_id = current_consumer.id
 	    if @order.save!
+	    	ids = @order.products.select(:fermer_id).distinct.pluck(:fermer_id)
+	    	p ids
+	    	@fermers = Fermer.find(ids)
+	    	@fermers.each do |fermer|
+	     ThanksMailer.send_mail_fermer(fermer).deliver_now
+	     ThanksMailer.send_mail_consumer(current_consumer,fermer).deliver_now
+	        end
 	  	cart_products = current_consumer.cart_products
 		cart_products.destroy_all
 		  redirect_to consumers_orders_finish_path
@@ -67,18 +73,23 @@ class Consumers::OrdersController < ApplicationController
 
 	def pay
 		Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-  		Payjp::Charge.create(
-    	:postcode => params[:postcode],
-    	:prefecture_code => params[:prefecture_code],
-    	:address_city => params[:address_city],
-    	:address_street => params[:address_street],
-    	:address_building => params[:address_building],
-    	:name => params[:name],
-    	:payment_method => params[:payment_method],
-    	:billing_amount => params[:billing_amount],
-    	:card => params['payjp-token'],
-    	:currency => 'jpy'
-    	 )
+  		charge = Payjp::Charge.create(
+	        :amount => params[:order][:billing_amount],
+	    	:card => params['payjp-token'],
+	    	:currency => 'jpy'
+    	)
+    	@order = Order.new(order_params)
+		@order.consumer_id = current_consumer.id
+	    if @order.save!
+	    # ThanksMailer.send_mail_consumer(current_consumer).deliver_now
+	    # ThanksMailer.send_mail_fermer().deliver_now
+	  	cart_products = current_consumer.cart_products
+		cart_products.destroy_all
+		  redirect_to consumers_orders_finish_path
+		else
+			render 'confirm'
+		end
+
 	end
 
 	private

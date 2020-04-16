@@ -121,8 +121,9 @@
           class="payjp-button"
           data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>"
           data-submit-text="トークンを作成する"
-          data-partial="true">
+          data-partial="false">
         </script>
+        <%= f.submit "購入を確定する" ,class:"btn btn-primary btn-lg center-block" %>
       <% end %>
     <% end %>
   </div>

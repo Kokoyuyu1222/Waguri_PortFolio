@@ -18,8 +18,7 @@ class Consumers::OrdersController < ApplicationController
 			render 'confirm'
 		end
     end
-	def index
-		@orders = Order.where(consumer_id: current_consumer)
+	def index.page(params[:page]).per(10)
 	end
 
 	def show

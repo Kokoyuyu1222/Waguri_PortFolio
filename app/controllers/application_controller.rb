@@ -1,9 +1,14 @@
 class ApplicationController < ActionController::Base
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
 
-   protected
-   def configure_permitted_parameters
+# 　def set_category
+#     @categories = Category.joins(:brand).where("(category_status = ?) AND (brand_status = ?)",false,false)
+#   end
+
+  protected
+  def configure_permitted_parameters
     if resource_class == Consumer
       devise_parameter_sanitizer.permit(:sign_up, keys:[:last_name, :first_name, :kana_last_name, :kana_first_name, :postcode,:prefecture_code, :address_city, :address_street, :address_building,:gender,:age,:phone])
     else
@@ -22,14 +27,6 @@ class ApplicationController < ActionController::Base
   	end
   end
 
-  # def after_sign_out_path_for(resource)
-  #   case resource
-  #   when Consumer
-  #     new_consumer_session_path
-  #   when Fermer
-  #     new_fermer_session_path
-  #   end
-  # end
 
   def after_sign_in_path_for(resource)
     case resource
@@ -49,5 +46,4 @@ class ApplicationController < ActionController::Base
   	  end
   	end
   end
-
 end

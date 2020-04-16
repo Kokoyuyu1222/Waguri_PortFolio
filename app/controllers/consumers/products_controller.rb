@@ -25,3 +25,4 @@ class Consumers::ProductsController < ApplicationController
   	params.require(:product).permit(:name,:sale_status,:introduction,:category_id,:brand_id,:quantity,:stock_id,:fermer_id,:unit_price,product_images_images: [])
   end
 end
+

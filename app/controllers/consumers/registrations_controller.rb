@@ -13,10 +13,28 @@ class Consumers::RegistrationsController < Devise::RegistrationsController
   # POST /resource
 
    def create
-     super
-      @consumer = current_consumer
-      @consumer.update(name: @consumer.last_name + @consumer.first_name)
-      @consumer.update(address: @consumer.prefecture_name +  @consumer.address_city + @consumer.address_street + @consumer.address_building)
+     build_resource(sign_up_params)
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+        SignUpMailer.send_mail_consumer(current_consumer).deliver_now
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
+    end
+    @consumer = current_consumer
+    @consumer.update(name: @consumer.last_name + @consumer.first_name)
+    @consumer.update(address: @consumer.prefecture_name +  @consumer.address_city + @consumer.address_street + @consumer.address_building)
    end
 
   # GET /resource/edit

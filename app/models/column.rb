@@ -7,6 +7,7 @@ class Column < ApplicationRecord
 	validates :title, presence: true
 	validates :body, presence: true, length: {maximum: 1000}
 
+
 	def favorited_by?(consumer)
           column_favorites.where(consumer_id: consumer.id).exists?
     end

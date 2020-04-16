@@ -18,7 +18,7 @@ class Consumers::OrdersController < ApplicationController
 			render 'confirm'
 		end
     end
-	def index.page(params[:page]).per(10)
+	def index
 	end
 
 	def show

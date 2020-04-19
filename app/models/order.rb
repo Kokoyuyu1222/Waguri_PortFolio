@@ -9,4 +9,6 @@ class Order < ApplicationRecord
 
     validates :name, presence: true
     validates :postcode, presence: true
+
+
 end

@@ -21,8 +21,9 @@ Rails.application.routes.draw do
       get 'consumers/withdraw'=> 'members#withdraw'
       patch 'consumers/change' => 'members#change'
       put 'consumers/change' => 'members#change'
+      post 'cards/delete' => 'cards#delete'
       resources :consumers,only: [:edit,:update,:show]
-      resources :cards,only: [:edit,:update,:create,:show]
+      resources :cards,only: [:create,:show]
       resources :fermers do
         resources :fermer_reviews,only: [:index,:show,:create,:destroy]
         resource :book_marks,only: [:create,:destroy]

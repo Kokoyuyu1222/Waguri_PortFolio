@@ -3,8 +3,7 @@ class Fermers::OrdersController < ApplicationController
 	before_action :authenticate_fermer!
 
 	def index
-		@orders = Order.all
-
+		@products = current_fermer.products
 	end
 	def show
 		@order = Order.find(params[:id])
@@ -15,7 +14,6 @@ class Fermers::OrdersController < ApplicationController
 
 	end
 	def update
-		binding.pry
 		@order = Order.find(params[:id])
 		if @order.order_status == "wait" && order_params[:order_status] == "confirm"
 				@order.order_products.each do |order_product|

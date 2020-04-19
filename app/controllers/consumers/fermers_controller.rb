@@ -10,6 +10,7 @@ class Consumers::FermersController < ApplicationController
     @book_mark = BookMark.new
     @review = FermerReview.new
     @reviews = @fermer.fermer_reviews
+    @column = prams[:id]
   end
   private
   def fermer_params

@@ -24,15 +24,14 @@
 		<td><%= product.brand.name %></td>
 		<td><%= product.brand.category.name %></td>
 		<td>
-			<%= link_to(consumers_fermer_path(product)) do %>
-			<%= product.name %>
+			<%= link_to(consumers_fermer_path(product.fermer_id)) do %>
+			<%= product.fermer.name %>
 			<% end %>
 		</td>
-		<td><%= product.name %></td>
+		<td><%= product.fermer.home_page %></td>
 	</div>
     <% end %>
     <% end %>
     </tr>
-
 </table>
 

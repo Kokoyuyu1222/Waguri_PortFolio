@@ -6,7 +6,7 @@ class Consumer < ApplicationRecord
   has_many :cart_products, dependent: :destroy
   has_many :destinations, dependent: :destroy
   has_many :orders, dependent: :destroy
-  has_many :cards, dependent: :destroy
+  has_one :cards, dependent: :destroy
 
   has_many :book_marks, dependent: :destroy
   has_many :book_mark_fermers, through: :book_marks, source: 'fermer'

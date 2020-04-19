@@ -13,8 +13,12 @@ class Consumers::CartProductsController < ApplicationController
 	def create
 		@cart_product = CartProduct.new(cart_product_params)
 		@cart_product.consumer_id = current_consumer.id
-		@cart_product.save
-		redirect_to consumers_cart_products_path(@cart_product)
+		if @cart_product.save
+			redirect_to consumers_cart_products_path(@cart_product)
+		else
+			flash[:notice] = "申し訳ございません購入数が在庫数を超えています"
+			redirect_to consumers_products_path
+		end
 	end
 
     def update

@@ -1,12 +1,27 @@
 class Fermers::ProductsController < ApplicationController
 	layout 'fermer'
+  require 'csv'
   def index
   	if params[:category_id]
-      @products = Product.where(category_id: params[:category_id])
-      # @categories = Producte.all.includes({:brand => :category}).where(category_status: "draft")
+      @products = Product.where(category_id: params[:category_id],fermer_id: current_fermer_id)
     else
       @products = Product.includes(brand: :category).where(categories: {category_status: false})
-      # @categories = Product.all.includes({:brand => :category}).where(category_status: "draft")
+    end
+    respond_to do |format|
+      format.html do
+       @products = Product.includes(brand: :category).where(categories: {category_status: false})
+      end
+      format.csv do
+        send_data output_csv,
+        filename: "商品情報.csv"
+      end
+    end
+  end
+
+  def output_csv
+    CSV.generate do |csv|
+      csv << Product.column_names
+      Product.pluck(*Product.column_names).each{|data|csv << data}
     end
   end
   def new
@@ -15,9 +30,12 @@ class Fermers::ProductsController < ApplicationController
     @categories = Category.where(category_status: 'draft').order("name")
     @brands = Brand.where(brand_status: 'draft').order("name")
     @category = Category.new
+    @product.stocks.build
   end
   def filter_brand
     @product = Product.new
+    @product.stocks.build
+    @product.product_images.build
     @product.category_id = params["category"]["id"]
     @categories = Category.where(category_status: 'draft').order("name")
     @brands = Brand.where(brand_status: 'draft')
@@ -47,6 +65,9 @@ class Fermers::ProductsController < ApplicationController
      render 'edit'
    end
  end
+ def sale_status
+   
+ end
  def destroy
    @product = Product.find(params[:id])
    @product.destroy
@@ -54,6 +75,6 @@ class Fermers::ProductsController < ApplicationController
  end
  private
  def product_params
-   params.require(:product).permit(:name,:sale_status,:introduction,:category_id,:brand_id,:quantity,:stock_id,:fermer_id,:unit_price, product_images_images: [])
+   params.require(:product).permit(:name,:sale_status,:introduction,:category_id,:brand_id,:quantity,:stock_id,:fermer_id,:unit_price, product_images_images: [],stocks_attributes: [:product_id, :quantity])
  end
 end

@@ -67,6 +67,9 @@
     <h4><u>支払い方法</u></h4>
     <div>
       <%= @order.payment_method_i18n %>
+      <%if @order.payment_method == "card" && params[:card_select] == "card1"%>
+        <%="**** **** **** " + @default_card_information.last4 %>
+      <% end %>
     </div>
     <h4><u>お届け先</u></h4>
     <div>〒<%= @order.postcode %><br>
@@ -115,14 +118,20 @@
             <%= o.hidden_field :name, :value => cart_product.product.name %>
           <% end %>
         <% end %>
+        <% if params[:card_select] == "card1" %>
+          <%= hidden_field_tag 'order[customer_id]', @cards.customer_id%>
+          <%= hidden_field_tag 'order[payjp_id]', @cards.payjp_id%>
+          <%= f.submit "購入を確定する" ,class:"btn btn-primary btn-lg center-block" %>
+        <% else %>
         <script
-          type="text/javascript"
-          src="https://checkout.pay.jp/"
-          class="payjp-button"
-          data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>"
-          data-submit-text="トークンを作成する"
-          data-partial="true">
-        </script>
+            type="text/javascript"
+            src="https://checkout.pay.jp/"
+            class="payjp-button"
+            data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>"
+            data-submit-text="トークンを作成する"
+            data-partial="false">
+          </script>
+        <% end %>
       <% end %>
     <% end %>
   </div>

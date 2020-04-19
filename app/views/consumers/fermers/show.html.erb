@@ -21,13 +21,13 @@
 		</tr>
 	</table>
 	<div>
-			<%= link_to "この農園の記事へ", consumers_columns_path(@fermer) %>
+			<%= link_to "この農園の記事へ", consumers_columns_path(key: params[:id]) %>
 	</div>
 	<div>
-			<%= link_to "この農園の商品へ", consumers_products_path(@fermer) %>
+			<%= link_to "この農園の商品へ", consumers_products_path(@fermer.id) %>
 	</div>
 	<div>
-		<%= render partial: 'consumers/book_marks/book_mark_form', locals: { fermer: @fermer  } %>
+		<%= render partial: 'consumers/book_marks/book_mark_form', locals: { fermer: @fermer} %>
 	</div>
 
 	<div class= "col-md-5"style=" margin-top: 50px;">

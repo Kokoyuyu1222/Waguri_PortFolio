@@ -18,14 +18,35 @@
 			<th style=“background-color: #DAD7D7; border-bottom: 1px solid #fff;“>メールアドレス</th>
 			<td style=“border-bottom: 1px solid #DAD7D7;“><%= @consumer.email %></td>
 		</tr>
-	</table>
-
-	<table>
 		<td><h5>登録情報</h5>
 			<%= link_to '編集する', edit_consumers_consumer_path, class: "btn btn-outline-primary" %>
 		</td>
-		<td><h5>カード情報登録</h5>
-			<%= render partial: 'consumers/cards/form', locals: { card: @card } %>
+	</table>
+
+	<table>
+		<td><h5>カード情報登録・確認</h5>
+			<% if @card.nil? %>
+				<%= form_for(@card,url:consumers_cards_path,method: :post) do |f| %>
+				 <script
+		          type="text/javascript"
+		          src="https://checkout.pay.jp/"
+		          class="payjp-button"
+		          data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>"
+		          data-submit-text="カード番号の登録する"
+		          data-text="カード番号の登録"
+		          data-partial="false">
+	       		</script>
+	       		<% end %>
+	       	<%else%>
+	       	<%="**** **** **** " + @default_card_information.last4 %><br>
+	       	有効期限
+	       	<% exp_month = @default_card_information.exp_month.to_s %>
+			<% exp_year = @default_card_information.exp_year.to_s.slice(2,3)%>
+			<%= exp_month + " / " + exp_year%>
+			<div>
+				<%= link_to"カード情報を削除する",consumers_cards_delete_path(@cards)%>
+			</div>
+	       	<% end %>
 		</td>
 	</table>
 

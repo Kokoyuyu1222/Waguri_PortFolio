@@ -1,0 +1,2 @@
+module Consumers::StocksHelper
+end

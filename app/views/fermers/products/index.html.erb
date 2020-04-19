@@ -5,6 +5,7 @@
 </div>
 <div class="container" style="position:relative;">
 	<table class="table">
+		<%= link_to 'csvダウンロード', 'index.csv', class: 'btn btn-default' %>
 		<tr>
 			<th>商品名</th>
 			<th>税抜き価格</th>
@@ -16,14 +17,15 @@
 		<% @products.each do |product| %>
 		<tr>
 			<td>
-				<% if @product.product_images.present? %>
-				  <% @product.product_images.each do |image| %>
-				     <%= attachment_image_tag image, :image, :fill, 200, 200 %>
-				  <% end %>
-				<% else %>
-				  <%= image_tag 'no_image.jpg',size: '200*200'%>
-				<% end %>
-			</td>
+			<%= link_to(fermers_product_path(product)) do %>
+			  <% if product.product_images.present? %>
+			      <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
+			  <% else %>
+			    <%= image_tag 'no_image.jpg',size: '200*200'%>
+			  <% end %>
+			  <%= product.name %>
+			<% end %>
+		</td>
 			<td><%= link_to(fermers_product_path(product)) do %>
 				<%= product.name %>
 				<% end %>

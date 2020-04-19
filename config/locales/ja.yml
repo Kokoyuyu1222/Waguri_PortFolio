@@ -44,6 +44,8 @@ ja:
       sale_status:
         sale: 販売中
         sold_out: 売り切れ
+        little: 売り切れ間近
+        same: 販売中（残りわずか）
 　time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"

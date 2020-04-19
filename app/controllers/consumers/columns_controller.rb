@@ -1,6 +1,7 @@
 class Consumers::ColumnsController < ApplicationController
 	layout 'consumer'
 	def index
+		binding.pry
 		if params[:fermer_id]
 			@columns = Column.where(fermer_id: params[:fermer_id])
 		else

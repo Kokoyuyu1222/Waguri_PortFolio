@@ -23,21 +23,24 @@
 				<th>注文個数</th>
 				<th>注文ステータス</th>
 			</tr>
-			<% @orders.each do |order| %>
-			<tr>
-				<td><%= link_to(fermers_order_path(order)) do %>
-					<%= l order.created_at, format: :short %>
-					<% end %>
-				</td>
-				<% sum = 0 %>
-				<td><%= order.consumer.name %></td>
-				<td><% order.order_products.each do |order_product| %>
-					<% sum += order_product.quantity %>
-					<% end %>
-					<%= sum %>
-				</td>
-				<td><%= order.order_status_i18n %></td>
-			</tr>
+			<% @products.each do |product|%>
+
+				<% product.orders.each do |order| %>
+				<tr>
+					<td><%= link_to(fermers_order_path(order)) do %>
+						<%= l order.created_at, format: :short %>
+						<% end %>
+					</td>
+					<% sum = 0 %>
+					<td><%= order.consumer.name %></td>
+					<td><% order.order_products.each do |order_product| %>
+						<% sum += order_product.quantity %>
+						<% end %>
+						<%= sum %>
+					</td>
+					<td><%= order.order_status_i18n %></td>
+				</tr>
+				<% end %>
 			<% end %>
 		</table>
 	</div>

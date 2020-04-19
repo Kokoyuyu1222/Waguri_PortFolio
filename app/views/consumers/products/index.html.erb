@@ -8,30 +8,29 @@
 		<th>ホームページ</th>
 	</tr>
 	<%if @products.present? %>
-	<% @products.each do |product| %>
-	<tr>
-		<td>
-			<%= link_to(consumers_product_path(product)) do %>
-			  <% if product.product_images.present? %>
-			      <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
-			  <% else %>
-			    <%= image_tag 'no_image.jpg',size: '200*200'%>
-			  <% end %>
-			  <%= product.name %>
-			<% end %>
-		</td>
-		<td><%= product.unit_price %></td>
-		<td><%= product.brand.name %></td>
-		<td><%= product.brand.category.name %></td>
-		<td>
-			<%= link_to(consumers_fermer_path(product.fermer_id)) do %>
-			<%= product.fermer.name %>
-			<% end %>
-		</td>
-		<td><%= product.fermer.home_page %></td>
-	</div>
+		<% @products.each do |product| %>
+			<tr>
+				<td>
+					<%= link_to(consumers_product_path(product)) do %>
+					  	<% if product.product_images.present? %>
+					     	 <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
+					  	<% else %>
+					    	<%= image_tag 'no_image.jpg',size: '200*200'%>
+					  	<% end %>
+					  	<%= product.name %>
+					<% end %>
+				</td>
+				<td><%= product.unit_price %></td>
+				<td><%= product.brand.name %></td>
+				<td><%= product.brand.category.name %></td>
+				<td>
+					<%= link_to(consumers_fermer_path(product.fermer_id)) do %>
+						<%= product.fermer.name %>
+					<% end %>
+				</td>
+				<td><%= product.fermer.home_page %></td>
+			</tr>
+	    <% end %>
     <% end %>
-    <% end %>
-    </tr>
 </table>
 

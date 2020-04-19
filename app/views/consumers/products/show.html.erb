@@ -42,14 +42,22 @@
 				</tr>
 			</table>
 				<%= form_with(model:@cart,url: consumers_cart_products_path,local: true,method: :POST) do |f| %>
+					<% if @cart.errors.any? %>
 
-				<tr>
-					<th><%= f.label  :quantity, "個数選択" %>
-						<%= f.number_field :quantity, class: "qtty", min: 1, max: 99%></th>
-						<%= f.hidden_field :product_id, :value => @product.id%>
+						<h3><%= @cart.errors.count %>error occurrence</h3>
+						<ul>
+							<% @cart.errors.full_messages.each do |message| %>
+							<li><%= message %></li>
+							<% end %>
+						</ul>
+					<% end %>
+					<tr>
+						<th><%= f.label  :quantity, "個数選択" %>
+							<%= f.number_field :quantity, class: "qtty", min: 1, max: 99%></th>
+							<%= f.hidden_field :product_id, :value => @product.id%>
 						<th><%= f.submit "カートに入れる", class: "btn btn-primary" %></th>
 					</tr>
-					<% end %>
+				<% end %>
 				</table>
 				<div><%= @product.product_comments.count %>件コメント</div>
 		</div>

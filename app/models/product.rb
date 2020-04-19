@@ -14,14 +14,4 @@ class Product < ApplicationRecord
 
 	has_many :product_images, dependent: :destroy
     accepts_attachments_for :product_images, attachment: :image
-
-
-  def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
-      csv << column_names
-      all.each do |product|
-        csv << product.attributes.values_at(*column_names)
-      end
-    end
-  end
 end

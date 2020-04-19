@@ -5,23 +5,7 @@ class Fermers::ProductsController < ApplicationController
   	if params[:category_id]
       @products = Product.where(category_id: params[:category_id],fermer_id: current_fermer_id)
     else
-      @products = Product.includes(brand: :category).where(categories: {category_status: false})
-    end
-    respond_to do |format|
-      format.html do
-       @products = Product.includes(brand: :category).where(categories: {category_status: false})
-      end
-      format.csv do
-        send_data output_csv,
-        filename: "商品情報.csv"
-      end
-    end
-  end
-
-  def output_csv
-    CSV.generate do |csv|
-      csv << Product.column_names
-      Product.pluck(*Product.column_names).each{|data|csv << data}
+      @products = Product.includes(brand: :category).where(categories: {category_status: false},fermer_id: current_fermer.id)
     end
   end
   def new

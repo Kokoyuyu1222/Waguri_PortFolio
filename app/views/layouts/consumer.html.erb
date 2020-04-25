@@ -8,7 +8,6 @@
   <script type="text/javascript" src="https://js.pay.jp/"></script>
   <script type="text/javascript">Payjp.setPublicKey('ENV["PAYJP_PUBLIC_KEY"]');</script>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/drawer/3.1.0/css/drawer.min.css">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/iScroll/5.1.3/iscroll.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/drawer/3.1.0/js/drawer.min.js"></script>
 </head>
@@ -133,50 +132,60 @@
       </ul>
     </nav>
 </header>
-<script>
- $(document).ready(function() {
-   $('.drawer').drawer();
- });
-</script>
 <div class="container-fruid">
   <div class="row">
-    <div class="col-md-2">
-      <h2>オススメ商品</h2>
-      <%if @products.present? %>
-        <% @products.each do |product| %>
-          <%= link_to(consumers_product_path(product)) do %>
-            <% if product.product_images.present? %>
-               <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
-            <% else %>
-              <%= image_tag 'no_image.jpg',size: '200*200'%>
-            <% end %>
-          <% end %>
-          <%= product.name %>
+    <div class="col-md-2 d-none d-md-block bg-light sidebar card">
+      <div class="sidebar-sticky" style="box-sizing: border-box;">
+        <h6 class= "pt-2 text-center"><i class="fas fa-crown"></i>オススメ商品<i class="fas fa-crown"></i></h6>
+        <%if @products.present? %>
+          <% @products.each do |product| %>
+            <div class="column-box">
+              <div class="shadow-sm">
+                <%= link_to(consumers_product_path(product)) do %>
+                  <% if product.product_images.present? %>
+                     <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
+                  <% else %>
+                    <%= image_tag 'no_image.jpg',size: '200*200'%>
+                  <% end %>
+                <p>
+                  <%= product.name %>
+                </p>
+                <% end %>
+              </div>
+            </div>
+          <%  end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
     <div class="col-md-8">
       <% content_for :content do %>
       <%= yield %>
       <% end %>
+      <%= render template: "layouts/application" %>
     </div>
-    <div class="col-md-2">
-      <h2>オススメ記事</h2>
-        <%if @columns.present? %>
-          <% @columns.each do |column| %>
-            <%= link_to(consumers_column_path(column)) do %>
-              <% if column.column_images.present? %>
-                 <%= attachment_image_tag column.column_images.first, :image, :fill, 200, 200 %>
-              <% else %>
-                <%= image_tag 'no_image.jpg',size: '400*400'%>
-              <% end %>
-            <% end %>
-            <%= column.title %>
-            <%= column.column_favorites.count %>
+    <div class="col-md-2 d-none d-md-block bg-light sidebar card">
+      <div class="sidebar-sticky" style="box-sizing: border-box;">
+        <h6 class= "pt-2 text-center"><i class="fas fa-crown"></i>オススメ記事<i class="fas fa-crown"></i></h6>
+          <%if @columns.present? %>
+            <% @columns.each do |column| %>
+              <div class="column-box">
+                <div class="shadow-sm">
+                <%= link_to(consumers_column_path(column)) do %>
+                  <% if column.column_images.present? %>
+                     <%= attachment_image_tag column.column_images.first, :image, :fill, 200, 200,class: "ranking-img" %>
+                  <% else %>
+                    <%= image_tag 'no_image.jpg',size: '400*400'%>
+                  <% end %>
+                <% end %>
+                <p class="ranking-favorite"><i class="fas fa-heart" style="color:red;"><%= column.column_favorites.count %></i>いいね！</p>
+                <p class="ranking-name"><%= column.title %></p>
+              </div>
+            </div>
           <% end %>
         <% end %>
+      </div>
     </div>
-      <%= render template: "layouts/application" %>
+  </div>
 </div>
 </body>
 </html>

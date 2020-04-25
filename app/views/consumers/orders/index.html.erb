@@ -9,15 +9,13 @@
 </div>
 
 
-<div class="index-container" style="width:80%; margin: 20px auto;">
-  <div class="row" style= "width: 80%; margin: 20px auto;">
+<div class="index-container">
+  <div class="row">
   <table  class="table table-bordered ">
     <tr>
       <th>注文日</th>
       <th>配送先</th>
       <th>宛先</th>
-      <th>写真</th>
-      <th>注文商品</th>
       <th>支払い金額</th>
       <th>ステータス</th>
       <th>注文詳細</th>
@@ -27,24 +25,15 @@
       <td><%= l order.created_at, format: :short %></td>
       <td>〒<%= order.postcode %><br>
         <%= order.address %><br>
+      </td>
+      <td>
         <%= order.name %>
       </td>
-      <td><% order.order_products.each do |order_product| %>
-        <td>
-              <% if order_product.product.product_images.present? %>
-                    <%= attachment_image_tag order_product.product.product_images.first, :image, :fill, 100, 100 %>
-                <% else %>
-                  <%= image_tag 'no_image.jpg',size: '100*100'%>
-            <% end %>
-          </td>
-        <td>
-        <%= order_product.product.name %>
-        <% end %></td>
-        <td><%= order.billing_amount %>円</td>
-        <td><%= order.order_status_i18n  %></td>
-        <td><%= link_to "表示する",consumers_order_path(order.id) %></td>
-        <% end %>
+      <td><%= order.billing_amount %>円</td>
+      <td><%= order.order_status_i18n  %></td>
+      <td><%= link_to "表示する",consumers_order_path(order.id) %></td>
     </tr>
+    <% end %>
   </table>
-</div>
+  </div>
 </div>

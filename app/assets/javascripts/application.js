@@ -48,6 +48,25 @@ $("#Topimage").skippr({
 });
 
 
+  $(document).ready(function(){
+    $('#postcode').jpostal({
+      postcode : [
+        '#postcode'
+      ],
+      address: {
+        "[id$=prefecture_code]": "%3",
+        "#city"           : "%4%5",
+        "#street"         : "%6",
+        "#building" : "%7"
+      }
+    });
+  });
+
+
+ $(document).ready(function() {
+   $('.drawer').drawer();
+ });
+
 (function($) {
   'use strict';
 

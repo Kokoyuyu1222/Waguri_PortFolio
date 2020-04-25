@@ -3,7 +3,7 @@
   <td class="posts-title"><%= link_to "#{comment.consumer.name}さん", consumers_consumer_path(comment.consumer.id) %></td>
   <td class="posts-prof"><%= comment.consumer.gender_i18n %> <%= comment.consumer.age_i18n %></td>
   <td><%= l comment.created_at, format: :short %></td>
-  <td class="mb-3">評価：<%= comment.rate %>点 | <%= comment.title %></td>
+  <td class="mb-3">評価：<%= comment.rate %>点</td>
   <td id="star-rate-<%= comment.id %>"></td>
     <script>
     $('#star-rate-<%= comment.id %>').raty({
@@ -17,9 +17,6 @@
     });
     </script>
   <td><%= comment.comment %></td>
-  <%= link_to consumers_product_path(comment.product) do %>
-      <td><%=  comment.product.name %></td>
-  <%end %>
   <td class="col-md-12 edit-button">
     <% if current_consumer == comment.consumer %>
       <%= link_to '口コミを削除',  consumers_product_product_comment_path(product_id:@product, id: comment.id), method: :delete, class:'btn btn-default', remote: true %>

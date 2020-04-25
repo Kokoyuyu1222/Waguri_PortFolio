@@ -4,10 +4,6 @@ class Destination < ApplicationRecord
 	validates :postcode, presence: true
   validates :name, presence: true
 
-  def view_address
-    self.address_city + " " + self.address_street + " " + self.address_buillding + self.name
-  end
-
   include JpPrefecture
   jp_prefecture :prefecture_code
 

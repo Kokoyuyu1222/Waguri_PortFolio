@@ -6,13 +6,17 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <script type="text/javascript" src="https://js.pay.jp/"></script>
-<script type="text/javascript">Payjp.setPublicKey('ENV["PAYJP_PUBLIC_KEY"]');</script>
+  <script type="text/javascript">Payjp.setPublicKey('ENV["PAYJP_PUBLIC_KEY"]');</script>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/drawer/3.1.0/css/drawer.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/iScroll/5.1.3/iscroll.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/drawer/3.1.0/js/drawer.min.js"></script>
 </head>
-<body>
-  <header>
+<body class="drawer drawer--left">
+  <header role="banner">
     <% if consumer_signed_in? %>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"style="background-color: #99FF66;">
-      <a class="navbar-brand" href="#">WAGURI</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"style="background-color: #99FF66;margin-left: 50px;">
+      <a class="navbar-brand">WAGURI</a>
       <a class="logo"></a>
       <div class="nav-list-item"><p>ようこそ、
            <%= current_consumer.last_name %>さん！</p>
@@ -77,7 +81,7 @@
       </div>
     </nav>
     <% else %>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"style="background-color: #99FF66;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"style="background-color: #99FF66;margin-left: 50px;">
       <a class="navbar-brand" href="#">WAGURI</a>
       <a class="logo"></a>
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
@@ -105,23 +109,73 @@
   </nav>
     <% end %>
   </div>
+  <button type="button" class="drawer-toggle drawer-hamburger">
+      <span class="sr-only">toggle navigation</span>
+      <span class="drawer-hamburger-icon"></span>
+    </button>
+    <nav class="drawer-nav" role="navigation">
+      <div class="search-form"style="margin-top: 100px; margin-left: 30px;">
+        <h3>商品検索</h3>
+        <%= form_tag(consumers_search_path,method: :get) do %>
+        <%= text_field_tag'search[content]' %>
+        <%= select_tag 'search[model]',options_for_select({"カテゴリー" => "category","ブランド" => "brand","商品" => "product"}) %>
+          <%= select_tag 'search[how]',options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"}) %>
+          <%= submit_tag '検索',class: "btn btn-outline-success my-2 my-sm-0" %>
+        <% end %>
+      </div>
+      <ul class="drawer-menu">
+        <% @brands.each do |brand| %>
+          <li><a class="drawer-brand">カテゴリー</a></li>
+            <li><a class="drawer-menu-item"><%= brand.category.name%></a></li>
+          <li><a class="drawer-brand">ブランド</a></li>
+            <li><a class="drawer-menu-item"><%= brand.name%></a></li>
+        <% end %>
+      </ul>
+    </nav>
 </header>
-<div class= "container-fluid">
+<script>
+ $(document).ready(function() {
+   $('.drawer').drawer();
+ });
+</script>
+<div class="container-fruid">
   <div class="row">
     <div class="col-md-2">
-      <div class="search-form"style="margin-top: 100px;">
-        <h3>商品検索</h3>
-            <%= form_tag(consumers_search_path,method: :get) do %>
-            <%= text_field_tag'search[content]' %>
-            <%= select_tag 'search[model]',options_for_select({"カテゴリー" => "category","ブランド" => "brand","商品" => "product"}) %>
-              <%= select_tag 'search[how]',options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"}) %>
-              <%= submit_tag '検索',class: "btn btn-outline-success my-2 my-sm-0" %>
-　　　　　　　<% end %>
-        </div>
+      <h2>オススメ商品</h2>
+      <%if @products.present? %>
+        <% @products.each do |product| %>
+          <%= link_to(consumers_product_path(product)) do %>
+            <% if product.product_images.present? %>
+               <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
+            <% else %>
+              <%= image_tag 'no_image.jpg',size: '200*200'%>
+            <% end %>
+          <% end %>
+          <%= product.name %>
+        <% end %>
+      <% end %>
     </div>
+    <div class="col-md-8">
       <% content_for :content do %>
       <%= yield %>
       <% end %>
+    </div>
+    <div class="col-md-2">
+      <h2>オススメ記事</h2>
+        <%if @columns.present? %>
+          <% @columns.each do |column| %>
+            <%= link_to(consumers_column_path(column)) do %>
+              <% if column.column_images.present? %>
+                 <%= attachment_image_tag column.column_images.first, :image, :fill, 200, 200 %>
+              <% else %>
+                <%= image_tag 'no_image.jpg',size: '400*400'%>
+              <% end %>
+            <% end %>
+            <%= column.title %>
+            <%= column.column_favorites.count %>
+          <% end %>
+        <% end %>
+    </div>
       <%= render template: "layouts/application" %>
 </div>
 </body>

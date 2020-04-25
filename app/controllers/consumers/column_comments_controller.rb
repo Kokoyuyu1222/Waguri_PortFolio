@@ -10,13 +10,12 @@ class Consumers::ColumnCommentsController < ApplicationController
 
 	def destroy
 		@column = Column.find(params[:column_id])
+		@comments = @column.column_comments
 		@comment = current_consumer.column_comments.find(params[:id])
 		@comment.destroy
 	end
-
 	private
 	def column_comment_params
 			params.require(:column_comment).permit(:comment, :consumer_id, :column_id)
 	end
-
 end

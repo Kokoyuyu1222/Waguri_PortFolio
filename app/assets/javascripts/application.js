@@ -11,13 +11,13 @@
 // about supported directives.
 //
 //= require jquery3
+//= require popper
+//= require bootstrap-sprockets
 //= require rails-ujs
 //= require bxslider
 //= require activestorage
-//= require turbolinks
 //= require_tree ../../../app/assets/javascripts/.
 //= require_tree .
-//= require bootstrap
 $(function(){
 $("document").ready(function() {
 
@@ -26,7 +26,7 @@ $("#Topimage").skippr({
     // スライドショーの変化 ("fade" or "slide")
     transition : 'slide',
     // 変化に係る時間(ミリ秒)
-    speed : 1000,
+    speed : 3000,
     // easingの種類
     easing : 'easeOutQuart',
     // ナビゲーションの形("block" or "bubble")
@@ -47,19 +47,6 @@ $("#Topimage").skippr({
 });
 });
 
-
-
-
-/*!
- * jQuery Raty - A Star Rating Plugin
- *
- * The MIT License
- *
- * author:  Washington Botelho
- * github:  wbotelhos/raty
- * version: 2.9.0
- *
- */
 
 (function($) {
   'use strict';

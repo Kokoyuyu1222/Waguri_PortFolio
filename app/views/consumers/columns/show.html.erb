@@ -1,38 +1,37 @@
+<h2>Book detail</h2>
+<table class="table">
+	<tr>
+		<td>
+			<%= link_to(consumers_fermer_path(@consumer)) do %>
+			<%= @column.fermer.name %>
+			<% end %>
+		</td>
+		<td><%= link_to @column.title, fermers_column_path %></td>
+		<td><%= @column.body %></td>
+		<td>
+				<%= render 'consumers/column_favorites/favorite_form' ,column: @column, favorite: @favorite %>
+		</td>
+	</tr>
+</table>
+<p><%= @column.column_comments.count %>件コメント</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>投稿者</th>
+			<th>コメント</th>
+			<th colspan="3"></th>
+		</tr>
+	</thead>
+	<tbody id="comments_area">
+				<%= render partial: 'consumers/column_comments/index', locals: { comments: @comments } %>
+	</tbody>
+</table>
 <div class="container">
 	<div class="row">
-		<h2>Book detail</h2>
-
-		<table class="table">
-			<tr>
-				<td>
-					<%= link_to(consumers_fermer_path(@consumer)) do %>
-					<%= @column.fermer.name %>
-					<% end %>
-				</td>
-				<td><%= link_to @column.title, fermers_column_path %></td>
-				<td><%= @column.body %></td>
-				<td>
-						<%= render 'consumers/column_favorites/favorite_form' ,column: @column, favorite: @favorite %>
-				</td>
-			</tr>
-		</table>
-		<p><%= @column.column_comments.count %>件コメント</p>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>投稿者</th>
-						<th>コメント</th>
-						<th colspan="3"></th>
-					</tr>
-				</thead>
-				<tbody id="comments_area">
-							<%= render partial: 'consumers/column_comments/index', locals: { comments: @comments } %>
-				</tbody>
-				</table>
-					<tr>
-						<% if consumer_signed_in? %>
-						<%= render partial: 'consumers/column_comments/form', locals: { comment: @comment, column: @column } %>
-						<% end %>
-					</tr>
+		<div class="col-md-10">
+			<% if consumer_signed_in? %>
+			<%= render partial: 'consumers/column_comments/form', locals: { comment: @comment, column: @column } %>
+			<% end %>
+		</div>
 	</div>
 </div>

@@ -1,4 +1,4 @@
-<%= form_with(model:[fermer,review],url: consumers_fermer_fermer_review_path(fermer_id: fermer.id) ) do |f| %>
+<%= form_with(model:[fermer,review],url:consumers_fermer_fermer_reviews_path(fermer_id: fermer.id), remote: true ) do |f| %>
  <div class="form-group row">
     <%= f.label :title, 'タイトル ', class:'col-md-3 col-form-label' %>
     <div class="col-md-9">
@@ -15,7 +15,7 @@
     starOff:  '<%= asset_path('star-off.png') %>',
     starOn : '<%= asset_path('star-on.png') %>',
     starHalf: '<%= asset_path('star-half.png') %>',
-    scoreName: 'product_comment[rate]',
+    scoreName: 'fermer_review[rate]',
     half: true,
   });
   </script>

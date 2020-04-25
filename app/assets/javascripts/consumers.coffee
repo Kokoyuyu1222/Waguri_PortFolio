@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on 'turbolinks:load', ->
+$ 'turbolinks:load', ->
   $('#consumer_postcode').jpostal({
     postcode : ['#consumer_postcode' ],
     address  : {

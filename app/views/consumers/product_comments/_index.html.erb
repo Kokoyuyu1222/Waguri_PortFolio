@@ -1,4 +1,5 @@
 <% comments.each do |comment| %>
+<tr>
   <td class="posts-title"><%= link_to "#{comment.consumer.name}さん", consumers_consumer_path(comment.consumer.id) %></td>
   <td class="posts-prof"><%= comment.consumer.gender_i18n %> <%= comment.consumer.age_i18n %></td>
   <td><%= l comment.created_at, format: :short %></td>
@@ -16,17 +17,13 @@
     });
     </script>
   <td><%= comment.comment %></td>
-<div class="col-md-4">
   <%= link_to consumers_product_path(comment.product) do %>
-    <div class="comments-product">
       <td><%=  comment.product.name %></td>
-    </div>
   <%end %>
-</div>
-<td class="col-md-12 edit-button">
-  <% if current_consumer == comment.consumer %>
-    <%= link_to '口コミを削除',  consumers_product_product_comment_path(product_id:@product, id: comment.id), method: :delete, class:'btn btn-default', remote: true %>
-  <% end %>
-</td>
-</div>
+  <td class="col-md-12 edit-button">
+    <% if current_consumer == comment.consumer %>
+      <%= link_to '口コミを削除',  consumers_product_product_comment_path(product_id:@product, id: comment.id), method: :delete, class:'btn btn-default', remote: true %>
+    <% end %>
+  </td>
+</tr>
   <% end %>

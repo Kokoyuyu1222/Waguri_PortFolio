@@ -64,14 +64,14 @@
 			</tr>
 			<tr>
 				<% @order.order_products.each do |order_product| %>
-				 <td>
-              <% if order_product.product.product_images.present? %>
-                    <%= attachment_image_tag order_product.product.product_images.first, :image, :fill, 100, 100 %>
-                <% else %>
-                  <%= image_tag 'no_image.jpg',size: '100*100'%>
-            <% end %>
-          </td>
-				<td><%= order_product.product.name %></td>
+				<td>
+	                <% if order_product.product.product_images.present? %>
+	                    <%= attachment_image_tag order_product.product.product_images.first, :image, :fill, 100, 100 %>
+	                <% else %>
+	                <%= image_tag 'no_image.jpg',size: '100*100'%>
+	                <% end %>
+	                <%= order_product.product.name %>
+	            </td>
 				<td>
 					<%= link_to(consumers_fermer_path) do %>
 				       <%= order_product.product.fermer.name %>

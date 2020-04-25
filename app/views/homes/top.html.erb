@@ -7,10 +7,6 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <script type="text/javascript" src="https://js.pay.jp/"></script>
 <script type="text/javascript">Payjp.setPublicKey('ENV["PAYJP_PUBLIC_KEY"]');</script>
-    <link rel="stylesheet" href="scss/bootstrap.min.css">
-    <link rel="stylesheet" href="scss/style.css">
-    <script src="js/jquery-3.4.1.slim.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
 
 </head>
 <body class="drawer drawer--right">
@@ -76,6 +72,19 @@
 		<div class="row">
 			<div class="col-md-3">
 				<div>
+          <h2>オススメ商品</h2>
+          <%if @products.present? %>
+            <% @products.each do |product| %>
+              <%= link_to(consumers_product_path(product)) do %>
+                <% if product.product_images.present? %>
+                   <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
+                <% else %>
+                  <%= image_tag 'no_image.jpg',size: '200*200'%>
+                <% end %>
+              <% end %>
+              <%= product.name %>
+            <% end %>
+          <% end %>
 				</div>
 			</div>
 			<div class="col-md-3">
@@ -105,8 +114,20 @@
 				</div>
 			</div>
 			<div class="col-md-3">
-				<div>
-				</div>
+        <h2>オススメ記事</h2>
+        <%if @columns.present? %>
+          <% @columns.each do |column| %>
+            <%= link_to(consumers_column_path(column)) do %>
+              <% if column.column_images.present? %>
+                 <%= attachment_image_tag column.column_images.first, :image, :fill, 200, 200 %>
+              <% else %>
+                <%= image_tag 'no_image.jpg',size: '400*400'%>
+              <% end %>
+            <% end %>
+            <%= column.title %>
+            <%= column.column_favorites.count %>
+          <% end %>
+        <% end %>
 			</div>
 		</div>
 	</div>

@@ -1,16 +1,17 @@
 <% comments.each do |comment| %>
-  <% unless comment.id.nil? %>
-  			<td>
-  				<%= link_to "#{comment.consumer.name}さん", consumers_consumer_path(comment.consumer.id) %>
-  			</td>
-  			<td>
-  				<%= comment.comment %>
-  			</td>
-  			<% if comment.consumer == current_consumer %>
-  			<td>
-  				<%= link_to 'コメントを削除する', consumers_column_column_comments_path(column_id:@column, id: comment.id), method: :delete, remote: true,data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger " %></td>
-  			</td>
-  			<% end %>
-  		</tr>
-  <% end %>
+  <tr>
+    <% unless comment.id.nil? %>
+    			<td>
+    				<%= link_to "#{comment.consumer.name}さん", consumers_consumer_path(comment.consumer.id) %>
+    			</td>
+    			<td>
+    				<%= comment.comment %>
+    			</td>
+    			<% if comment.consumer == current_consumer %>
+    			<td>
+    				<%= link_to 'コメントを削除する', consumers_column_column_comments_path(column_id:@column, id: comment.id), method: :delete, remote: true,data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger " %></td>
+    			</td>
+    			<% end %>
+    <% end %>
+  </tr>
  <% end %>

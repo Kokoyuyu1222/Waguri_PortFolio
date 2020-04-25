@@ -23,6 +23,7 @@ end
 def show
    @column = Column.find(params[:id])
    @fermer = current_fermer
+   @comments = @column.column_comments
 end
 def edit
    @column = Column.find(params[:id])

@@ -1,0 +1,2 @@
+$("textarea").val('');
+$("#comments_area").html("<%= j(render partial: 'consumers/column_comments/index', locals: { comments: @comments}) %>");

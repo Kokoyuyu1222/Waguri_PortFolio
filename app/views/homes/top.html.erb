@@ -1,6 +1,179 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>namespace - consumer</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script type="text/javascript" src="https://js.pay.jp/"></script>
+<script type="text/javascript">Payjp.setPublicKey('ENV["PAYJP_PUBLIC_KEY"]');</script>
+    <link rel="stylesheet" href="scss/bootstrap.min.css">
+    <link rel="stylesheet" href="scss/style.css">
+    <script src="js/jquery-3.4.1.slim.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
 
-<%= link_to "管理者",new_admin_session_path %>
-<%= link_to "購入者",new_consumer_session_path %>
-<%= link_to "農家",new_fermer_session_path %>
+</head>
+<body class="drawer drawer--right">
+	<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"style="background-color: #444444;">
+      <a class="navbar-brand" href="#">WAGURI</a>
+      <a class="logo"></a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="Navber">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">ホーム <span class="sr-only">(現位置)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              管理者
+            </a>
+            <div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/admins/sign_in">ログイン</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            	ユーザー
+            </a>
+            <div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/consumers/sign_in">ログイン</a>
+              <a class="dropdown-item" href="/consumers/sign_up">サインアップ</a>
+              <div class="dropdown-divider"></div>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              ユーザー（農家）
+            </a>
+            <div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/fermers/sign_in">ログイン</a>
+              <a class="dropdown-item" href="/fermers/sign_up">サインアップ</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
+          <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </nav>
+<div class="container-fluid">
+		<div class="main_image">
+			<div id="Topimage">
+				<div class="image1"></div>
+				<div class="image2"></div>
+				<div class="image3"></div>
+				<div class="image4"></div>
+				<div class="image5"></div>
+	        </div>
+	    </div>
+</diV>
+</header>
+<div><h1 style="text-align: center;">====ABOUT====</h1></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3">
+				<div>
+				</div>
+			</div>
+			<div class="col-md-3">
+        <div style="margin-top: 50px;">
+          <div class="about_image"></div>
+          <div class="about_image2"></div>
+        </div>
+      </div>
+      <div class="col-md-3">
+				<div>
+          <div class="about_text">
+            <h3 style="background: linear-gradient(transparent 70%, #00F9A9 70%);">WAGURIとは</h3>
+            <h5 style="color: blue;">新鮮な農作物を食べたいあなたへ</h5>
+            <p>昨今、食に対する安全性意識の向上により生産者の顔を目で見て購入することが、増えてきています。</br>
+              ご家族の健康に気を遣う上で食品に対してどのような方が生産しているのかだけでなく、</br>
+              どのような方法で栽培し、収穫、出荷を行っているのかを知るのかによって、<br>
+              より食材に対しての安心というものが得ることができると考えています。<br>
+              WAGURIでは、そんな皆様の願いを叶えることができるECサイトとなっています。
+            </p>
+            <h5 style="color: blue;">新鮮な農作物を多くの方に届けたいあなたへ</h5>
+            <p>
+              普段、市場やスーパーなどに卸している農家の方は直接お客様の声を聞くということは難しい意と思います。
+              また自身が作るものに対する想い、こだわりなどを伝えることも難しいと思います。
+              WAGURIでは、そんな皆様の願いを叶えることができるECサイトとなっています。
+            </p>
+          </div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div>
+				</div>
+			</div>
+		</div>
+	</div>
+  <hr class="featurette-divider">
+  <div><h1 style="text-align: center;">====How To Use====</h1></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h3 style="background: linear-gradient(transparent 70%, #00F9A9 70%);">記事の作成•閲覧</h3>
+        <h6 style="color:blue;background: linear-gradient(transparent 70%, #f9ba32 70%);">農園</h6>
+        <p>
+          普段の農作業の記録として、記事を作成してください。
+          写真を複数投稿することもできます。
+          皆様の作物への情熱を存分に、自由に投稿してください。
+        </p>
+        <h6 style="color:blue;background: linear-gradient(transparent 70%, #f9ba32 70%);">ユーザー</h6>
+        <p>
+          記事の投稿を見て、どのように作られているかを見ることができます。
+          また、様々なコメントを残すことができます。
+          また、いいねすることによって、農園者様の励みになりますので、
+          積極的にコメント•いいねしてあげてください。
+        </p>
+      </div>
+      <div class="col-md-6">
+        <h3 style="background: linear-gradient(transparent 70%, #00F9A9 70%);">商品のの作成•購入</h3>
+        <h6 style="color:blue;background: linear-gradient(transparent 70%, #f9ba32 70%);">農園</h6>
+        <p>
+          商品の作成を行なってください。
+          様々な品種、ブランドに対応しています。
+          在庫に関しても登録数ることができます。
+        </p>
+        <h6 style="color:blue;background: linear-gradient(transparent 70%, #f9ba32 70%);">ユーザー</h6>
+        <p>
+          商品の購入を行えます。銀行振り込み、クレジットカード支払いの２経つから選択できます。
+          また商品につきましては。レビューを記述することができます。レビューは星５の評価で
+          農園側の商品向上のために積極的にコメント、レビューをおこなっていただけますと幸いです。
+        </p>
+      </div>
+  </div>
+  <hr class="featurette-divider">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <%= link_to(new_admin_session_path) do %>
+          <button type="button" class="btn btn-warning btn-lg btn-block" href="/admins/sign_up">管理者でログイン</button>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        <%= link_to(new_consumer_session_path) do %>
+          <button type="button" class="btn btn-success btn-lg btn-block">ユーザーでログイン</button>
+       <% end %>
+      </div>
+      <div class="col-md-4">
+        <%= link_to(new_fermer_session_path) do %>
+          <button type="button" class="btn btn-info btn-lg btn-block">農家でログイン</button>
+        <% end %>
+      </div>
+    </div> 
+  </div>
+</div>
+</div>
+<footer class="footer"style="background-color: #AEFFBD;">
+    <div class="container text-right text-white mt-3">
+      <p style="text-align: center;color: black;">© 2020 Yuto Konishi </p>
+    </div>
+  </footer>
+</body>
+
+</html>
+

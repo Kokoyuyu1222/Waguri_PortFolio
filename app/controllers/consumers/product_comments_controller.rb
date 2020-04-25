@@ -6,21 +6,17 @@ class Consumers::ProductCommentsController < ApplicationController
 		@comment.consumer_id = current_consumer.id
 		 if @comment.save
 		 	flash[:success] = "Comment was successfully created."
+		 	render 'index'
 		 else
-           @book_comments = BookComment.where(id: @book)
+           redirect_to consumers_products_path(@product)
          end
 	end
 
 	def destroy
-		@product_comment = ProductComment.find(params[:product_id])
-        @product = @product_comment.product
 	    @product = Product.find(params[:product_id])
+		@comments = @product.product_comments
 		@comment = current_consumer.product_comments.find(params[:id])
-		if @book_comment.user != current_user
-           redirect_to request.referer
-        else
 		@comment.destroy
-	   end
 	end
 
 	private

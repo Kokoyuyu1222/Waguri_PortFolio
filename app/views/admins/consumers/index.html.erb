@@ -1,19 +1,25 @@
-<table>
-<% @consumers.each do |consumer| %>
-<tr>
-	<th>名前</th>
-	<th>性別</th>
-	<th>電話番号</th>
-	<th>年齢</th>
-	<th>ステータス</th>
-</tr>
-
-		<tr>
-			<td><%= consumer.name %></td>
-			<td><%= consumer.gender_i18n %></td>
-			<td><%= consumer.phone %></td>
-			<td><%= consumer.age_i18n %></td>
-			<td><%= consumer.withdraw_i18n %></td>
-		</tr>
-		<% end %>
-</table>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10">
+			<table class="table table-striped">
+				<% @consumers.each do |consumer| %>
+					<thead  class="thead-dark">
+						<tr>
+							<th>名前</th>
+							<th>性別</th>
+							<th>電話番号</th>
+							<th>年齢</th>
+							<th>ステータス</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><%= consumer.name %></td>
+							<td><%= consumer.gender_i18n %></td>
+							<td><%= consumer.phone %></td>
+							<td><%= consumer.age_i18n %></td>
+							<td><%= consumer.withdraw_i18n %></td>
+						</tr>
+					</tbody>
+			<% end %>
+		</table>

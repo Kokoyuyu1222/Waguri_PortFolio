@@ -68,6 +68,7 @@ gem 'omniauth-twitter'
 gem 'pry-byebug'
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
+gem 'bxslider-rails'
 gem 'ransack'
 gem 'kaminari', '~> 0.17.0'
 gem 'enum_help'
@@ -87,5 +88,9 @@ group :production do
 end
 group :development do
   gem 'letter_opener_web'
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rbenv'
 end
 gem'roo'

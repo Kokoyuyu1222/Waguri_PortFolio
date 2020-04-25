@@ -1,12 +1,15 @@
 class ApplicationController < ActionController::Base
 
+  # before_action :set_product
   before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
 
-# 　def set_category
+# 　def set_product
 #     @categories = Category.joins(:brand).where("(category_status = ?) AND (brand_status = ?)",false,false)
+#     @consumer = current_consumer
+#     @s = Product.all
+#     @all_ranks = Column.find(ColumnFavorite.group(:column_id).order('count(column_id) desc').limit(10).pluck(:column_id))
 #   end
-
   protected
   def configure_permitted_parameters
     if resource_class == Consumer

@@ -1,6 +1,21 @@
-<h1>本日のお問い合わせ　件</h1>
-
-<%= link_to "カテゴリー作成", admins_categories_path %>
-<%= link_to "ブランド作成", admins_categories_path %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10">
+			<h1>本日のお問い合わせ　件</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<%= link_to(admins_categories_path) do %>
+				<button type="button" class="btn btn-warning btn-lg btn-block">カテゴリー 作成</button>
+			<% end %>
+		</div>
+		<div class="col-md-5">
+			<%= link_to(admins_brands_path) do %>
+				<button type="button" class="btn btn-success btn-lg btn-block">ブランド作成</button>
+			<% end %>
+		</div>
+	</div>
+</div>
 
 

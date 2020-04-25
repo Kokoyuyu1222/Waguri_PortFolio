@@ -4,40 +4,45 @@
 	</div>
 </div>
 <div class="container" style="position:relative;">
-	<table class="table">
-		<%= link_to 'csvダウンロード', 'index.csv', class: 'btn btn-default' %>
-		<tr>
-			<th>商品名</th>
-			<th>税抜き価格</th>
-			<th>カテゴリー</th>
-			<th>ブランド</th>
-			<th>ステータス</th>
-		</tr>
-		<%if @products.present? %>
-		<% @products.each do |product| %>
-		<tr>
-			<td>
-			<%= link_to(fermers_product_path(product)) do %>
-			  <% if product.product_images.present? %>
-			      <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
-			  <% else %>
-			    <%= image_tag 'no_image.jpg',size: '200*200'%>
-			  <% end %>
-			  <%= product.name %>
-			<% end %>
-		</td>
-			<td><%= link_to(fermers_product_path(product)) do %>
-				<%= product.name %>
+	<table class="table table-striped">
+		<%= link_to "CSV出力", fermers_products_path(format: :csv), class: "btn btn-primary" %>
+		<thead class="thead-dark">
+			<tr>
+				<th>イメージ</th>
+				<th>商品名</th>
+				<th>税抜き価格</th>
+				<th>カテゴリー</th>
+				<th>ブランド</th>
+				<th>ステータス</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%if @products.present? %>
+				<% @products.each do |product| %>
+					<tr>
+						<td>
+							<%= link_to(fermers_product_path(product)) do %>
+							  <% if product.product_images.present? %>
+							      <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
+							  <% else %>
+							    <%= image_tag 'no_image.jpg',size: '200*200'%>
+							  <% end %>
+							<% end %>
+						</td>
+						<td><%= link_to(fermers_product_path(product)) do %>
+							<%= product.name %>
+							<% end %>
+						</td>
+						<td><%= product.unit_price %></td>
+						<td><%= product.brand.category.name %></td>
+						<td><%= product.brand.name %></td>
+						<td><%= product.sale_status_i18n %></td>
+					</tr>
 				<% end %>
-			</td>
-			<td><%= product.unit_price %></td>
-			<td><%= product.brand.category.name %></td>
-			<td><%= product.brand.name %></td>
-			<td><%= product.sale_status_i18n %></td>
-		</tr>
-		<% end %>
-		<% end %>
+			<% end %>
+		</tbody>
 	</table>
+	<%= paginate @products, class: "paginate" %>
 	<div class="text-right">
 		<%= link_to "新規作成",new_fermers_product_path,class: "btn btn-success col-xs-12"%>
 	</div>

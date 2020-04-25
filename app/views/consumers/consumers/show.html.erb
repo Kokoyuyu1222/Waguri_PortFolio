@@ -7,6 +7,16 @@
 <div class="show-container" style="width:50%; margin: 20px auto;">
 	<table class="table table-bordered">
 		<tr>
+			<th style=“background-color: #DAD7D7; border-bottom: 1px solid #fff;“>プロフィール画像</th>
+			<td>
+				<% if @consumer.profile_image.present? %>
+	     			<%= attachment_image_tag @consumer.profile_image, :image, :fill, 200, 200 %>
+				<% else %>
+					<%= image_tag 'no_image.jpg',size: '200*200'%>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
 			<th style=“background-color: #DAD7D7; border-bottom: 1px solid #fff;“>氏名</th>
 			<td><%= @consumer.name %></td>
 		</tr>
@@ -25,7 +35,7 @@
 
 	<table>
 		<td><h5>カード情報登録・確認</h5>
-			<% if @card.nil? %>
+			<% if @card.present? %>
 				<%= form_for(@card,url:consumers_cards_path,method: :post) do |f| %>
 				 <script
 		          type="text/javascript"

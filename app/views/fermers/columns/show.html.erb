@@ -1,33 +1,68 @@
 <div class="container">
 	<div class="row">
-		<div>
-			<% if @column.column_images.present? %>
-				<% @column.column_images.each do |image| %>
-					<%= attachment_image_tag image, :image, :fill, 200, 200 %>
+		<div class="col-md-6">
+			<div>
+				<% if @column.column_images.present? %>
+					<% @column.column_images.each do |image| %>
+						<%= attachment_image_tag image, :image, :fill, 200, 200 %>
+					<% end %>
+				<% else %>
+					<%= image_tag 'no_image.jpg', size: '200x200' %>
 				<% end %>
-			<% else %>
-				<%= image_tag 'no_image.jpg', size: '200x200' %>
-			<% end %>
+			</div>
 		</div>
-		<table class="table">
+		<div class="col-md-6">
+		<table class="table table-striped">
 			<tr>
-				<th></th>
 				<th>名前</th>
-				<th>タイトル</th>
-				<th>本文</th>
+				<td>
+					<%= @column.fermer.garden %>
+				</td>
 			</tr>
 			<tr>
+				<th>タイトル</th>
 				<td>
-					<%= @column.fermer.name %>
+					<%= link_to @column.title, fermers_column_path %>
 				</td>
-				<td><%= link_to @column.title, fermers_column_path %></td>
+			</tr>
+			<tr>
+				<th>本文</th>
 				<td><%= @column.body %>
-				</td>
+			</tr>
 				<% if current_fermer.id == @fermer.id %>
-				<td><%= link_to "Edit",edit_fermers_column_path(@column), class: "btn-sm btn-success" %></td>
-				<td><%= link_to "Destroy", fermers_column_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %></td>
+				<td><%= link_to "Edit",edit_fermers_column_path(@column), class: "btn-sm btn-success btn-lg" %></td>
+				<td><%= link_to "Destroy", fermers_column_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger btn-lg" %></td>
 				<% end %>
 			</tr>
 		</table>
 	</div>
 </div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10">
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>投稿者</th>
+						<th>コメント</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr id="comments_area">
+						<% if @comments.present? %>
+							<% @comments.each do |comment| %>
+					  			<td>
+					  				<%= link_to "#{comment.consumer.name}さん", consumers_consumer_path(comment.consumer.id) %>
+					  			</td>
+					  			<td>
+					  				<%= comment.comment %>
+					  			</td>
+							<% end %>
+	 					<% end %>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+

@@ -1,2 +1,38 @@
-<h1>Fermer::Consumers#index</h1>
-<p>Find me in app/views/fermer/consumers/index.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10">
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>プロフィール画像</th>
+						<th>名前</th>
+						<th>性別</th>
+						<th>電話番号</th>
+						<th>年齢</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% current_fermer.consumers.each do |consumer| %>
+					<tr>
+						<td>
+							<% if @consumer.profile_image.present? %>
+				     			<%= attachment_image_tag @consumer.profile_image, :image, :fill, 200, 200 %>
+							<% else %>
+								<%= image_tag 'no_image.jpg',size: '200*200'%>
+							<% end %>
+						</td>
+						<td>
+							<%= link_to(fermers_consumer_path(consumer)) do %>
+								<%= consumer.name %>
+							<% end %>
+						</td>
+						<td><%= consumer.gender_i18n %></td>
+						<td><%= consumer.phone %></td>
+						<td><%= consumer.age_i18n %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

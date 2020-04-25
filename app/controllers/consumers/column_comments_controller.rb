@@ -2,19 +2,16 @@ class Consumers::ColumnCommentsController < ApplicationController
 	layout 'consumer'
 	def create
 	    @column = Column.find(params[:column_id])
-		@comment = @column.column_comments.build(column_comment_params) #②
+		@comment = @column.column_comments.build(column_comment_params)
+		@comments = @column.column_comments
 		@comment.consumer_id = current_consumer.id
-		 if @comment.save
-		 	render :index
-		 end
+		@comment.save
 	end
 
 	def destroy
 		@column = Column.find(params[:column_id])
 		@comment = current_consumer.column_comments.find(params[:id])
-		if @comment.destroy
-			render :index
-		end
+		@comment.destroy
 	end
 
 	private

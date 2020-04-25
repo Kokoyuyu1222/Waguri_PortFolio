@@ -1,0 +1,2 @@
+module Fermers::SearchesHelper
+end

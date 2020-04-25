@@ -1,10 +1,9 @@
-<div class="row" style= "width: 80%; margin: 20px auto;">
-	<div class="form-horizontal">
-		<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">商品詳細画面</h4>
-	</div>
-</div>
-
 <div class="container">
+	<div class="row" style= "width: 80%; margin: 20px auto;">
+		<div class="form-horizontal">
+			<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">商品詳細画面</h4>
+		</div>
+    </div>
 	<div class="row" style="width: 80%; margin: 50px auto;">
 		<div class= "col-md-6">
 			<% if @product.product_images.present? %>
@@ -36,6 +35,10 @@
 				<tr>
 					<th>税込価格</th>
 					<td><%= @product.unit_price %>円</td>
+				</tr>
+				<tr>
+					<th>在庫個数</th>
+					<td><%= @product.stock.quantity %>個</td>
 				</tr>
 				<tr>
 					<th>販売ステータス</th>

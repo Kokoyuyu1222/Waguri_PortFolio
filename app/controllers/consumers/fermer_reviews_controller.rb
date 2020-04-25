@@ -1,17 +1,19 @@
 class Consumers::FermerReviewsController < ApplicationController
 	layout 'consumer'
 	def create
+		binding.pry
 	    @fermer = Fermer.find(params[:fermer_id])
-		@review = @fermer.fermer_review.build(fermer_review_params)
+		@review = @fermer.fermer_reviews.build(fermer_review_params)
+		@reviews = @fermer.fermer_reviews
 		@review.consumer_id = current_consumer.id
-		@comment.save
+		@review.save
 	end
 
 	def destroy
-	    @fermer = Feremer.find(params[:fermer_id])
+	    @fermer = Fermer.find(params[:fermer_id])
+	    @reviews = @fermer.fermer_reviews
 		@review = current_consumer.fermer_reviews.find(params[:id])
-		@comment.destroy
-	   end
+		@review.destroy
 	end
 
 	private

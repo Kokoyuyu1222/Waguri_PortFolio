@@ -64,75 +64,81 @@
 </div>
 <div class="container">
   <div class="row">
-    <h4><u>支払い方法</u></h4>
-    <div>
-      <%= @order.payment_method_i18n %>
-      <%if @order.payment_method == "card" && params[:card_select] == "card1"%>
-        <%="**** **** **** " + @default_card_information.last4 %>
-      <% end %>
-    </div>
-    <h4><u>お届け先</u></h4>
-    <div>〒<%= @order.postcode %><br>
-          <%= @order.address %><br>
-          <%= @order.name %>
-    </div>
-    <%if @order.payment_method == "bank"%>
-      <%= form_for(@order,url:consumers_orders_path,method: :post) do |f| %>
-        <%= f.hidden_field :postcode %>
-        <%= f.hidden_field :prefecture_code %>
-        <%= f.hidden_field :address_city %>
-        <%= f.hidden_field :address_street %>
-        <%= f.hidden_field :address_building %>
-        <%= f.hidden_field :name %>
-        <%= f.hidden_field :payment_method %>
-        <%= f.hidden_field :billing_amount, :value => sum.to_i  %>
-        <%= f.hidden_field :postage %>
-        <% @cart_products.each do |cart_product| %>
-          <%= f.fields_for :order_products do |o| %>
-            <%= o.hidden_field :product_id, :value => cart_product.product_id %>
-            <%= o.hidden_field :consumer_id, :value => current_consumer.id %>
-            <%= o.hidden_field :quantity, :value => cart_product.quantity %>
-            <%= o.hidden_field :unit_price, :value => cart_product.product.unit_price %>
-            <%= o.hidden_field :name, :value => cart_product.product.name %>
-          <% end %>
+    <div class="col-md-3">
+      <h4><u>支払い方法</u></h4>
+      <div>
+        <%= @order.payment_method_i18n %>
+        <%if @order.payment_method == "card" && params[:card_select] == "card1"%>
+          <%="**** **** **** " + @default_card_information.last4 %>
         <% end %>
-        <%= f.submit "購入を確定する" ,class:"btn btn-primary btn-lg center-block" %>
-      <% end %>
-    <% else %>
-      <%= form_for(@order,url:consumers_orders_pay_path,method: :post) do |f| %>
-        <%= f.hidden_field :postcode %>
-        <%= f.hidden_field :prefecture_code %>
-        <%= f.hidden_field :address_city %>
-        <%= f.hidden_field :address_street %>
-        <%= f.hidden_field :address_building %>
-        <%= f.hidden_field :name %>
-        <%= f.hidden_field :payment_method %>
-        <%= f.hidden_field :billing_amount, :value => sum.to_i  %>
-        <%= f.hidden_field :postage %>
-        <% @cart_products.each do |cart_product| %>
-          <%= f.fields_for :order_products do |o| %>
-            <%= o.hidden_field :product_id, :value => cart_product.product_id %>
-            <%= o.hidden_field :consumer_id, :value => current_consumer.id %>
-            <%= o.hidden_field :quantity, :value => cart_product.quantity %>
-            <%= o.hidden_field :unit_price, :value => cart_product.product.unit_price %>
-            <%= o.hidden_field :name, :value => cart_product.product.name %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <h4><u>お届け先</u></h4>
+      <div>〒<%= @order.postcode %><br>
+            <%= @order.address %><br>
+            <%= @order.name %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <%if @order.payment_method == "bank"%>
+        <%= form_for(@order,url:consumers_orders_path,method: :post) do |f| %>
+          <%= f.hidden_field :postcode %>
+          <%= f.hidden_field :prefecture_code %>
+          <%= f.hidden_field :address_city %>
+          <%= f.hidden_field :address_street %>
+          <%= f.hidden_field :address_building %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :payment_method %>
+          <%= f.hidden_field :billing_amount, :value => sum.to_i  %>
+          <%= f.hidden_field :postage %>
+          <% @cart_products.each do |cart_product| %>
+            <%= f.fields_for :order_products do |o| %>
+              <%= o.hidden_field :product_id, :value => cart_product.product_id %>
+              <%= o.hidden_field :consumer_id, :value => current_consumer.id %>
+              <%= o.hidden_field :quantity, :value => cart_product.quantity %>
+              <%= o.hidden_field :unit_price, :value => cart_product.product.unit_price %>
+              <%= o.hidden_field :name, :value => cart_product.product.name %>
+            <% end %>
           <% end %>
-        <% end %>
-        <% if params[:card_select] == "card1" %>
-          <%= hidden_field_tag 'order[customer_id]', @cards.customer_id%>
-          <%= hidden_field_tag 'order[payjp_id]', @cards.payjp_id%>
           <%= f.submit "購入を確定する" ,class:"btn btn-primary btn-lg center-block" %>
-        <% else %>
-        <script
-            type="text/javascript"
-            src="https://checkout.pay.jp/"
-            class="payjp-button"
-            data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>"
-            data-submit-text="トークンを作成する"
-            data-partial="false">
-          </script>
+        <% end %>
+      <% else %>
+        <%= form_for(@order,url:consumers_orders_pay_path,method: :post) do |f| %>
+          <%= f.hidden_field :postcode %>
+          <%= f.hidden_field :prefecture_code %>
+          <%= f.hidden_field :address_city %>
+          <%= f.hidden_field :address_street %>
+          <%= f.hidden_field :address_building %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :payment_method %>
+          <%= f.hidden_field :billing_amount, :value => sum.to_i  %>
+          <%= f.hidden_field :postage %>
+          <% @cart_products.each do |cart_product| %>
+            <%= f.fields_for :order_products do |o| %>
+              <%= o.hidden_field :product_id, :value => cart_product.product_id %>
+              <%= o.hidden_field :consumer_id, :value => current_consumer.id %>
+              <%= o.hidden_field :quantity, :value => cart_product.quantity %>
+              <%= o.hidden_field :unit_price, :value => cart_product.product.unit_price %>
+              <%= o.hidden_field :name, :value => cart_product.product.name %>
+            <% end %>
+          <% end %>
+          <% if params[:card_select] == "card1" %>
+            <%= hidden_field_tag 'order[customer_id]', @cards.customer_id%>
+            <%= hidden_field_tag 'order[payjp_id]', @cards.payjp_id%>
+            <%= f.submit "購入を確定する" ,class:"btn btn-primary btn-lg center-block" %>
+          <% else %>
+          <script
+              type="text/javascript"
+              src="https://checkout.pay.jp/"
+              class="payjp-button"
+              data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>"
+              data-submit-text="トークンを作成する"
+              data-partial="false">
+            </script>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>

@@ -6,7 +6,7 @@
 			    <%= attachment_image_tag image, :image, :fill, 200, 200 %>
 			  <% end %>
 			<% else %>
-			    <%= image_tag 'no_image.jpg',size: '200*200'%>
+			    <%= image_tag 'no_image.jpg',size: '400*400'%>
 			<% end %>
 		</div>
 
@@ -64,8 +64,8 @@
 				<div><%= @product.product_comments.count %>件コメント</div>
 		</div>
 		<div class= "col-md-10"style=" margin-top: 50px;">
-			<table class="table">
-				<thead>
+			<table class="table table-striped">
+				<thead class="thead-dark">
 					<tr>
 						<th>投稿者</th>
 						<th>性別•年齢</th>
@@ -77,10 +77,8 @@
 						<th colspan="3"></th>
 					</tr>
 				</thead>
-				<tbody>
-						<tr id="comments_area">
+				<tbody id="comments_area">
 							<%= render partial: 'consumers/product_comments/index', locals: { comments: @comments, product: @product  } %>
-						</tr>
 				</tbody>
 				</table>
 					<div>

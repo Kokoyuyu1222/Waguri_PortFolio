@@ -1,16 +1,17 @@
 class ApplicationController < ActionController::Base
-
-  # before_action :set_product
+  before_action :set_side
   before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
 
-# 　def set_product
-#     @categories = Category.joins(:brand).where("(category_status = ?) AND (brand_status = ?)",false,false)
-#     @consumer = current_consumer
-#     @s = Product.all
-#     @all_ranks = Column.find(ColumnFavorite.group(:column_id).order('count(column_id) desc').limit(10).pluck(:column_id))
-#   end
+  def set_side
+    @brands = Brand.joins(:category).where("(category_status = ?) AND (brand_status = ?)",false,false)
+    # @all_ranks = Column.find(ColumnFavorite.group(:column_id).order('count(column_id) desc').limit(10).pluck(:column_id))
+    @products = Product.joins({:brand => :category}).where(fermer_id: params[:fermer_id]).where("(category_status = ?) AND (brand_status = ?) AND (sale_status = ?)",false,false,0).order("RANDOM()").limit(5)
+    @columns = Column.order("RANDOM()").limit(5)
+  end
+
   protected
+
   def configure_permitted_parameters
     if resource_class == Consumer
       devise_parameter_sanitizer.permit(:sign_up, keys:[:last_name, :first_name, :kana_last_name, :kana_first_name, :postcode,:prefecture_code, :address_city, :address_street, :address_building,:gender,:age,:phone])

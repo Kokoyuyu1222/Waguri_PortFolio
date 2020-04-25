@@ -4,13 +4,13 @@ class Consumers::ProductsController < ApplicationController
   	@categories = Product.includes(brand: :category).where(categories: {category_status: false})
   	@blands = Product.joins(:brand).where(brands:  {brand_status: false})
   	if params[:fermer_id]
-  		@products = Product.joins({:brand => :category}).where(fermer_id: params[:fermer_id]).where("(category_status = ?) AND (brand_status = ?) AND (sale_status = ?)",false,false,0)
+  		@products = Product.joins({:brand => :category}).where(fermer_id: params[:fermer_id]).where("(category_status = ?) AND (brand_status = ?) AND (sale_status = ?)",false,false,0).page(params[:page]).reverse_order
   	elsif params[:category_id]
-  		@products = Product.joins(:brand).where("(brand_status = ?) AND (sale_status = ?)",false,0)
+  		@products = Product.joins(:brand).where("(brand_status = ?) AND (sale_status = ?)",false,0).page(params[:page]).reverse_order
   	elsif params[:brand_id]
-  	    @products = Product.where(sale_status: "draft")
+  	    @products = Product.where(sale_status: "draft").page(params[:page]).reverse_order
   	else
-  		@products = Product.joins({:brand => :category}).where("(category_status = ?) AND (brand_status = ?) AND (sale_status = ?)",false,false,0)
+  		@products = Product.joins({:brand => :category}).where("(category_status = ?) AND (brand_status = ?) AND (sale_status = ?)",false,false,0).page(params[:page]).reverse_order
   	end
   end
 
@@ -19,6 +19,8 @@ class Consumers::ProductsController < ApplicationController
     @cart = CartProduct.new
     @comment = ProductComment.new
     @comments = @product.product_comments
+    # @products = Product.order("RAND()").limit(8)
+    @products = Product.all
   end
   private
   def product_params

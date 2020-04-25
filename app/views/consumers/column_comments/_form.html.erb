@@ -1,4 +1,4 @@
-<%= form_with(model:[column, comment],url: consumers_column_column_comments_path(column_id: column.id) ) do |form| %>
+<%= form_with(model:[column, comment],url: consumers_column_column_comments_path(column), data: {remote: true} ) do |form| %>
   <div>
     <%= form.text_area :comment ,rows:'5', class: "form-control",placeholder: "コメントをここに"%>
   </div>

@@ -1,19 +1,28 @@
-<table>
-<% @fermers.each do |fermer| %>
-<tr>
-	<th>農家名</th>
-	<th>農園名</th>
-	<th>電話番号</th>
-	<th>ホームページ</th>
-	<th>ステータス</th>
-</tr>
-
-		<tr>
-			<td><%= fermer.name %></td>
-			<td><%= fermer.garden　%></td>
-			<td><%= fermer.phone %></td>
-			<td><%= fermer.home_page %></td>
-			<td><%= fermer.withdraw_i18n %></td>
-		</tr>
-		<% end %>
-</table>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10">
+			<table class="table table-striped">
+				<% @fermers.each do |fermer| %>
+					<thead  class="thead-dark">
+						<tr>
+							<th>農家名</th>
+							<th>農園名</th>
+							<th>電話番号</th>
+							<th>ホームページ</th>
+							<th>ステータス</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><%= fermer.name %></td>
+							<td><%= fermer.garden　%></td>
+							<td><%= fermer.phone %></td>
+							<td><%= fermer.home_page %></td>
+							<td><%= fermer.withdraw_i18n %></td>
+						</tr>
+				</tbody>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>

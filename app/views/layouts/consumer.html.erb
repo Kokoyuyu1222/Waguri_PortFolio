@@ -9,52 +9,120 @@
 <script type="text/javascript">Payjp.setPublicKey('ENV["PAYJP_PUBLIC_KEY"]');</script>
 </head>
 <body>
-	<header class="navbar-brand-center" style="background-color: #FFAD90;">
-    <div class="navbar-nav ml-auto mr-auto">
-      <% if consumer_signed_in? %>
-      <nav>
-        <ul>
-          <h2 class="navbar-brand navbar-right">WAGURI</h2>
+  <header>
+    <% if consumer_signed_in? %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"style="background-color: #99FF66;">
+      <a class="navbar-brand" href="#">WAGURI</a>
+      <a class="logo"></a>
+      <div class="nav-list-item"><p>ようこそ、
+           <%= current_consumer.last_name %>さん！</p>
+      </div>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="Navber">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link"><%= link_to 'マイページ', consumers_consumer_path(current_consumer), class: "nav-link disabled" %>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link">
+              <%= link_to '商品一覧',consumers_products_path, class: "nav-link disabled" %>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link">
+              <%= link_to 'カート',  consumers_cart_products_path(current_consumer), class: "nav-link disabled" %>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link">
+              <%= link_to '注文履歴',  consumers_orders_path(current_consumer), class: "nav-link disabled" %>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              農園一覧
+            </a>
+            <div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item">
+                <%= link_to '一覧',consumers_fermers_path, class: "nav-link disabled" %>
+              </a>
+              <a class="dropdown-item">
+                <%= link_to '記事一覧',consumers_columns_path, class: "nav-link disabled" %>
+              </a>
+              <a class="dropdown-item">
+                <%= link_to 'お気に入り農園一覧',consumers_fermers_path(current_consumer), class: "nav-link disabled" %>
+              </a>
+              <a class="dropdown-item">
+                <%= link_to 'お気に入り記事一覧',consumers_columns_path(current_consumer), class: "nav-link disabled" %>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link">
+              <%= link_to 'ログアウト', destroy_consumer_session_path, method: :delete,class: "nav-link disabled" %>
+            </a>
+          </li>
         </ul>
-        <ul>
-          <div class="nav-list-item"></div>
-          <li class="nav-list-item"><p>ようこそ、
-           <%= current_consumer.last_name %>
-         さん！</p></li>
-         <li class="nav-list-item"><%= link_to 'マイページ', consumers_consumer_path(current_consumer), class: "nav-link disabled" %></li>
-         <li class="nav-list-item"><%= link_to '農園一覧',consumers_fermers_path, class: "nav-link disabled" %></li>
-
-         <li class="nav-list-item"><%= link_to '商品一覧',consumers_products_path, class: "nav-link disabled" %></li>
-
-         <li class="nav-list-item"><%= link_to 'カート',  consumers_cart_products_path(current_consumer), class: "nav-link disabled" %></li>
-
-         <li class="nav-list-item"><%= link_to '注文履歴',  consumers_orders_path(current_consumer), class: "nav-link disabled" %></li>
-
-         <li class="nav-list-item"><%= link_to 'ログアウト', destroy_consumer_session_path, method: :delete,class: "nav-link disabled" %></li>
-       </ul>
-     </nav>
-
-     <% else %>
-    <nav>
-      <ul>
-        <h2 class="navbar-brand navbar-right　text-right">WAGURI</h2>
-        　<div class="nav-list-item" style="margin-right: 700px;"></div>
-        <li class="nav-list-item"><%= link_to '商品一覧', consumers_products_path, class: "nav-link disabled" %></li>
-
-        <li class="nav-list-item"><%= link_to '新規登録', new_consumer_registration_path, class: "nav-link disabled" %></li>
-
-        <li class="nav-list-item"><%= link_to 'ログイン', new_consumer_session_path, class: "nav-link disabled" %></li>
-      </ul>
+        <div class="search-form">
+            <%= form_tag(consumers_search_path,method: :get) do %>
+            <%= text_field_tag'search[content]' %>
+            <%= select_tag 'search[model]',options_for_select({"農園" => "fermer","記事" => "column"}) %>
+              <%= select_tag 'search[how]',options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"}) %>
+              <%= submit_tag '検索',class: "btn btn-outline-success my-2 my-sm-0" %>
+            <% end %>
+        </div>
+      </div>
     </nav>
+    <% else %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"style="background-color: #99FF66;">
+      <a class="navbar-brand" href="#">WAGURI</a>
+      <a class="logo"></a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="Navber">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link">
+            <%= link_to '商品一覧',consumers_products_path, class: "nav-link disabled" %>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link">
+            <%= link_to '新規登録', new_consumer_registration_path, class: "nav-link disabled" %>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link">
+            <%= link_to 'ログイン', new_consumer_session_path, class: "nav-link disabled" %>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
     <% end %>
   </div>
 </header>
-
-
-
-<% content_for :content do %>
-<%= yield %>
-<% end %>
-<%= render template: "layouts/application" %>
+<div class= "container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="search-form"style="margin-top: 100px;">
+        <h3>商品検索</h3>
+            <%= form_tag(consumers_search_path,method: :get) do %>
+            <%= text_field_tag'search[content]' %>
+            <%= select_tag 'search[model]',options_for_select({"カテゴリー" => "category","ブランド" => "brand","商品" => "product"}) %>
+              <%= select_tag 'search[how]',options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"}) %>
+              <%= submit_tag '検索',class: "btn btn-outline-success my-2 my-sm-0" %>
+　　　　　　　<% end %>
+        </div>
+    </div>
+      <% content_for :content do %>
+      <%= yield %>
+      <% end %>
+      <%= render template: "layouts/application" %>
+</div>
 </body>
 </html>

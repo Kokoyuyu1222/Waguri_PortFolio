@@ -1,6 +1,6 @@
 <div class= "container">
 	<div class="row" style= "width: 100%; margin: 20px auto;">
-		<div class= "col-md-9">
+		<div class= "col-md-5"style=" margin-top: 50px;">
 			<% if @product.product_images.present? %>
 			  <% @product.product_images.each do |image| %>
 			    <%= attachment_image_tag image, :image, :fill, 200, 200 %>
@@ -10,7 +10,7 @@
 			<% end %>
 		</div>
 
-		<div class= "col-md-3"style=" margin-top: 50px;">
+		<div class= "col-md-4"style=" margin-top: 50px;">
 			<table class="table table-condensed">
 				<tr>
 					<th>商品名</th>
@@ -41,6 +41,8 @@
 					<td><%= @product.sale_status_i18n %></td>
 				</tr>
 			</table>
+		</div>
+		<div class="col-md-3"style="margin-top: 350px;">
 				<%= form_with(model:@cart,url: consumers_cart_products_path,local: true,method: :POST) do |f| %>
 					<% if @cart.errors.any? %>
 
@@ -61,7 +63,7 @@
 				</table>
 				<div><%= @product.product_comments.count %>件コメント</div>
 		</div>
-		<div class= "col-md-5"style=" margin-top: 50px;">
+		<div class= "col-md-10"style=" margin-top: 50px;">
 			<table class="table">
 				<thead>
 					<tr>

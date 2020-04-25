@@ -5,6 +5,7 @@ class Fermer < ApplicationRecord
          :recoverable, :rememberable, :validatable
         has_many :book_marks, dependent: :destroy
         has_many :consumers, through: :book_marks
+        attachment :profile_image
 
         has_many :columns, dependent: :destroy
         has_many :products, dependent: :destroy

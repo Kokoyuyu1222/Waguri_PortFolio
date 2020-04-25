@@ -10,27 +10,86 @@
 		<header class="navbar-brand-center" style="background-color: #FFAD90;">
 		<div class="navbar-nav ml-auto mr-auto">
 			<% if admin_signed_in? %>
-			<nav>
-				<ul class="nav-list">
-					<li><h2 class="navbar-brand navbar-right">WAGURI</h2></li>
-					<div class= "nav-list-item logo"></div>
-					<li class="nav-list-item"><%= link_to '商品一覧', admins_products_path, class: "nav-link disabled" %></li>
-					<li class="nav-list-item"><%= link_to '会員一覧', admins_consumers_path, class: "nav-link disabled" %></li>
-					<li class="nav-list-item"><%= link_to 'カテゴリー一覧', admins_categories_path, class: "nav-link disabled" %></li>
-					<li class="nav-list-item"><%= link_to 'ブランド一覧', admins_brands_path, class: "nav-link disabled" %></li>
-					<li class="nav-list-item"><%= link_to '注文履歴', admins_orders_path, class: "nav-link disabled" %></li>
-					<li class="nav-list-item"><%= link_to 'ログアウト', destroy_admin_session_path,method: :delete, class: "nav-link disabled" %></li>
-				</ul>
-			</nav>
+			<nav class="navbar navbar-expand-lg navbar-light bg-light"style="background-color: #99FF66;">
+	      <a class="navbar-brand" href="#">WAGURI</a>
+	      <a class="logo"></a>
+	      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+	        <span class="navbar-toggler-icon"></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="Navber">
+	        <ul class="navbar-nav mr-auto">
+	          	<li class="nav-item active">
+	            	<a class="nav-link"><%= link_to 'マイページ', admins_homes_top_path, class: "nav-link disabled" %>
+	            	</a>
+	          	</li>
+	          	<li class="nav-item active">
+	           		<a class="nav-link">
+	              		<%= link_to '商品一覧',  admins_products_path, class: "nav-link disabled" %>
+	            	</a>
+	        	</li>
+	        	<li class="nav-item active">
+	           		<a class="nav-link">
+	              		<%= link_to '記事一覧',  admins_columes_path, class: "nav-link disabled" %>
+	            	</a>
+	        	</li>
+	          	<li class="nav-item active">
+	           		<a class="nav-link">
+	              		<%= link_to '注文履歴',  admins_orders_path, class: "nav-link disabled" %>
+	            	</a>
+	        	</li>
+	          	<li class="nav-item active">
+	            	<a class="nav-link">
+	              		<%= link_to '農園一覧',  admins_fermer_index_path, class: "nav-link disabled" %>
+	            	</a>
+	          	</li>
+	          	<li class="nav-item active">
+	            	<a class="nav-link">
+	              		<%= link_to '顧客一覧', admins_consumers_path, class: "nav-link disabled" %>
+	            	</a>
+	          	</li>
+	          	<li class="nav-item active">
+	            	<a class="nav-link">
+	              		<%= link_to 'ログアウト', destroy_fermer_session_path, method: :delete,class: "nav-link disabled" %>
+	            	</a>
+	          	</li>
+	        </ul>
+	        <div class="search-form">
+	            <%= form_tag(consumers_search_path,method: :get) do %>
+	            <%= text_field_tag'search[content]' %>
+	            <%= select_tag 'search[model]',options_for_select({"商品" => "product","記事" => "column","ブランド" => "brand","カテゴリー" => "category"}) %>
+	              <%= select_tag 'search[how]',options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"}) %>
+	              <%= submit_tag '検索',class: "btn btn-outline-success my-2 my-sm-0" %>
+	            <% end %>
+	        </div>
+	      </div>
+	    </nav>
 			<% else %>
-			<nav>
-				<ul class="nav-list">
-					<li><h2 class="navbar-brand navbar-right">WAGURI</h2></li>
-					<div class= "nav-list-item logo"></div>
-					<li class="nav-list-item"><%= link_to 'ログイン', admin_session_path, class: "nav-link disabled" %></li>
-					<li class="nav-list-item"><%= link_to '新規登録', admin_registration_path,method: :delete, class: "nav-link disabled" %></li>
-				</ul>
-
+			<nav class="navbar navbar-expand-lg navbar-light bg-light"style="background-color: #99FF66;">
+	      <a class="navbar-brand" href="#">WAGURI</a>
+	      <a class="logo"></a>
+	      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+	        <span class="navbar-toggler-icon"></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="Navber">
+	      <ul class="navbar-nav mr-auto">
+	        <li class="nav-item active">
+	          <a class="nav-link">
+	            <%= link_to '商品一覧',admins_products_path, class: "nav-link disabled" %>
+	          </a>
+	        </li>
+	        <li class="nav-item active">
+	          <a class="nav-link">
+	            <%= link_to '新規登録', new_admin_registration_path, class: "nav-link disabled" %>
+	          </a>
+	        </li>
+	        <li class="nav-item active">
+	          <a class="nav-link">
+	            <%= link_to 'ログイン', new_admin_session_path, class: "nav-link disabled" %>
+	          </a>
+	        </li>
+	      </ul>
+    </div>
+  </nav>
 			<% end %>
 		</div>
 	    </header>

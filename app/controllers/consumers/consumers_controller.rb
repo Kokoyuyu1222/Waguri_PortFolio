@@ -4,10 +4,10 @@ class Consumers::ConsumersController < ApplicationController
   	@consumer = Consumer.find(params[:id])
     @card = Card.new
     @cards = Card.find_by(consumer_id: current_consumer.id)
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-          customer = Payjp::Customer.retrieve(@cards.customer_id)
-          @default_card_information = customer.cards.retrieve(@cards.payjp_id)
-  end
+  #   Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+  #         customer = Payjp::Customer.retrieve(@cards.customer_id)
+  #         @default_card_information = customer.cards.retrieve(@cards.payjp_id)
+   end
   def edit
   	@consumer = Consumer.find(params[:id])
   	unless current_consumer.nil? || current_consumer.id == current_consumer.id
@@ -32,7 +32,7 @@ class Consumers::ConsumersController < ApplicationController
 
   private
    def consumer_params
-       params.require(:consumer).permit(:last_name, :first_name, :kana_last_name, :kana_first_name,:gender,:age,:prefecture_code, :address_city,:address_street,:address_building, :postcode, :phone, :email,:withdraw)
+       params.require(:consumer).permit(:last_name, :first_name, :kana_last_name, :kana_first_name,:gender,:age,:prefecture_code, :address_city,:address_street,:address_building, :postcode, :phone, :email,:withdraw,:profile_image)
     end
 
 end

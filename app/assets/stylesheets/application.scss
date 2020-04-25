@@ -1,0 +1,71 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ */
+@import "bootstrap";
+.logo{
+	background-image: url(logo.jpg);
+}
+
+ .main_image{
+ 	height: 300px;
+ }
+ .dropdown:hover>.dropdown-menu {
+  display: block;
+}
+.logo {
+	background-image: url(logo.jpg);
+	background-size: cover;
+	background-position: center;
+	height: 50px;
+	width: 50px;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+ .image1 {
+background-image: url(top1.jpg);
+background-size: cover;
+background-position: center;
+}
+.image2 {
+background-image: url(top2.jpg);
+background-size: cover;
+background-position: center;
+}
+.image3 {
+background-image: url(top3.jpg);
+background-size: cover;
+background-position: center;
+}
+.image4 {
+background-image: url(top4.jpg);
+background-size: cover;
+background-position: center;
+}
+.image5 {
+background-image: url(top5.jpg);
+background-size: cover;
+background-position: center;
+}
+.about_image{
+	background-image: url(logo.jpg);
+	background-size: cover;
+	background-position: center;
+	height: 200px;
+}
+.about_image2{
+	background-image: url(girl.jpg);
+	background-size: cover;
+	background-position: center;
+	height:350px;
+}

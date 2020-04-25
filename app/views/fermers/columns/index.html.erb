@@ -1,22 +1,35 @@
-<table class="table">
-		<tr>
-			<th>投稿日</th>
-			<th>タイトル</th>
-			<th>本文</th>
-		</tr>
-		<%if @columns.present? %>
-		<% @columns.each do |column| %>
-		<tr>
-			<td><%= l column.created_at, format: :short %></td>
-			<td>
-				<%= column.title %>
-			</td>
-			<td><%= column.body %></td>
-		</tr>
-		<% end %>
-		<% end %>
-	</table>
-	<div class="text-right">
-	<%= link_to "新規作成",new_fermers_column_path,class: "btn btn-success col-xs-12"%>
+<div class="container">
+	<div class="row">
+		<div class= "col-md-10">
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>投稿日</th>
+						<th>タイトル</th>
+						<th>本文</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%if @columns.present? %>
+						<% @columns.each do |column| %>
+						<tr>
+							<td>
+								<%= l column.created_at, format: :short %>
+							</td>
+							<td>
+								<%= link_to(fermers_column_path(column)) do %>
+									<%= column.title %>
+								<% end %>
+							</td>
+							<td><%= column.body %></td>
+						</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+		<div class="text-right">
+			<%= link_to "新規作成",new_fermers_column_path,class: "btn btn-success col-xs-12"%>
+		</div>
 	</div>
 </div>

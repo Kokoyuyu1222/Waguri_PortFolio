@@ -7,10 +7,11 @@ class Consumers::DestinationsController < ApplicationController
 	end
 
 	def create
+		binding.pry
 		@destination = Destination.new(destination_params)
 		@destination.consumer_id = current_consumer.id
 		if @destination.save!
-			@destination.update(address: @destination.prefecture_name + @destination.address_city + @destination.address_street + @destination.address_building)
+			@destination.update!(address: @destination.prefecture_name + @destination.address_city + @destination.address_street + @destination.address_building)
 			redirect_back(fallback_location: consumers_destinations_path)
 		else
 			redirect_back(fallback_location: consumers_destinations_path)

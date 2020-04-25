@@ -11,8 +11,8 @@
 </head>
 <body class="drawer drawer--right">
 	<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"style="background-color: #444444;">
-      <a class="navbar-brand" href="#">WAGURI</a>
+    <nav class="navbar navbar-expand-lg "style="background-color: #B4DE9B;color: black;">
+      <a class="navbar-brand" href="/">WAGURI</a>
       <a class="logo"></a>
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
         <span class="navbar-toggler-icon"></span>
@@ -20,17 +20,17 @@
       <div class="collapse navbar-collapse" id="Navber">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">ホーム <span class="sr-only">(現位置)</span></a>
+            <a class="nav-link" href="/">ホーム <span class="sr-only">(現位置)</span></a>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
               管理者
             </a>
             <div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="/admins/sign_in">ログイン</a>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
             	ユーザー
             </a>
             <div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
@@ -40,7 +40,7 @@
             </div>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <a  class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
               ユーザー（農家）
             </a>
             <div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
@@ -49,44 +49,55 @@
             </div>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
-          <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
-        </form>
-      </div><!-- /.navbar-collapse -->
+        <div class="search-form">
+            <%= form_tag(search_path,method: :get) do %>
+            <%= text_field_tag'search[content]' %>
+            <%= select_tag 'search[model]',options_for_select({"商品" => "product","記事" => "column"}) %>
+              <%= select_tag 'search[how]',options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"}) %>
+              <%= submit_tag '検索',class: "btn btn-outline-success my-2 my-sm-0" %>
+            <% end %>
+        </div>
+      </div>
     </nav>
 <div class="container-fluid">
-		<div class="main_image">
-			<div id="Topimage">
-				<div class="image1"></div>
-				<div class="image2"></div>
-				<div class="image3"></div>
-				<div class="image4"></div>
-				<div class="image5"></div>
-	        </div>
-	    </div>
+		<div class="main_image"id="Topimage">
+				<div class="skipper_image image1"></div>
+				<div class="skipper_image image2"></div>
+				<div class="skipper_image image3"></div>
+				<div class="skipper_image image4"></div>
+				<div class="skipper_image image5"></div>
+	 </div>
 </diV>
 </header>
 <div><h1 style="text-align: center;">====ABOUT====</h1></div>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-3">
-				<div>
-          <h2>オススメ商品</h2>
-          <%if @products.present? %>
-            <% @products.each do |product| %>
-              <%= link_to(consumers_product_path(product)) do %>
-                <% if product.product_images.present? %>
-                   <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
-                <% else %>
-                  <%= image_tag 'no_image.jpg',size: '200*200'%>
+			<div class="col-md-3 d-none d-md-block bg-light sidebar card">
+      <div class="sidebar-sticky" style="box-sizing: border-box;">
+        <h6 class= "pt-2 text-center"><i class="fas fa-crown"></i>オススメ商品<i class="fas fa-crown"></i></h6>
+        <%if @products.present? %>
+          <% @products.each do |product| %>
+            <div class="column-box">
+              <div class="shadow-sm" style="text-align: center">
+                <%= link_to(consumers_product_path(product)) do %>
+                  <% if product.product_images.present? %>
+                     <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
+                  <% else %>
+                    <%= image_tag 'no_image.jpg',size: '200*200'%>
+                  <% end %>
+                <p>
+                  商品名<%= product.name %>
+                </p>
+                <p>
+                  <%= product.unit_price %>円（税抜）
+                </p>
                 <% end %>
-              <% end %>
-              <%= product.name %>
-            <% end %>
-          <% end %>
-				</div>
-			</div>
+              </div>
+            </div>
+          <%  end %>
+        <% end %>
+      </div>
+    </div>
 			<div class="col-md-3">
         <div style="margin-top: 50px;">
           <div class="about_image"></div>
@@ -113,22 +124,27 @@
           </div>
 				</div>
 			</div>
-			<div class="col-md-3">
-        <h2>オススメ記事</h2>
-        <%if @columns.present? %>
-          <% @columns.each do |column| %>
-            <%= link_to(consumers_column_path(column)) do %>
-              <% if column.column_images.present? %>
-                 <%= attachment_image_tag column.column_images.first, :image, :fill, 200, 200 %>
-              <% else %>
-                <%= image_tag 'no_image.jpg',size: '400*400'%>
-              <% end %>
-            <% end %>
-            <%= column.title %>
-            <%= column.column_favorites.count %>
+			<div class="col-md-3 d-none d-md-block bg-light sidebar card">
+      <div class="sidebar-sticky" style="box-sizing: border-box;">
+        <h6 class= "pt-2 text-center"><i class="fas fa-crown"></i>オススメ記事<i class="fas fa-crown"></i></h6>
+          <%if @columns.present? %>
+            <% @columns.each do |column| %>
+              <div class="column-box" style="text-align: center">
+                <div class="shadow-sm">
+                <%= link_to(consumers_column_path(column)) do %>
+                  <% if column.column_images.present? %>
+                     <%= attachment_image_tag column.column_images.first, :image, :fill, 200, 200,class: "ranking-img" %>
+                  <% else %>
+                    <%= image_tag 'no_image.jpg',size: '400*400'%>
+                  <% end %>
+                <p class="ranking-favorite"><i class="fas fa-heart" style="color:red;"><%= column.column_favorites.count %></i>いいね！</p>
+                <p class="ranking-name">タイトル：<%= column.title %></p>
+                 <% end %>
+              </div>
+            </div>
           <% end %>
         <% end %>
-			</div>
+      </div>
 		</div>
 	</div>
   <hr class="featurette-divider">
@@ -185,11 +201,11 @@
           <button type="button" class="btn btn-info btn-lg btn-block">農家でログイン</button>
         <% end %>
       </div>
-    </div> 
+    </div>
   </div>
 </div>
 </div>
-<footer class="footer"style="background-color: #AEFFBD;">
+<footer class="footer"style="background-color: #B4DE9B;">
     <div class="container text-right text-white mt-3">
       <p style="text-align: center;color: black;">© 2020 Yuto Konishi </p>
     </div>

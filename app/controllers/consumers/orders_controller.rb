@@ -11,9 +11,6 @@ class Consumers::OrdersController < ApplicationController
 	def create
 		@order = Order.new(order_params)
 		@order.consumer_id = current_consumer.id
-		# validationの処理
-		# notice[:error] = "在庫不足"
-		# render XXX
 	    if @order.save!
 	    	ids = @order.products.select(:fermer_id).distinct.pluck(:fermer_id)
 	    	@fermers = Fermer.find(ids)
@@ -54,31 +51,32 @@ class Consumers::OrdersController < ApplicationController
 	        @default_card_information = customer.cards.retrieve(@cards.payjp_id)
 		end
 		if params[:address_select] == "address1"
+			binding.pry
 			@order.postcode = current_consumer.postcode
-			@order.prefecture_code = current_consumer.prefecture_code
+			@order.prefecture_name = current_consumer.prefecture_name
 			@order.address_city = current_consumer.address_city
 			@order.address_street = current_consumer.address_street
 			@order.address_building = current_consumer.address_building
 			@order.name = current_consumer.name
-			@order.address = (@order.prefecture_code.to_s + @order.address_city + @order.address_street + @order.address_building)
+			@order.address = (@order.prefecture_name + @order.address_city + @order.address_street + @order.address_building)
 		elsif params[:address_select] == "address2"
 			@destination = Destination.find(params[:order][:address_id])
-			@order.prefecture_code = @destination.prefecture_code
+			@order.prefecture_name = @destination.prefecture_name
 			@order.address_city = @destination.address_city
 			@order.address_street = @destination.address_street
 			@order.address_building = @destination.address_building
-			@order.address = (@order.prefecture_code.to_s + @order.address_city + @order.address_street + @order.address_building)
+			@order.address = (@order.prefecture_name + @order.address_city + @order.address_street + @order.address_building)
 			@order.name = @destination.name
 		else
 			params[:address_select] == "address3"
 			binding.pry
 			@order.postcode =  params[:order][:postcode]
-		    @order.address =  params[:order][:prefecture_code]
-		    @order.address =  params[:order][:address_city]
-		    @order.address =  params[:order][:address_street]
-		    @order.address =  params[:order][:address_building]
+		    @order.prefecture_code = params[:order][:prefecture_code]
+		    @order.address_city = params[:order][:address_city]
+		    @order.address_street = params[:order][:address_street]
+		    @order.address_building = params[:order][:address_building]
 			@order.name =  params[:order][:name]
-			@order.address = (@order.prefecture_code.to_s + @order.address_city + @order.address_street + @order.address_building)
+			@order.address = (@order.prefecture_name + @order.address_city + @order.address_street + @order.address_building)
 		end
     	@total_price = 0
     	@card = params[:order][:card]
@@ -110,12 +108,11 @@ class Consumers::OrdersController < ApplicationController
     	@order = Order.new(order_params)
 		@order.consumer_id = current_consumer.id
 	    if @order.save!
-	    ids = @order.products.select(:fermer_id).distinct.pluck(:fermer_id)
-	    	p ids
+	    	ids = @order.products.select(:fermer_id).distinct.pluck(:fermer_id)
 	    	@fermers = Fermer.find(ids)
 	    	@fermers.each do |fermer|
-	     ThanksMailer.send_mail_fermer(fermer).deliver_now
-	     ThanksMailer.send_mail_consumer(current_consumer,fermer).deliver_now
+	     		ThanksMailer.send_mail_fermer(fermer).deliver_now
+	     		ThanksMailer.send_mail_consumer(current_consumer,fermer).deliver_now
 	    	end
 	  	cart_products = current_consumer.cart_products
 		cart_products.destroy_all

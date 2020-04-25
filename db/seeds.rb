@@ -108,120 +108,120 @@ Category.create!(name: "マスカット",category_status: "draft")
   Brand.create!(name:"シャインマスカット",brand_status:"draft",category_id: 5)
   Brand.create!(name:"マスカット",brand_status:"draft",category_id: 5)
 
-Product.create!(name:"１kg 化粧箱",brand_id: 1,category_id: 2,fermer_id:1,
-                sale_status:"sale",unit_price:"2000",stock_id:1,
-                introduction:"もぎたて新鮮な桃です。ご注文を受けてから収穫、出荷いたします。")
-  Stock.create!(quantity:"100")
-  ProductImage.create!()
-  ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
-                 consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:5)
-  ProductComment.create!(comment:"対応がとても丁寧でした。",
-                 consumer_id:2,priduct_id:1,title:"丁寧な対応でした",rate:4)
+# Product.create!(name:"１kg 化粧箱",brand_id: 1,category_id: 2,fermer_id:1,
+#                 sale_status:"sale",unit_price:"2000",stock_id:1,
+#                 introduction:"もぎたて新鮮な桃です。ご注文を受けてから収穫、出荷いたします。")
+#   Stock.create!(quantity:"100")
+#   ProductImage.create!()
+#   ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
+#                  consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:5)
+#   ProductComment.create!(comment:"対応がとても丁寧でした。",
+#                  consumer_id:2,priduct_id:1,title:"丁寧な対応でした",rate:4)
 
-  Product.create!(name:"3kg 化粧箱",brand_id: 2,category_id: 2,fermer_id:1,
-                sale_status:"sale",unit_price:"4500",stock_id:2,
-                introduction:"もぎたて新鮮な桃です。ご注文を受けてから収穫、出荷いたします。")
-  Stock.create!(quantity:"100")
-  ProductImage.create!()
-  ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
-                 consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:5)
-  ProductComment.cretate!(comment:"配送も早く、とても新鮮でした。",
-                 consumer_id:2,priduct_id:1,title:"すごく良かったです",rate:5)
+#   Product.create!(name:"3kg 化粧箱",brand_id: 2,category_id: 2,fermer_id:1,
+#                 sale_status:"sale",unit_price:"4500",stock_id:2,
+#                 introduction:"もぎたて新鮮な桃です。ご注文を受けてから収穫、出荷いたします。")
+#   Stock.create!(quantity:"100")
+#   ProductImage.create!()
+#   ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
+#                  consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:5)
+#   ProductComment.cretate!(comment:"配送も早く、とても新鮮でした。",
+#                  consumer_id:2,priduct_id:1,title:"すごく良かったです",rate:5)
 
-  Product.create!(name:"2kg 化粧箱",brand_id: 1,category_id: 1,fermer_id:1,
-                sale_status:"sale",unit_price:"500",stock_id:3,
-                introduction:"もぎたて新鮮なみかんです。ご注文を受けてから収穫、出荷いたします。")
-  Stock.create!(quantity:"100")
-  ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
-                 consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:5)
-  ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
-                 consumer_id:2,priduct_id:1,title:"すごく良かったです",rate:5)
+#   Product.create!(name:"2kg 化粧箱",brand_id: 1,category_id: 1,fermer_id:1,
+#                 sale_status:"sale",unit_price:"500",stock_id:3,
+#                 introduction:"もぎたて新鮮なみかんです。ご注文を受けてから収穫、出荷いたします。")
+#   Stock.create!(quantity:"100")
+#   ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
+#                  consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:5)
+#   ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
+#                  consumer_id:2,priduct_id:1,title:"すごく良かったです",rate:5)
 
-  Product.create!(name:"4kg 化粧箱",brand_id: 2,category_id: 1,fermer_id:1,
-                sale_status:"sale",unit_price:"1000",stock_id:4,
-                introduction:"もぎたて新鮮なみかんです。ご注文を受けてから収穫、出荷いたします。")
-  Stock.create!(quantity:"100")
-  ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
-                 consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:5)
-  ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
-                 consumer_id:2,priduct_id:1,title:"すごく良かったです",rate:5)
+#   Product.create!(name:"4kg 化粧箱",brand_id: 2,category_id: 1,fermer_id:1,
+#                 sale_status:"sale",unit_price:"1000",stock_id:4,
+#                 introduction:"もぎたて新鮮なみかんです。ご注文を受けてから収穫、出荷いたします。")
+#   Stock.create!(quantity:"100")
+#   ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
+#                  consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:5)
+#   ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
+#                  consumer_id:2,priduct_id:1,title:"すごく良かったです",rate:5)
 
-  Product.create!(name:"3kg 化粧箱",brand_id: 1,category_id: 3,fermer_id:2,
-                sale_status:"sale",unit_price:"5000",stock_id:5,
-                introduction:"もぎたて新鮮ないちごです。ご注文を受けてから収穫、出荷いたします。")
-  Stock.create!(quantity:"100")
-  ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
-                 consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:5)
-  ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
-                 consumer_id:2,priduct_id:1,title:"すごく良かったです",rate:5)
+#   Product.create!(name:"3kg 化粧箱",brand_id: 1,category_id: 3,fermer_id:2,
+#                 sale_status:"sale",unit_price:"5000",stock_id:5,
+#                 introduction:"もぎたて新鮮ないちごです。ご注文を受けてから収穫、出荷いたします。")
+#   Stock.create!(quantity:"100")
+#   ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
+#                  consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:5)
+#   ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
+#                  consumer_id:2,priduct_id:1,title:"すごく良かったです",rate:5)
 
-  Product.create!(name:"2kg 化粧箱",brand_id: 2,category_id: 3,fermer_id:2,
-                sale_status:"sale",unit_price:"3000",stock_id:6,
-                introduction:"もぎたて新鮮ないちごです。ご注文を受けてから収穫、出荷いたします。")
-  Stock.create!(quantity:"100")
-  ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
-                 consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:4)
-  ProductComment.create!(comment:"普通のいちごでした。",
-                 consumer_id:2,priduct_id:1,title:"良かったです",rate:3)
+#   Product.create!(name:"2kg 化粧箱",brand_id: 2,category_id: 3,fermer_id:2,
+#                 sale_status:"sale",unit_price:"3000",stock_id:6,
+#                 introduction:"もぎたて新鮮ないちごです。ご注文を受けてから収穫、出荷いたします。")
+#   Stock.create!(quantity:"100")
+#   ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
+#                  consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:4)
+#   ProductComment.create!(comment:"普通のいちごでした。",
+#                  consumer_id:2,priduct_id:1,title:"良かったです",rate:3)
 
-  Product.create!(name:"１kg 化粧箱",brand_id: 1,category_id: 4,fermer_id:2,
-                sale_status:"sale",unit_price:"2000",stock_id:7,
-                introduction:"もぎたて新鮮なリンゴです。ご注文を受けてから収穫、出荷いたします。")
-  Stock.create!(quantity:"100")
-  ProductComment.create!(comment:"2000円は安い。",
-                 consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:5)
-  ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
-                 consumer_id:2,priduct_id:1,title:"すごく良かったです",rate:5)
+#   Product.create!(name:"１kg 化粧箱",brand_id: 1,category_id: 4,fermer_id:2,
+#                 sale_status:"sale",unit_price:"2000",stock_id:7,
+#                 introduction:"もぎたて新鮮なリンゴです。ご注文を受けてから収穫、出荷いたします。")
+#   Stock.create!(quantity:"100")
+#   ProductComment.create!(comment:"2000円は安い。",
+#                  consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:5)
+#   ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
+#                  consumer_id:2,priduct_id:1,title:"すごく良かったです",rate:5)
 
-  Product.create!(name:"4kg 化粧箱",brand_id: 2,category_id: 4,fermer_id:2,
-                sale_status:"sale",unit_price:"3000",stock_id:8,
-                introduction:"もぎたて新鮮なリンゴです。ご注文を受けてから収穫、出荷いたします。")
-  Stock.create!(quantity:"100")
-  ProductComment.create!(comment:"少し高く感じました。",
-                 consumer_id:1,priduct_id:1,title:"高価",rate:2)
-  ProductComment.cretate!(comment:"贈り物にしたのですが、とても喜んでいただけました。",
-                 consumer_id:2,priduct_id:1,title:"贈り物にお薦めです",rate:5)
+#   Product.create!(name:"4kg 化粧箱",brand_id: 2,category_id: 4,fermer_id:2,
+#                 sale_status:"sale",unit_price:"3000",stock_id:8,
+#                 introduction:"もぎたて新鮮なリンゴです。ご注文を受けてから収穫、出荷いたします。")
+#   Stock.create!(quantity:"100")
+#   ProductComment.create!(comment:"少し高く感じました。",
+#                  consumer_id:1,priduct_id:1,title:"高価",rate:2)
+#   ProductComment.cretate!(comment:"贈り物にしたのですが、とても喜んでいただけました。",
+#                  consumer_id:2,priduct_id:1,title:"贈り物にお薦めです",rate:5)
 
-  Product.create!(name:"１kg 化粧箱",brand_id: 1,category_id: 4,fermer_id:2,
-                sale_status:"sale",unit_price:"2000",stock_id:7,
-                introduction:"もぎたて新鮮なシャインマスコットです。ご注文を受けてから収穫、出荷いたします。")
-  Stock.create!(quantity:"100")
-  ProductComment.create!(comment:"2000円は安い。",
-                 consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:5)
-  ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
-                 consumer_id:2,priduct_id:1,title:"すごく良かったです",rate:5)
+#   Product.create!(name:"１kg 化粧箱",brand_id: 1,category_id: 4,fermer_id:2,
+#                 sale_status:"sale",unit_price:"2000",stock_id:7,
+#                 introduction:"もぎたて新鮮なシャインマスコットです。ご注文を受けてから収穫、出荷いたします。")
+#   Stock.create!(quantity:"100")
+#   ProductComment.create!(comment:"2000円は安い。",
+#                  consumer_id:1,priduct_id:1,title:"すごく良かったです",rate:5)
+#   ProductComment.create!(comment:"配送も早く、とても新鮮でした。",
+#                  consumer_id:2,priduct_id:1,title:"すごく良かったです",rate:5)
 
-  Product.create!(name:"4kg 化粧箱",brand_id: 2,category_id: 4,fermer_id:2,
-                sale_status:"sale",unit_price:"8000",stock_id:8,
-                introduction:"もぎたて新鮮なマスカットです。ご注文を受けてから収穫、出荷いたします。")
-  Stock.create!(quantity:"100")
-  ProductComment.create!(comment:"少し高く感じました。",
-                 consumer_id:1,priduct_id:1,title:"高価",rate:2)
-  ProductComment.create!(comment:"贈り物にしたのですが、とても喜んでいただけました。",
-                 consumer_id:2,priduct_id:1,title:"贈り物にお薦めです",rate:5)
+#   Product.create!(name:"4kg 化粧箱",brand_id: 2,category_id: 4,fermer_id:2,
+#                 sale_status:"sale",unit_price:"8000",stock_id:8,
+#                 introduction:"もぎたて新鮮なマスカットです。ご注文を受けてから収穫、出荷いたします。")
+#   Stock.create!(quantity:"100")
+#   ProductComment.create!(comment:"少し高く感じました。",
+#                  consumer_id:1,priduct_id:1,title:"高価",rate:2)
+#   ProductComment.create!(comment:"贈り物にしたのですが、とても喜んでいただけました。",
+#                  consumer_id:2,priduct_id:1,title:"贈り物にお薦めです",rate:5)
 
-Column.create!(title:"桃の花の間引き作業",
-               body:"4月５日に桃の花間引きを行った。新木の作業ゆえに、慎重に将来の桃の枝の幹を計算し、間引き、剪定を行う",
-               feremer_id: 1 )
+# Column.create!(title:"桃の花の間引き作業",
+#                body:"4月５日に桃の花間引きを行った。新木の作業ゆえに、慎重に将来の桃の枝の幹を計算し、間引き、剪定を行う",
+#                feremer_id: 1 )
 
-Column.create!(title:"桃の消毒作業を行いました。",
-               body:"桃の病気などを予防するために消毒を行いました。",
-               feremer_id: 1 )
+# Column.create!(title:"桃の消毒作業を行いました。",
+#                body:"桃の病気などを予防するために消毒を行いました。",
+#                feremer_id: 1 )
 
-Column.create!(title:"苺の出荷作業",
-               body:"苺の出荷作業を行いました。来月からは、いちご狩りも行います。",
-               feremer_id: 1 )
+# Column.create!(title:"苺の出荷作業",
+#                body:"苺の出荷作業を行いました。来月からは、いちご狩りも行います。",
+#                feremer_id: 1 )
 
-Column.create!(title:"リンゴの木の選定作業",
-               body:"リンゴの木の選定作業を行いました。選定は木を大きくする上で必要なことです。",
-               feremer_id: 2 )
+# Column.create!(title:"リンゴの木の選定作業",
+#                body:"リンゴの木の選定作業を行いました。選定は木を大きくする上で必要なことです。",
+#                feremer_id: 2 )
 
-Column.create!(title:"マスカットの出荷作業",
-               body:"4月５日に桃の花間引きを行った。新木の作業ゆえに、慎重に将来の桃の枝の幹を計算し、間引き、剪定を行う",
-               feremer_id: 2 )
+# Column.create!(title:"マスカットの出荷作業",
+#                body:"4月５日に桃の花間引きを行った。新木の作業ゆえに、慎重に将来の桃の枝の幹を計算し、間引き、剪定を行う",
+#                feremer_id: 2 )
 
-Column.create!(title:"桃の花の間引き作業",
-               body:"4月５日に桃の花間引きを行った。新木の作業ゆえに、慎重に将来の桃の枝の幹を計算し、間引き、剪定を行う",
-               feremer_id: 2 )
+# Column.create!(title:"桃の花の間引き作業",
+#                body:"4月５日に桃の花間引きを行った。新木の作業ゆえに、慎重に将来の桃の枝の幹を計算し、間引き、剪定を行う",
+#                feremer_id: 2 )
 
 

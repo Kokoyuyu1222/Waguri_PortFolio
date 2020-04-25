@@ -11,19 +11,26 @@
  * It is generally better to create a new file per style scope.
  */
 @import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 
 .logo{
 	background-image: url(logo.jpg);
 }
 
+td {white-space: nowrap;}
+th {white-space: nowrap;}
+
  .main_image{
  	height: 300px;
+ 	background-size: cover;
+	background-position: center;
  }
  .dropdown:hover>.dropdown-menu {
   display: block;
 }
 .logo {
-	background-image: url(logo.jpg);
+	background-image: image-url("logo.jpg");
 	background-size: cover;
 	background-position: center;
 	height: 50px;
@@ -32,40 +39,45 @@
 .dropdown:hover .dropdown-menu {
     display: block;
 }
-
+.skipper_image{
+	width:100%;
+	height:300px;
+	background-size: cover;
+	background-position: center;
+}
  .image1 {
-background-image: url(top1.jpg);
-background-size: cover;
-background-position: center;
+	background-image: image-url("top1.jpg");
+	background-size: cover;
+	background-position: center;
 }
 .image2 {
-background-image: url(top2.jpg);
-background-size: cover;
-background-position: center;
+	background-image: image-url("top2.jpg");
+	background-size: cover;
+	background-position: center;
 }
 .image3 {
-background-image: url(top3.jpg);
-background-size: cover;
-background-position: center;
+	background-image: image-url("top3.jpg");
+	background-size: cover;
+	background-position: center;
 }
 .image4 {
-background-image: url(top4.jpg);
-background-size: cover;
-background-position: center;
+	background-image: image-url("top4.jpg");
+	background-size: cover;
+	background-position: center;
 }
 .image5 {
-background-image: url(top5.jpg);
-background-size: cover;
-background-position: center;
+	background-image: image-url("top5.jpg");
+	background-size: cover;
+	background-position: center;
 }
 .about_image{
-	background-image: url(logo.jpg);
+	background-image: image-url("logo.jpg");
 	background-size: cover;
 	background-position: center;
 	height: 200px;
 }
 .about_image2{
-	background-image: url(girl.jpg);
+	background-image: image-url("girl.jpg");
 	background-size: cover;
 	background-position: center;
 	height:350px;

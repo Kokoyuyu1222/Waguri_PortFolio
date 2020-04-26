@@ -1,7 +1,11 @@
 class Admins::FermersController < ApplicationController
 	layout 'admin'
   def index
-  	@Fermers = Fermer.all
+  	@fermers = Fermer.all
+  end
+  def show
+  	@fermer = Fermer.find(params[:id])
+    @reviews = @fermer.fermer_reviews
   end
   private
   def fermer_params

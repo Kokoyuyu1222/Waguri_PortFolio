@@ -14,7 +14,7 @@
 <body class="drawer drawer--left">
   <header role="banner">
     <% if consumer_signed_in? %>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"style="background-color: #99FF66;margin-left: 50px;">
+    <nav class="navbar navbar-expand-lg"style="background-color: #B4DE9B;margin-left: 50px;">
       <a class="navbar-brand">WAGURI</a>
       <a class="logo"></a>
       <div class="nav-list-item"><p>ようこそ、
@@ -74,13 +74,13 @@
             <%= text_field_tag'search[content]' %>
             <%= select_tag 'search[model]',options_for_select({"農園" => "fermer","記事" => "column"}) %>
               <%= select_tag 'search[how]',options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"}) %>
-              <%= submit_tag '検索',class: "btn btn-outline-success my-2 my-sm-0" %>
+              <%= submit_tag '検索',class: "btn btn-outline-primary my-2 my-sm-0" %>
             <% end %>
         </div>
       </div>
     </nav>
     <% else %>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"style="background-color: #99FF66;margin-left: 50px;">
+    <nav class="navbar navbar-expand-lg"style="background-color: #B4DE9B;margin-left: 50px;">
       <a class="navbar-brand" href="#">WAGURI</a>
       <a class="logo"></a>
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
@@ -114,31 +114,45 @@
     </button>
     <nav class="drawer-nav" role="navigation">
       <div class="search-form"style="margin-top: 100px; margin-left: 30px;">
-        <h3>商品検索</h3>
+        <h3>商品検索<i class="fas fa-search"></i></h3>
         <%= form_tag(consumers_search_path,method: :get) do %>
         <%= text_field_tag'search[content]' %>
         <%= select_tag 'search[model]',options_for_select({"カテゴリー" => "category","ブランド" => "brand","商品" => "product"}) %>
           <%= select_tag 'search[how]',options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"}) %>
-          <%= submit_tag '検索',class: "btn btn-outline-success my-2 my-sm-0" %>
+          <%= submit_tag '検索',class: "btn btn-outline-primary my-2 my-sm-0" %>
         <% end %>
       </div>
-      <ul class="drawer-menu">
-        <% @brands.each do |brand| %>
-          <li><a class="drawer-brand">カテゴリー</a></li>
-            <li><a class="drawer-menu-item"><%= brand.category.name%></a></li>
-          <li><a class="drawer-brand">ブランド</a></li>
-            <li><a class="drawer-menu-item"><%= brand.name%></a></li>
-        <% end %>
-      </ul>
+      <h5>カテゴリー・ブランド検索<i class="fas fa-search"></i></h5>
+      <% @side_categories.each.with_index do |category, i| %>
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#category-collapse-<%= i %>"><%= category.name%></a>
+            </h4>
+          </div>
+          <% category.brands.each do |brand| %>
+          <div id="category-collapse-<%= i %>" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <%=link_to(consumers_products_path(brand_id: brand.id)) do %>
+                <%= brand.name%>
+              <% end %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
     </nav>
+
 </header>
 <div class="container-fruid">
   <div class="row">
     <div class="col-md-2 d-none d-md-block bg-light sidebar card">
       <div class="sidebar-sticky" style="box-sizing: border-box;">
         <h6 class= "pt-2 text-center"><i class="fas fa-crown"></i>オススメ商品<i class="fas fa-crown"></i></h6>
-        <%if @products.present? %>
-          <% @products.each do |product| %>
+        <%if @side_products.present? %>
+          <% @side_products.each do |product| %>
             <div class="column-box">
               <div class="shadow-sm">
                 <%= link_to(consumers_product_path(product)) do %>
@@ -187,5 +201,10 @@
     </div>
   </div>
 </div>
+<footer class="footer"style="background-color: #B4DE9B;">
+  <div class="container-fruid text-right text-white mt-3">
+    <p style="text-align: center;color: black;">© 2020 Yuto Konishi </p>
+  </div>
+</footer>
 </body>
 </html>

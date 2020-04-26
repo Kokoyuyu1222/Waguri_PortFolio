@@ -1,0 +1,83 @@
+<h1>農園詳細</h1>
+<div class="container" style="width:50%; margin: 20px auto;">
+	<div class="row">
+		<table class="table table-bordered">
+			<tr>
+				<th style=“background-color: #DAD7D7; border-bottom: 1px solid #fff;“>氏名</th>
+				<td><%= @fermer.name %></td>
+			</tr>
+			<tr>
+				<th style=“background-color: #DAD7D7; border-bottom: 1px solid #fff;“>プロフィール画像</th>
+				<td>
+					<% if @fermer.profile_image.present? %>
+		     			<%= attachment_image_tag @fermer.profile_image, :image, :fill, 200, 200 %>
+					<% else %>
+						<%= image_tag 'no_image.jpg',size: '200*200'%>
+					<% end %>
+				</td>
+			</tr>
+			<tr>
+				<th style=“background-color: #DAD7D7; border-bottom: 1px solid #fff;“>電話番号</th>
+				<td><%= @fermer.phone %></td>
+			</tr>
+			<tr>
+				<th style=“background-color: #DAD7D7; border-bottom: 1px solid #fff;“>メールアドレス</th>
+				<td style=“border-bottom: 1px solid #DAD7D7;“><%= @fermer.email %></td>
+			</tr>
+		</table>
+	</div>
+</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10">
+				<table class="table">
+			<thead>
+				<tr>
+					<th>投稿者</th>
+					<th>性別•年齢</th>
+					<th>コメント日時</th>
+					<th>評価</th>
+					<th>星</th>
+					<th>コメント</th>
+					<th>商品名</th>
+					<th colspan="3"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% if @reviews.present? %>
+					<% @reviews.each do |review| %>
+					    <div class="row comments">
+					      	<div class="col-md-2 comments-consumer">
+						        <td class="posts-title"><%= link_to "#{review.consumer.name}さん", consumers_consumer_path(review.consumer.id) %></td>
+						        <td class="posts-prof"><%= review.consumer.gender_i18n %> <%= review.consumer.age_i18n %></td>
+					    	</div>
+						    <div class="col-md-6 mb-3">
+					        	<div class=" comments-consumer">
+					          		<td><%= l review.created_at, format: :short %></td>
+					          		<td class="mb-3">評価：<%= review.rate %>点 | <%= review.title %></td>
+					         		<td id="star-rate-<%= review.id %>"></td>
+						          <script>
+						          $('#star-rate-<%= review.id %>').raty({
+						            size: 36,
+						            starOff:  '<%= asset_path('star-off.png') %>',
+						            starOn : '<%= asset_path('star-on.png') %>',
+						            starHalf: '<%= asset_path('star-half.png') %>',
+						            half: true,
+						            readOnly: true,
+						            score: <%= review.rate %>,
+						          });
+						          </script>
+					        		<td><%= review.comment %></td>
+					        	</div>
+					        </div>
+					    </div>
+				    <% end %>
+			    <% end %>
+			</tbody>
+		</div>
+	</div>
+
+
+
+
+

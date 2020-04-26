@@ -3,7 +3,6 @@ class Consumers::CardsController < ApplicationController
 	require "payjp"
 	def create
 		@consumer = current_consumer
-		binding.pry
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
      if params['payjp-token'].blank?
          redirect_back(fallback_location: consumers_consumer_path(@consumer)
@@ -22,7 +21,7 @@ class Consumers::CardsController < ApplicationController
         end
     end
   end
-  def delete #PayjpとCardデータベースを削除します
+  def delete
     @card = Card.where(consumer_id: current_consumer.id).first
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     @customer = Payjp::Customer.retrieve(card.customer_id)

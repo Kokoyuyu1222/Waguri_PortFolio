@@ -1,10 +1,14 @@
 class Admins::OrdersController < ApplicationController
 	layout 'admin'
 	def index
-		@order = Order.all
+		@orders = Order.all
 	end
 	def show
-		@order = Order.find(order_params[:id])
+		@order = Order.find(params[:id])
+		@total_price = 0
+        @order.order_products.each do |order_product|
+          @total_price += (order_product.product.unit_price * order_product.quantity)
+      end
 	end
 	private
 	def order_params

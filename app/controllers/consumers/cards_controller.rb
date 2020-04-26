@@ -12,7 +12,7 @@ class Consumers::CardsController < ApplicationController
         email: current_consumer.email,
         card: params['payjp-token'],
         metadata: {consumer_id: current_consumer.id}
-       )
+        )
         @card = Card.new(consumer_id: current_consumer.id, customer_id: customer.id, payjp_id: customer.default_card)
         if @card.save
           redirect_back(fallback_location: consumers_consumer_path(@consumer))

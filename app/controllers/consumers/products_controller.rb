@@ -5,10 +5,8 @@ class Consumers::ProductsController < ApplicationController
   	@blands = Product.joins(:brand).where(brands:  {brand_status: false})
   	if params[:fermer_id]
   		@products = Product.joins({:brand => :category}).where(fermer_id: params[:fermer_id]).where("(category_status = ?) AND (brand_status = ?) AND (sale_status = ?)",false,false,0).page(params[:page]).reverse_order
-  	elsif params[:category_id]
-  		@products = Product.joins(:brand).where("(brand_status = ?) AND (sale_status = ?)",false,0).page(params[:page]).reverse_order
   	elsif params[:brand_id]
-  	    @products = Product.where(sale_status: "draft").page(params[:page]).reverse_order
+  	    @products = Product.where(sale_status: 0).where(brand_id: params[:brand_id]).page(params[:page]).reverse_order
   	else
   		@products = Product.joins({:brand => :category}).where("(category_status = ?) AND (brand_status = ?) AND (sale_status = ?)",false,false,0).page(params[:page]).reverse_order
   	end

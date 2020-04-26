@@ -3,10 +3,9 @@
 		<div class="col-md-10">
 			<table class="table table-striped">
 				<% @fermers.each do |fermer| %>
-					<thead  class="thead-dark">
+					<thead class="thead-dark">
 						<tr>
 							<th>農家名</th>
-							<th>農園名</th>
 							<th>電話番号</th>
 							<th>ホームページ</th>
 							<th>ステータス</th>
@@ -14,13 +13,16 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><%= fermer.name %></td>
-							<td><%= fermer.garden　%></td>
+							<td>
+								<%= link_to(admins_fermer_path(fermer)) do %>
+									<%= fermer.name %>
+								<% end %>
+							</td>
 							<td><%= fermer.phone %></td>
 							<td><%= fermer.home_page %></td>
 							<td><%= fermer.withdraw_i18n %></td>
 						</tr>
-				</tbody>
+					</tbody>
 				<% end %>
 			</table>
 		</div>

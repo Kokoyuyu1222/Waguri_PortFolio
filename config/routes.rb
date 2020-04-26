@@ -73,14 +73,14 @@ Rails.application.routes.draw do
       get 'homes/top'
       get '/search' => 'searches#search'
       resources :searches,only: [:index]
-      resources :consumers,only: [:show,:index]
-      resources :fermer,only: [:index,:show]
+      resources :consumers,only: [:show,:index,:destroy]
+      resources :fermers,only: [:index,:show,:destroy]
       resources :categories,only: [:index,:create,:edit,:update,:destroy]
       resources :brands,only: [:index,:create,:edit,:update,:destroy]
       resources :products,only: [:index,:show,:destroy]
       resources :orders,only: [:show,:index,:destroy]
-      resources :columes,omly: [:index,:show,:destroy]
-      resources :columes_comments,only: [:index,:show]
+      resources :columns,only: [:index,:show,:destroy]
+      resources :column_comments,only: [:index,:show]
       resources :products_comments,only: [:index,:show]
     end
   if Rails.env.development?

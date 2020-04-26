@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-fruid">
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-10">
 			<table class="table table-striped">
 				<% @products.each do |product| %>
 					<thead  class="thead-dark">
@@ -18,7 +18,7 @@
 					<tbody>
 						<tr>
 							<td>
-								<%= link_to(fermers_product_path(product)) do %>
+								<%= link_to(admins_product_path(product)) do %>
 									<% if product.product_images.present? %>
 									      <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
 									<% else %>
@@ -38,3 +38,6 @@
 					</tbody>
 				<% end %>
 			</table>
+		</div>
+	</div>
+</div>

@@ -14,7 +14,11 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><%= consumer.name %></td>
+							<td>
+								<%=link_to(admins_consumer_path(consumer)) do %>
+									<%= consumer.name %>
+								<% end %>
+							</td>
 							<td><%= consumer.gender_i18n %></td>
 							<td><%= consumer.phone %></td>
 							<td><%= consumer.age_i18n %></td>

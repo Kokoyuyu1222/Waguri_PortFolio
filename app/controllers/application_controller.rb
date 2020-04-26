@@ -4,9 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def set_side
-    @brands = Brand.joins(:category).where("(category_status = ?) AND (brand_status = ?)",false,false)
-    # @all_ranks = Column.find(ColumnFavorite.group(:column_id).order('count(column_id) desc').limit(10).pluck(:column_id))
-    @products = Product.joins({:brand => :category}).where(fermer_id: params[:fermer_id]).where("(category_status = ?) AND (brand_status = ?) AND (sale_status = ?)",false,false,0).order("RANDOM()").limit(3)
+    @side_categories = Category.eager_load(:brands).where("(category_status = ?) AND (brand_status = ?)",false,false)
+    @side_products = Product.joins({:brand => :category}).where("(category_status = ?) AND (brand_status = ?) AND (sale_status = ?)",false,false,0).order("RANDOM()").limit(3)
     @columns = Column.order("RANDOM()").limit(3)
   end
 

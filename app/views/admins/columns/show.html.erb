@@ -1,0 +1,62 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<div>
+				<% if @column.column_images.present? %>
+					<% @column.column_images.each do |image| %>
+						<%= attachment_image_tag image, :image, :fill, 200, 200 %>
+					<% end %>
+				<% else %>
+					<%= image_tag 'no_image.jpg', size: '200x200' %>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-md-6">
+		<table class="table table-striped">
+			<tr>
+				<th>名前</th>
+				<td>
+					<%= @column.fermer.garden %>
+				</td>
+			</tr>
+			<tr>
+				<th>タイトル</th>
+				<td>
+					<%= link_to @column.title, fermers_column_path %>
+				</td>
+			</tr>
+			<tr>
+				<th>本文</th>
+				<td><%= @column.body %></td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10">
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>投稿者</th>
+						<th>コメント</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr id="comments_area">
+						<% if @comments.present? %>
+							<% @comments.each do |comment| %>
+					  			<td>
+					  				<%= link_to "#{comment.consumer.name}さん", admins_consumer_path(comment.consumer.id) %>
+					  			</td>
+					  			<td>
+					  				<%= comment.comment %>
+					  			</td>
+							<% end %>
+	 					<% end %>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

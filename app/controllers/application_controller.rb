@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
 
   def set_side
     @side_categories = Category.eager_load(:brands).where("(category_status = ?) AND (brand_status = ?)",false,false)
-    @side_products = Product.joins({:brand => :category}).where("(category_status = ?) AND (brand_status = ?) AND (sale_status = ?)",false,false,0).order("RAND()").limit(3)
-    @columns = Column.order("RAND()").limit(3)
+    
   end
 
   protected

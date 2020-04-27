@@ -5,7 +5,7 @@ class Consumers::CardsController < ApplicationController
 		@consumer = current_consumer
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     if params['payjp-token'].blank?
-      redirect_back(fallback_location: consumers_consumer_path(@consumer))
+      redirect_to consumers_consumer_path(@consumer)
     else
         customer = Payjp::Customer.create(
         description: '登録テスト',
@@ -15,9 +15,9 @@ class Consumers::CardsController < ApplicationController
         )
         @card = Card.new(consumer_id: current_consumer.id, customer_id: customer.id, payjp_id: customer.default_card)
         if @card.save
-          redirect_back(fallback_location: consumers_consumer_path(@consumer))
+          redirect_to consumers_consumer_path(@consumer)
         else
-         redirect_back(fallback_location: consumers_consumer_path(@consumer))
+         redirect_to consumers_consumer_path(@consumer)
         end
     end
   end
@@ -27,7 +27,7 @@ class Consumers::CardsController < ApplicationController
     @customer = Payjp::Customer.retrieve(card.customer_id)
     @customer.delete
     @card.delete
-    redirect_back(fallback_location: consumers_consumer_path)
+    redirect_to consumers_consumer_path(@consumer)
   end
   def show
     card = Card.where(consumer_id: current_consumer.id)

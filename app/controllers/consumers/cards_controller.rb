@@ -4,8 +4,8 @@ class Consumers::CardsController < ApplicationController
 	def create
 		@consumer = current_consumer
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-     if params['payjp-token'].blank?
-         redirect_back(fallback_location: consumers_consumer_path(@consumer)
+    if params['payjp-token'].blank?
+      redirect_back(fallback_location: consumers_consumer_path(@consumer))
     else
         customer = Payjp::Customer.create(
         description: '登録テスト',

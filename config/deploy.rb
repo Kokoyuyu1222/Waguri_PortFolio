@@ -2,7 +2,7 @@
 lock "~> 3.13.0"
 
 set :application, "Waguri_PortFolio"
-set :repo_url, "https://github.com/Kokoyuyu1222/Waguri_PortFolio"
+set :repo_url, "git@github.com:Kokoyuyu1222/Waguri_PortFolio.git"
 
 set :deploy_to, "/home/ec2-user/Waguri_PortFolio"
 set :rbenv_ruby, '2.5.7'

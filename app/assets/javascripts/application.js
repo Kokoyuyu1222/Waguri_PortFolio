@@ -14,13 +14,13 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require rails-ujs
-//= require bxslider
 //= require activestorage
 //= require_tree ../../../app/assets/javascripts/.
 //= require_tree .
+
+
 $(function(){
 $("document").ready(function() {
-
 // オプションを指定してSkipprの実行
 $("#Topimage").skippr({
     // スライドショーの変化 ("fade" or "slide")
@@ -46,6 +46,7 @@ $("#Topimage").skippr({
 });
 });
 });
+
 
 
   $(document).ready(function(){

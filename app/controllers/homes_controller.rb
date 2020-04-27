@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
 	def top
-		@products = Product.order("RAND()").limit(3)
-		@columns = Column.order("RAND()").limit(3)
+		@products = Product.order("RANDOM()").limit(3)
+		@columns = Column.order("RANDOM()").limit(3)
 	end
 	def search
 		@model = params["search"]["model"]

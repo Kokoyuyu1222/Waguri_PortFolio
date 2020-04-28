@@ -13,7 +13,7 @@
 				<th class="col-xs-1">税抜き価格</th>
 				<th class="col-xs-2">カテゴリー</th>
 				<th class="col-xs-2">ブランド</th>
-				<th class="col-xs-2">ステータス</th>
+				<th class="col-xs-2">農園名</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -36,7 +36,7 @@
 						<td><%= product.unit_price %></td>
 						<td><%= product.brand.category.name %></td>
 						<td><%= product.brand.name %></td>
-						<td><%= product.sale_status_i18n %></td>
+						<td><%= product.fermer.garden %></td>
 					</tr>
 				<% end %>
 			<% end %>

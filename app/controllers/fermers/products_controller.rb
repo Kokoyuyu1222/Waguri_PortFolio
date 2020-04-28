@@ -4,7 +4,7 @@ class Fermers::ProductsController < ApplicationController
     if params[:fermer_id]
       @products = Product.includes(brand: :category).where(categories: {category_status: false},fermer_id: current_fermer.id).page(params[:page]).reverse_order
     else
-      @products =Product.all
+      @products =Product.all.page(params[:page]).reverse_order
     end
     respond_to do |format|
       format.html do

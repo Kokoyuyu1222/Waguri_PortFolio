@@ -44,7 +44,7 @@
                   </a>
                   <div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item">
-                      <%= link_to '一覧',fermers_columns_path(current_fermer), class: "nav-link disabled" %>
+                      <%= link_to '一覧',fermers_columns_path(fermer_id: current_fermer.id), class: "nav-link disabled" %>
                     </a>
                     <a class="dropdown-item">
                       <%= link_to '記事作成',new_fermers_column_path, class: "nav-link disabled" %>

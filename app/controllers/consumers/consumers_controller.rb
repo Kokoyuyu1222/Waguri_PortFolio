@@ -1,5 +1,6 @@
 class Consumers::ConsumersController < ApplicationController
  layout 'consumer'
+ require "payjp"
   def show
   	@consumer = Consumer.find(params[:id])
     @card = Card.new
@@ -7,6 +8,7 @@ class Consumers::ConsumersController < ApplicationController
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
           customer = Payjp::Customer.retrieve(@cards.customer_id)
           @default_card_information = customer.cards.retrieve(@cards.payjp_id)
+          binding.pry
    end
   def edit
   	@consumer = Consumer.find(params[:id])

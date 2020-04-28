@@ -5,18 +5,11 @@ class Consumers::ConsumersController < ApplicationController
 
   def show
   	@consumer = Consumer.find(params[:id])
-    if @card.blank?
       @card = Card.new
       @cards = Card.find_by(consumer_id: current_consumer.id)
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
             customer = Payjp::Customer.retrieve(@cards.customer_id)
             @default_card_information = customer.cards.retrieve(@cards.payjp_id)
-    else
-      @cards = Card.find_by(consumer_id: current_consumer.id)
-      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-            customer = Payjp::Customer.retrieve(@cards.customer_id)
-            @default_card_information = customer.cards.retrieve(@cards.payjp_id)
-    end
    end
   def edit
   	@consumer = Consumer.find(params[:id])

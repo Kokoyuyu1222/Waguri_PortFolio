@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="offset-sm-3 col-sm-6"style="margin-left: 200px;">
+    <div class="col-md-6"style="margin-left: 200px;">
       <h2>Log in</h2>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -27,6 +27,13 @@
       <% end %>
 
       <%= render "fermers/shared/links" %>
+    </div>
+    <div class="col-md-6">
+      <p>
+        ゲストログイン：<br>
+        email:takoyaki.boys202002@gmail.com<br>
+        passward:FermerTest<br>
+      </p>
     </div>
   </div>
 </div>

@@ -1,5 +1,6 @@
 class Consumers::ColumnFavoritesController < ApplicationController
 	layout 'consumer'
+    before_action :authenticate_consumer!
 	before_action :column_params
 	def create
         @column = Column.find(params[:column_id])

@@ -1,5 +1,6 @@
 class Consumers::BookMarksController < ApplicationController
 	layout 'consumer'
+  before_action :authenticate_consumer!
 	def create
       @fermer = Fermer.find(params[:fermer_id])
       @book_mark = @fermer.book_marks.new(consumer_id: current_consumer.id)

@@ -1,5 +1,6 @@
 class Consumers::ProductCommentsController < ApplicationController
 	layout 'consumer'
+	before_action :authenticate_consumer!
 	def create
 	    @product = Product.find(params[:product_id])
 		@comment = @product.product_comments.build(product_comment_params)

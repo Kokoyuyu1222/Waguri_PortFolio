@@ -1,5 +1,6 @@
 class Consumers::FermerReviewsController < ApplicationController
 	layout 'consumer'
+	before_action :authenticate_consumer!
 	def create
 	    @fermer = Fermer.find(params[:fermer_id])
 		@review = @fermer.fermer_reviews.build(fermer_review_params)

@@ -1,5 +1,6 @@
 class Consumers::ColumnCommentsController < ApplicationController
 	layout 'consumer'
+	before_action :authenticate_consumer!
 	def create
 	    @column = Column.find(params[:column_id])
 		@comment = @column.column_comments.build(column_comment_params)

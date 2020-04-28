@@ -1,5 +1,6 @@
 class Consumers::CardsController < ApplicationController
 	layout 'consumer'
+  before_action :authenticate_consumer!
 	require "payjp"
 	def create
 		@consumer = current_consumer

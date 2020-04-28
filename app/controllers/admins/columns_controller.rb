@@ -1,5 +1,6 @@
 class Admins::ColumnsController < ApplicationController
 	layout 'admin'
+	before_action :authenticate_admin!
 	def index
 		@columns = Column.all
 	end

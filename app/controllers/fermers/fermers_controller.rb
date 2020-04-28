@@ -1,5 +1,6 @@
 class Fermers::FermersController < ApplicationController
   layout 'fermer'
+  before_action :authenticate_fermer!
   def show
   	@fermer = Fermer.find(params[:id])
     @reviews = @fermer.fermer_reviews

@@ -1,5 +1,6 @@
 class Admins::FermersController < ApplicationController
 	layout 'admin'
+  before_action :authenticate_admin!
   def index
   	@fermers = Fermer.all
   end

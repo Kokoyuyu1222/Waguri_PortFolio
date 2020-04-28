@@ -1,5 +1,6 @@
 class Consumers::CartProductsController < ApplicationController
 	layout 'consumer'
+	before_action :authenticate_consumer!
   	def index
 		@cart_product = CartProduct.new
 		@cart_products = CartProduct.where(consumer_id: current_consumer)

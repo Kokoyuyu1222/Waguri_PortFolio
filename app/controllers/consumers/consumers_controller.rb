@@ -1,5 +1,6 @@
 class Consumers::ConsumersController < ApplicationController
  layout 'consumer'
+ before_action :authenticate_consumer!
  require "payjp"
 
   def show

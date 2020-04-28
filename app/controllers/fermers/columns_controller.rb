@@ -1,5 +1,6 @@
 class Fermers::ColumnsController < ApplicationController
  layout 'fermer'
+ before_action :authenticate_fermer!
  def index
   if params[:fermer_id]
     @columns = Column.where(fermer_id: params[:fermer_id])

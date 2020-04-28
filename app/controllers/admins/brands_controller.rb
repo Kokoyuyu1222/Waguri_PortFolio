@@ -1,5 +1,6 @@
 class Admins::BrandsController < ApplicationController
   layout 'admin'
+  before_action :authenticate_admin!
   def index
     @categories = Category.where(category_status: "draft")
   	@brands = Brand.all

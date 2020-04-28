@@ -1,5 +1,6 @@
 class Admins::ConsumersController < ApplicationController
 	layout 'admin'
+  before_action :authenticate_admin!
   def index
   	@consumers = Consumer.all
   end

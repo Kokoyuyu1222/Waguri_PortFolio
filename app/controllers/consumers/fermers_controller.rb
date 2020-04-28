@@ -1,5 +1,6 @@
 class Consumers::FermersController < ApplicationController
 	layout 'consumer'
+  before_action :authenticate_consumer!
   def index
   	@fermers = Fermer.all
     @consumer = current_consumer

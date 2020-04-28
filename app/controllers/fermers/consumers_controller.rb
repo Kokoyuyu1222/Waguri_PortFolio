@@ -1,5 +1,6 @@
 class Fermers::ConsumersController < ApplicationController
 	layout 'fermer'
+  before_action :authenticate_fermer!
   def index
   end
   def show

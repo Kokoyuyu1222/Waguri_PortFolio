@@ -17,7 +17,6 @@ class Consumers::ProductsController < ApplicationController
     @cart = CartProduct.new
     @comment = ProductComment.new
     @comments = @product.product_comments
-    # @products = Product.order("RAND()").limit(8)
     @products = Product.all
   end
   private

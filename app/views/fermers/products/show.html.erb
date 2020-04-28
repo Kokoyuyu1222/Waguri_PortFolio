@@ -78,11 +78,6 @@
 							<%= render partial: 'consumers/product_comments/index', locals: { comments: @comments, product: @product  } %>
 				</tbody>
 			</table>
-			<div>
-				<% if consumer_signed_in? %>
-				<%= render partial: 'consumers/product_comments/form', locals: { comment: @comment, product: @product } %>
-				<% end %>
-			</div>
 		</div>
 	</div>
 </div>

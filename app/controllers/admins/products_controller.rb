@@ -5,6 +5,7 @@ class Admins::ProductsController < ApplicationController
   end
   def show
   	@product = Product.find(params[:id])
+    @comments = @product.product_comments
   end
   private
   def product_params

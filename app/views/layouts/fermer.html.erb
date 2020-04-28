@@ -31,7 +31,7 @@
                   </a>
                   <div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item">
-                      <%= link_to '一覧',fermers_products_path(current_fermer), class: "nav-link disabled" %>
+                      <%= link_to '一覧',fermers_products_path(fermer_id: current_fermer.id), class: "nav-link disabled" %>
                     </a>
                     <a class="dropdown-item">
                       <%= link_to '商品作成', new_fermers_product_path, class: "nav-link disabled" %>
@@ -88,17 +88,17 @@
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                   <a class="nav-link">
-                    <%= link_to '商品一覧',consumers_products_path, class: "nav-link disabled" %>
+                    <%= link_to '商品一覧',fermers_products_path, class: "nav-link disabled" %>
                   </a>
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link">
-                    <%= link_to '新規登録', new_consumer_registration_path, class: "nav-link disabled" %>
+                    <%= link_to '新規登録', new_fermer_registration_path, class: "nav-link disabled" %>
                   </a>
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link">
-                    <%= link_to 'ログイン', new_consumer_session_path, class: "nav-link disabled" %>
+                    <%= link_to 'ログイン', new_fermer_session_path, class: "nav-link disabled" %>
                   </a>
                 </li>
               </ul>

@@ -18,7 +18,11 @@
 }
 
 td {white-space: nowrap;}
-th {white-space: nowrap;}
+
+th {
+    white-space: nowrap;
+    word-wrap:break-word;
+ }
 
  .main_image{
  	height: 300px;

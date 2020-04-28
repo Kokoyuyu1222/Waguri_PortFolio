@@ -1,7 +1,11 @@
 class Fermers::ProductsController < ApplicationController
 	layout 'fermer'
   def index
-    @products = Product.includes(brand: :category).where(categories: {category_status: false},fermer_id: current_fermer.id).page(params[:page]).reverse_order
+    if params[:fermer_id]
+      @products = Product.includes(brand: :category).where(categories: {category_status: false},fermer_id: current_fermer.id).page(params[:page]).reverse_order
+    else
+      @products =Product.all
+    end
     respond_to do |format|
       format.html do
       end

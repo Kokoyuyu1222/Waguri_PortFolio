@@ -19,9 +19,9 @@ Rails.application.routes.draw do
   }
 
     namespace :consumers do
-      get 'consumers/withdraw'=> 'members#withdraw'
-      patch 'consumers/change' => 'members#change'
-      put 'consumers/change' => 'members#change'
+      get 'consumers/withdraw'=> 'consumers#withdraw'
+      patch 'consumers/change' => 'consumers#change'
+      put 'consumers/change' => 'consumers#change'
       post 'cards/delete' => 'cards#delete'
       get '/search' => 'searches#search'
       resources :searches,only: [:index]
@@ -52,6 +52,9 @@ Rails.application.routes.draw do
     namespace :fermers do
       resources :fermers,only:[:show,:edit,:update]
       get '/search' => 'searches#search'
+      get 'fermers/withdraw'=> 'fermers#withdraw'
+      patch 'fermers/change' => 'fermers#change'
+      put 'fermers/change' => 'fermers#change'
       resources :searches,only: [:index]
       post 'products/filter_brand' => 'products#filter_brand'
       resources :columns
@@ -64,8 +67,6 @@ Rails.application.routes.draw do
       resources :orders,only: [:show,:index,:update]
       resources :consumers,only: [:show,:index]
       resources :addresses ,only: [:show,:index,:edit,:update,:create,:destroy]
-      patch 'fermers/change' => 'fermers#change'
-      put 'fermers/change' => 'fermers#change'
     end
 
 

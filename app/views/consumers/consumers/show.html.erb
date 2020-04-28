@@ -35,7 +35,7 @@
 
 	<table>
 		<td><h5>カード情報登録・確認</h5>
-			<% if @card.present? %>
+			<% if @card.nil? %>
 				<%= form_for(@card,url:consumers_cards_path,method: :post) do |f| %>
 				 <script
 		          type="text/javascript"

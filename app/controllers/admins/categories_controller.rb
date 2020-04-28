@@ -6,7 +6,6 @@ class Admins::CategoriesController < ApplicationController
   end
 
   def create
-  	binding.pry
   	@category = Category.new(category_params)
   	@category.save
   	redirect_back(fallback_location: admins_categories_path(@category))

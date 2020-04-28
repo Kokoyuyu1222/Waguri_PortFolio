@@ -44,14 +44,12 @@ class Consumers::OrdersController < ApplicationController
 		@cart_products = current_consumer.cart_products
 		@order.consumer_id = current_consumer.id
 		if params[:card_select] == "card1"
-			binding.pry
 			@cards = Card.find_by(consumer_id: current_consumer.id)
 			Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
 	        customer = Payjp::Customer.retrieve(@cards.customer_id)
 	        @default_card_information = customer.cards.retrieve(@cards.payjp_id)
 		end
 		if params[:address_select] == "address1"
-			binding.pry
 			@order.postcode = current_consumer.postcode
 			@order.prefecture_name = current_consumer.prefecture_name
 			@order.address_city = current_consumer.address_city
@@ -69,7 +67,6 @@ class Consumers::OrdersController < ApplicationController
 			@order.name = @destination.name
 		else
 			params[:address_select] == "address3"
-			binding.pry
 			@order.postcode =  params[:order][:postcode]
 		    @order.prefecture_code = params[:order][:prefecture_code]
 		    @order.address_city = params[:order][:address_city]
@@ -97,7 +94,6 @@ class Consumers::OrdersController < ApplicationController
 		    	:currency => 'jpy'
 	    	)
 	  	else
-	  		binding.pry
 	  		Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
 	  		charge = Payjp::Charge.create(
 		        :amount => params[:order][:billing_amount],

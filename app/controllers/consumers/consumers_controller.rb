@@ -4,9 +4,9 @@ class Consumers::ConsumersController < ApplicationController
   	@consumer = Consumer.find(params[:id])
     @card = Card.new
     @cards = Card.find_by(consumer_id: current_consumer.id)
-  #   Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-  #         customer = Payjp::Customer.retrieve(@cards.customer_id)
-  #         @default_card_information = customer.cards.retrieve(@cards.payjp_id)
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+          customer = Payjp::Customer.retrieve(@cards.customer_id)
+          @default_card_information = customer.cards.retrieve(@cards.payjp_id)
    end
   def edit
   	@consumer = Consumer.find(params[:id])
@@ -28,6 +28,8 @@ class Consumers::ConsumersController < ApplicationController
     current_consumer.update(withdraw: true)
     reset_session
     redirect_to root_path
+  end
+  def withdraw
   end
 
   private

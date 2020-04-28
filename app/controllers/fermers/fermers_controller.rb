@@ -5,7 +5,7 @@ class Fermers::FermersController < ApplicationController
     @reviews = @fermer.fermer_reviews
   end
   def edit
-    @fermer = Consumer.find(params[:id])
+    @fermer = Fermer.find(params[:id])
     unless current_fermer.nil? || current_fermer.id == current_fermer.id
       flash[:warning] = "アクセス権がありません"
       redirect_to fermers_fermer_path(current_fermer)
@@ -24,6 +24,8 @@ class Fermers::FermersController < ApplicationController
     current_fermer.update(withdraw: true)
     reset_session
     redirect_to root_path
+  end
+  def withdraw
   end
 
   private

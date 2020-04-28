@@ -7,7 +7,6 @@ class Consumers::DestinationsController < ApplicationController
 	end
 
 	def create
-		binding.pry
 		@destination = Destination.new(destination_params)
 		@destination.consumer_id = current_consumer.id
 		if @destination.save!

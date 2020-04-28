@@ -1,7 +1,6 @@
 class Consumers::FermerReviewsController < ApplicationController
 	layout 'consumer'
 	def create
-		binding.pry
 	    @fermer = Fermer.find(params[:fermer_id])
 		@review = @fermer.fermer_reviews.build(fermer_review_params)
 		@reviews = @fermer.fermer_reviews

@@ -20,7 +20,6 @@
 
 
 $(function(){
-$("document").ready(function() {
 // オプションを指定してSkipprの実行
 $("#Topimage").skippr({
     // スライドショーの変化 ("fade" or "slide")
@@ -43,7 +42,6 @@ $("#Topimage").skippr({
     keyboardOnAlways : true,
     // 一枚目のスライド表示時に戻る矢印を表示するかどうか(falseで非表示)
     hidePrevious : false
-});
 });
 });
 

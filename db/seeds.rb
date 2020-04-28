@@ -47,7 +47,7 @@ Consumer.create!(email:"nagoyuto0109@gmail.com",
                  address_building:"308号室",
                  address:"和歌山県 紀の川市桃山町市場 444 308号室"
   )
-Fermer.create!(email:"konishi.peach@gmail.com",
+Fermer.create!(email:"takoyaki.boys202002@gmail.com",
                  password:  "FermerTest",
                  password_confirmation: "FermerTest",
                  last_name:"紺野",
@@ -66,7 +66,7 @@ Fermer.create!(email:"konishi.peach@gmail.com",
                  address_building:"",
                  address:"和歌山県 紀の川市桃山町市場 6666666"
   )
-Fermer.create!(email:"konishi.peach1@gmail.com",
+Fermer.create!(email:"konishi.peach@gmail.com",
                  password:  "FermerTes2",
                  password_confirmation: "FermerTes2",
                  last_name:"細馬",

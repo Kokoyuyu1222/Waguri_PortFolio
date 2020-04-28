@@ -15,8 +15,8 @@
   <header role="banner">
     <% if consumer_signed_in? %>
     <nav class="navbar navbar-expand-lg"style="background-color: #B4DE9B;margin-left: 50px;">
-      <a class="navbar-brand">WAGURI</a>
-      <a class="logo"></a>
+      <a class="navbar-brand"href="/">WAGURI</a>
+      <a class="logo" href="/"></a>
       <div class="nav-list-item"><p>ようこそ、
            <%= current_consumer.last_name %>さん！</p>
       </div>
@@ -81,8 +81,8 @@
     </nav>
     <% else %>
     <nav class="navbar navbar-expand-lg"style="background-color: #B4DE9B;margin-left: 50px;">
-      <a class="navbar-brand" href="#">WAGURI</a>
-      <a class="logo"></a>
+      <a class="navbar-brand" href="/">WAGURI</a>
+      <a class="logo"href="/"></a>
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
         <span class="navbar-toggler-icon"></span>
       </button>

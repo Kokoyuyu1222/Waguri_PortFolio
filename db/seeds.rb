@@ -9,7 +9,7 @@ Admin.create!(email: "Waguri.PortFolio@gmail.com",
              password:  "Waguri202002",
              password_confirmation: "Waguri202002")
 
-Consumer.create!(email:"konishi.peach@gmail.com",
+Consumer.create!(email:"yk.rk1222@gmail.com",
                  password:  "Webcamp",
                  password_confirmation: "Webcamp",
                  last_name:"小西",
@@ -47,7 +47,7 @@ Consumer.create!(email:"nagoyuto0109@gmail.com",
                  address_building:"308号室",
                  address:"和歌山県 紀の川市桃山町市場 444 308号室"
   )
-Fermer.create!(email:"yk.rk1222@gmail.com",
+Fermer.create!(email:"konishi.peach@gmail.com",
                  password:  "FermerTest",
                  password_confirmation: "FermerTest",
                  last_name:"紺野",

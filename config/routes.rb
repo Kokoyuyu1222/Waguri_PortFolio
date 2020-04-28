@@ -22,11 +22,10 @@ Rails.application.routes.draw do
       get 'consumers/withdraw'=> 'consumers#withdraw'
       patch 'consumers/change' => 'consumers#change'
       put 'consumers/change' => 'consumers#change'
-      post 'cards/delete' => 'cards#delete'
       get '/search' => 'searches#search'
       resources :searches,only: [:index]
       resources :consumers,only: [:edit,:update,:show]
-      resources :cards,only: [:create,:show]
+      resources :cards,only: [:create,:destroy]
       resources :fermers do
         resources :fermer_reviews,only: [:index,:show,:create,:destroy]
         resource :book_marks,only: [:create,:destroy]

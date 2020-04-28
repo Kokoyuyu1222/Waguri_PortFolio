@@ -16,10 +16,11 @@
       score: <%= comment.rate %>,
     });
     </script>
+  <td><%= comment.title %></td>
   <td><%= comment.comment %></td>
-  <td class="col-md-12 edit-button">
+  <td>
     <% if current_consumer == comment.consumer %>
-      <%= link_to '口コミを削除',  consumers_product_product_comment_path(product_id:@product, id: comment.id), method: :delete, class:'btn btn-default', remote: true %>
+      <%= link_to '削除',  consumers_product_product_comment_path(product_id:@product, id: comment.id), method: :delete, class:'btn btn-default', remote: true %>
     <% end %>
   </td>
 </tr>

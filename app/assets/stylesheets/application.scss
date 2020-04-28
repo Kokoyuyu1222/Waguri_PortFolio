@@ -17,14 +17,20 @@
 	background-image: url(logo.jpg);
 }
 
-td {
-	white-space: nowrap;
-	word-wrap:break-word;
+table {
+  width: 100%;
 }
 
-th {
-    white-space: nowrap;
-    word-wrap:break-word;
+table td {
+  /*word-break: break-all;*/
+  overflow-wrap : break-word;
+  white-space: normal;
+}
+
+table th {
+    /*word-break: break-all;*/
+  overflow-wrap : break-word;
+  white-space: nowrap;
  }
 
  .main_image{

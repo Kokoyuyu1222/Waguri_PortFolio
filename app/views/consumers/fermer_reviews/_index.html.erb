@@ -19,10 +19,8 @@
     });
   });
     </script>
+  <td><%= review.title %></td>
   <td><%= review.comment %></td>
-  <%= link_to consumers_fermer_path(review.fermer) do %>
-    <td><%=  review.fermer.name %></td>
-  <%end %>
   <td class="col-md-12 edit-button">
     <% if current_consumer == review.consumer %>
       <%= link_to '口コミを削除',consumers_fermer_fermer_review_path(fermer_id:@fermer, id: review.id), method: :delete, class:'btn btn-default', remote: true %>

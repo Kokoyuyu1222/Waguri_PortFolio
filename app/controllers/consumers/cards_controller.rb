@@ -21,22 +21,14 @@ class Consumers::CardsController < ApplicationController
         end
     end
   end
-  def delete
-    @card = Card.where(consumer_id: current_consumer.id).first
+  def destroy
+    @card = Card.where(consumer_id: current_consumer.id)
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    @customer = Payjp::Customer.retrieve(card.customer_id)
+     binding.pry
+    @customer = Payjp::Customer.retrieve(@card.customer_id)
     @customer.delete
     @card.delete
     redirect_to consumers_consumer_path(@consumer)
   end
-  def show
-    card = Card.where(consumer_id: current_consumer.id)
-    if card.blank?
-      redirect_to consumers_consumer_path(@consumer)
-    else
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_card_information = customer.cards.retrieve(card.payjp_id)
-    end
-  end
 end
+

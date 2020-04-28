@@ -1,7 +1,7 @@
-<div class="col-md-8">
-	<table class="table table-striped">
-	  <thead class="thead-dark">
+<table class="table table-striped"style="width: 100%;">
+	<thead class="thead-dark">
 		<tr>
+			<th>イメージ</th>
 			<th>商品名</th>
 			<th>価格</th>
 			<th>ブランド</th>
@@ -21,9 +21,9 @@
 						  	<% else %>
 						    	<%= image_tag 'no_image.jpg',size: '200*200'%>
 						  	<% end %>
-						  	<%= product.name %>
 						<% end %>
 					</td>
+					<td><%= product.name %></td>
 					<td><%= product.unit_price %></td>
 					<td><%= product.brand.name %></td>
 					<td><%= product.brand.category.name %></td>
@@ -38,6 +38,6 @@
 	    <% end %>
 	    <%= paginate @products, class: "paginate" %>
 	</tbody>
-	</table>
-</div>
+</table>
+
 

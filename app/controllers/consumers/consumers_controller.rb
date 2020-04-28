@@ -1,13 +1,21 @@
 class Consumers::ConsumersController < ApplicationController
  layout 'consumer'
  require "payjp"
+
   def show
   	@consumer = Consumer.find(params[:id])
-    @card = Card.new
-    @cards = Card.find_by(consumer_id: current_consumer.id)
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-          customer = Payjp::Customer.retrieve(@cards.customer_id)
-          @default_card_information = customer.cards.retrieve(@cards.payjp_id)
+    if @card.blank?
+      @card = Card.new
+      @cards = Card.find_by(consumer_id: current_consumer.id)
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+            customer = Payjp::Customer.retrieve(@cards.customer_id)
+            @default_card_information = customer.cards.retrieve(@cards.payjp_id)
+    else
+      @cards = Card.find_by(consumer_id: current_consumer.id)
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+            customer = Payjp::Customer.retrieve(@cards.customer_id)
+            @default_card_information = customer.cards.retrieve(@cards.payjp_id)
+    end
    end
   def edit
   	@consumer = Consumer.find(params[:id])
@@ -37,5 +45,4 @@ class Consumers::ConsumersController < ApplicationController
    def consumer_params
        params.require(:consumer).permit(:last_name, :first_name, :kana_last_name, :kana_first_name,:gender,:age,:prefecture_code, :address_city,:address_street,:address_building, :postcode, :phone, :email,:withdraw,:profile_image)
     end
-
 end

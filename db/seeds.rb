@@ -66,7 +66,7 @@ Fermer.create!(email:"konishi.peach@gmail.com",
                  address_building:"",
                  address:"和歌山県 紀の川市桃山町市場 6666666"
   )
-Fermer.create!(email:"konishi.peach@gmail.com",
+Fermer.create!(email:"konishi.peach1@gmail.com",
                  password:  "FermerTes2",
                  password_confirmation: "FermerTes2",
                  last_name:"細馬",

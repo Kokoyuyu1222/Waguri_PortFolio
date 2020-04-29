@@ -83,7 +83,4 @@ Rails.application.routes.draw do
       resources :column_comments,only: [:index,:show]
       resources :products_comments,only: [:index,:show]
     end
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
 end

@@ -10,7 +10,7 @@
 			<th style=“background-color: #DAD7D7; border-bottom: 1px solid #fff;“>プロフィール画像</th>
 			<td>
 				<% if @consumer.profile_image.present? %>
-	     			%= attachment_image_tag @consumer,:profile_image, :fill, 200, 200 %>
+	     			<%= attachment_image_tag @consumer,:profile_image, :fill, 200, 200 %>
 				<% else %>
 					<%= image_tag 'no_image.jpg',size: '200*200'%>
 				<% end %>

@@ -59,6 +59,7 @@ class Consumers::OrdersController < ApplicationController
 			@order.address = (@order.prefecture_name + @order.address_city + @order.address_street + @order.address_building)
 		elsif params[:address_select] == "address2"
 			@destination = Destination.find(params[:order][:address_id])
+			@order.postcode = @destination.postcode
 			@order.prefecture_name = @destination.prefecture_name
 			@order.address_city = @destination.address_city
 			@order.address_street = @destination.address_street

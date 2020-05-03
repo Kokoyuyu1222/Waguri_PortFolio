@@ -81,7 +81,7 @@
                 <div class="shadow-sm" style="text-align: center">
                   <%= link_to(consumers_product_path(product)) do %>
                     <% if product.product_images.present? %>
-                      <%= attachment_image_tag product.product_images.first, :image,  format: 'jpeg', size: "200x200" %>
+                      <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
                     <% else %>
                       <%= image_tag 'no_image.jpg',size: '200*200'%>
                     <% end %>
@@ -133,7 +133,7 @@
                   <div class="shadow-sm">
                   <%= link_to(consumers_column_path(column)) do %>
                     <% if column.column_images.present? %>
-                       <%= attachment_image_tag column.column_images.first, :image,  format: 'jpeg', size: "200x200" %>
+                       <%= attachment_image_tag column.column_images.first, :image, :fill, 200, 200,class: "ranking-img" %>
                     <% else %>
                       <%= image_tag 'no_image.jpg',size: '400*400'%>
                     <% end %>

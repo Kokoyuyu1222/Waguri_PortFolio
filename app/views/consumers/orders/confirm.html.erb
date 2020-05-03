@@ -25,7 +25,7 @@
             <tr>
               <td>
                 <% if cart_product.product.product_images.present? %>
-                    <%= attachment_image_tag cart_product.product.product_images.first, :image,  format: 'jpeg', size: "100x100" %>
+                    <%= attachment_image_tag cart_product.product.product_images.first, :image, :fill, 100, 100 %>
                 <% else %>
                     <%= image_tag 'no_image.jpg',size: '100*100'%>
                 <% end %>

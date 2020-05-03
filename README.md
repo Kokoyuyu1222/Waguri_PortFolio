@@ -1,4 +1,4 @@
-# WAGURI(ワグリ)
+# WAGURI(ワグリ) https://waguri.shop
 
 ## サイト概要
 

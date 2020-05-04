@@ -1,12 +1,17 @@
 <div class="row">
 	<div class= "col-md-6"style=" margin-top: 50px;">
-	<% if @product.product_images.present? %>
-	  <% @product.product_images.each do |image| %>
-	    <%= attachment_image_tag image, :image, :fill, 200, 200 %>
-	  <% end %>
-	<% else %>
-	    <%= image_tag 'no_image.jpg',size: '400*400'%>
-	<% end %>
+		<% @cart_product.errors.full_messages.each do |msg| %>
+		  <div class="alert alert-danger">
+		    <%= msg %>
+		  </div>
+	    <% end %>
+		<% if @product.product_images.present? %>
+		  <% @product.product_images.each do |image| %>
+		    <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+		  <% end %>
+		<% else %>
+		    <%= image_tag 'no_image.jpg',size: '400*400'%>
+		<% end %>
 	</div>
 
 	<div class= "col-md-4"style=" margin-top: 50px;">

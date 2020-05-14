@@ -77,3 +77,20 @@ white-space: nowrap;
 .outer{
   width: 100%;
 }
+@media screen and (max-width:1024px) {  
+    img {
+      width: 100%;
+    }
+}
+
+@media screen and (max-width:768px) {  
+    img {
+      width: 100%;
+    }
+}
+
+@media screen and (max-width:425px) {  
+    img {
+      width: 100%;
+    }
+}

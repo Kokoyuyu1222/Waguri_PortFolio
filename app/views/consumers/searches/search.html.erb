@@ -1,79 +1,81 @@
-<% if @datas.present? %>
-	<% @datas.each do |data| %>
-		<%  if @model == 'fermer' %>
-			<table class='table'>
-				<tr>
-					<th>農園名</th>
-				</tr>
-				<tr>
-					<td>
-						<%= data.garden %>
-					</td>
-				</tr>
-				<td><%= link_to "詳細へ", consumers_fermer_path(data) %></td>
-			</table>
-		<% elsif @model == "column" %>
-			<table class='table'>
-				<tr>
-					<th>タイトル</th>
-					<th>本文</th>
-				</tr>
-				<tr>
-					<td>
-						<%= data.title %>
-					</td>
-					<td>
-						<%= data.body  %>
-					</td>
-					<td><%= link_to "詳細へ", consumers_column_path(data) %></td>
-				</tr>
-			</table>
-		<% elsif @model == "category" %>
-			<table class='table'>
-				<tr>
-					<th>カテゴリー</th>
-					<th>商品名</th>
-				</tr>
-				<tr>
-					<td>
-						<%= data.name %>
-					</td>
-					<td><%= link_to "詳細へ", consumers_products_path(data.id) %></td>
-				</tr>
-			</table>
-		<% elsif @model == "brand" %>
-			<table class='table'>
-				<tr>
-					<th>ブランド</th>
-					<th>商品名</th>
-				</tr>
-				<tr>
-					<td>
-						<%= data.name %>
-					</td>
-					<td><%= link_to "詳細へ", consumers_product_path(data.id) %></td>
-				</tr>
-			</table>
-		<% elsif @model == "product" %>
-			<table class='table'>
-				<tr>
-					<th>タイトル</th>
-					<th>本文</th>
-				</tr>
-				<tr>
-					<td>
-						<%= data.name %>
-					</td>
-					<td>
-						<% if data.product_images.present? %>
-					     	 <%= attachment_image_tag data.product_images.first, :image, :fill, 200, 200 %>
-					  	<% else %>
-					    	<%= image_tag 'no_image.jpg',size: '200*200'%>
-					  	<% end %>
-					</td>
-					<td><%= link_to "詳細へ", consumers_product_path(data) %></td>
-				</tr>
-			</table>
+<div class="outer">
+	<% if @datas.present? %>
+		<% @datas.each do |data| %>
+			<%  if @model == 'fermer' %>
+				<table class='table'>
+					<tr>
+						<th>農園名</th>
+					</tr>
+					<tr>
+						<td>
+							<%= data.garden %>
+						</td>
+					</tr>
+					<td><%= link_to "詳細へ", consumers_fermer_path(data) %></td>
+				</table>
+			<% elsif @model == "column" %>
+				<table class='table'>
+					<tr>
+						<th>タイトル</th>
+						<th>本文</th>
+					</tr>
+					<tr>
+						<td>
+							<%= data.title %>
+						</td>
+						<td>
+							<%= data.body  %>
+						</td>
+						<td><%= link_to "詳細へ", consumers_column_path(data) %></td>
+					</tr>
+				</table>
+			<% elsif @model == "category" %>
+				<table class='table'>
+					<tr>
+						<th>カテゴリー</th>
+						<th>商品名</th>
+					</tr>
+					<tr>
+						<td>
+							<%= data.name %>
+						</td>
+						<td><%= link_to "詳細へ", consumers_products_path(data.id) %></td>
+					</tr>
+				</table>
+			<% elsif @model == "brand" %>
+				<table class='table'>
+					<tr>
+						<th>ブランド</th>
+						<th>商品名</th>
+					</tr>
+					<tr>
+						<td>
+							<%= data.name %>
+						</td>
+						<td><%= link_to "詳細へ", consumers_product_path(data.id) %></td>
+					</tr>
+				</table>
+			<% elsif @model == "product" %>
+				<table class='table'>
+					<tr>
+						<th>タイトル</th>
+						<th>本文</th>
+					</tr>
+					<tr>
+						<td>
+							<%= data.name %>
+						</td>
+						<td>
+							<% if data.product_images.present? %>
+						     	 <%= attachment_image_tag data.product_images.first, :image, :fill, 200, 200 %>
+						  	<% else %>
+						    	<%= image_tag 'no_image.jpg',size: '200*200'%>
+						  	<% end %>
+						</td>
+						<td><%= link_to "詳細へ", consumers_product_path(data) %></td>
+					</tr>
+				</table>
+			<% end %>
 		<% end %>
 	<% end %>
-<% end %>
+</div>

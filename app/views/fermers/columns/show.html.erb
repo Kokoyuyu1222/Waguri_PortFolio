@@ -40,28 +40,30 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-10">
-			<table class="table table-striped">
-				<thead class="thead-dark">
-					<tr>
-						<th>投稿者</th>
-						<th>コメント</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr id="comments_area">
-						<% if @comments.present? %>
-							<% @comments.each do |comment| %>
-					  			<td>
-					  				<%= link_to "#{comment.consumer.name}さん", consumers_consumer_path(comment.consumer.id) %>
-					  			</td>
-					  			<td>
-					  				<%= comment.comment %>
-					  			</td>
-							<% end %>
-	 					<% end %>
-					</tr>
-				</tbody>
-			</table>
+			<div class="outer">
+				<table class="table table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th>投稿者</th>
+							<th>コメント</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr id="comments_area">
+							<% if @comments.present? %>
+								<% @comments.each do |comment| %>
+						  			<td>
+						  				<%= link_to "#{comment.consumer.name}さん", consumers_consumer_path(comment.consumer.id) %>
+						  			</td>
+						  			<td>
+						  				<%= comment.comment %>
+						  			</td>
+								<% end %>
+		 					<% end %>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>

@@ -15,21 +15,23 @@
 		<% end %>
 	</div>
 	<div class="col-md-6">
-		<table class="table">
-			<tr>
-				<th>カテゴリー</th>
-				<th>状態</th>
-				<th></th>
-			</tr>
-			<%if @categories.present? %>
-			<% @categories.each do |category| %>
-			<tr>
-				<td><%= category.name %></td>
-				<td><%= category.category_status_i18n %></td>
-				<td><%= link_to "編集する",edit_admins_category_path(category) %></td>
-			</tr>
-			<% end %>
-			<% end %>
-		</table>
+		<div class="outer">
+			<table class="table">
+				<tr>
+					<th>カテゴリー</th>
+					<th>状態</th>
+					<th></th>
+				</tr>
+				<%if @categories.present? %>
+				<% @categories.each do |category| %>
+				<tr>
+					<td><%= category.name %></td>
+					<td><%= category.category_status_i18n %></td>
+					<td><%= link_to "編集する",edit_admins_category_path(category) %></td>
+				</tr>
+				<% end %>
+				<% end %>
+			</table>
+		</div>
 	</div>
 </div>

@@ -1,23 +1,25 @@
 <h2>記事一覧</h2>
-<table class="table table-hover table-inverse">
-	<thead>
-		<tr>
-			<th></th>
-			<th>Title</th>
-			<th>body</th>
-			<th></th>
-			<th></th>
-			<th colspan="3"></th>
-		</tr>
-	</thead>
-	<tbody>
-		<%if @columns.present? %>
-		<% @columns.each do |column| %>
-		<tr>
-			<td><%= link_to column.title, consumers_column_path(column) %></td>
-			<td><%= column.body %></td>
-		</tr>
-		<% end %>
-		<% end %>
-	</tbody>
-</table>
+<div class="outer">
+	<table class="table table-hover table-inverse">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Title</th>
+				<th>body</th>
+				<th></th>
+				<th></th>
+				<th colspan="3"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<%if @columns.present? %>
+			<% @columns.each do |column| %>
+			<tr>
+				<td><%= link_to column.title, consumers_column_path(column) %></td>
+				<td><%= column.body %></td>
+			</tr>
+			<% end %>
+			<% end %>
+		</tbody>
+	</table>
+</div>

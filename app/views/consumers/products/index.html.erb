@@ -1,43 +1,45 @@
-<table class="table table-striped"style="width: 100%;">
-	<thead class="thead-dark">
-		<tr>
-			<th>イメージ</th>
-			<th>商品名</th>
-			<th>価格</th>
-			<th>ブランド</th>
-			<th>カテゴリー</th>
-			<th>農園名</th>
-			<th>ホームページ</th>
-		</tr>
-	</thead>
-	<tbody>
-		<%if @products.present? %>
-			<% @products.each do |product| %>
-				<tr>
-					<td>
-						<%= link_to(consumers_product_path(product)) do %>
-						  	<% if product.product_images.present? %>
-						     	 <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
-						  	<% else %>
-						    	<%= image_tag 'no_image.jpg',size: '200*200'%>
-						  	<% end %>
-						<% end %>
-					</td>
-					<td><%= product.name %></td>
-					<td><%= product.unit_price %></td>
-					<td><%= product.brand.name %></td>
-					<td><%= product.brand.category.name %></td>
-					<td>
-						<%= link_to(consumers_fermer_path(product.fermer_id)) do %>
-							<%= product.fermer.garden %>
-						<% end %>
-					</td>
-					<td><%= product.fermer.home_page %></td>
-				</tr>
+<div class="outer">
+	<table class="table table-striped"style="width: 100%;">
+		<thead class="thead-dark">
+			<tr>
+				<th>イメージ</th>
+				<th>商品名</th>
+				<th>価格</th>
+				<th>ブランド</th>
+				<th>カテゴリー</th>
+				<th>農園名</th>
+				<th>ホームページ</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%if @products.present? %>
+				<% @products.each do |product| %>
+					<tr>
+						<td>
+							<%= link_to(consumers_product_path(product)) do %>
+							  	<% if product.product_images.present? %>
+							     	 <%= attachment_image_tag product.product_images.first, :image, :fill, 200, 200 %>
+							  	<% else %>
+							    	<%= image_tag 'no_image.jpg',size: '200*200'%>
+							  	<% end %>
+							<% end %>
+						</td>
+						<td><%= product.name %></td>
+						<td><%= product.unit_price %></td>
+						<td><%= product.brand.name %></td>
+						<td><%= product.brand.category.name %></td>
+						<td>
+							<%= link_to(consumers_fermer_path(product.fermer_id)) do %>
+								<%= product.fermer.garden %>
+							<% end %>
+						</td>
+						<td><%= product.fermer.home_page %></td>
+					</tr>
+			    <% end %>
 		    <% end %>
-	    <% end %>
-	    <%= paginate @products, class: "paginate" %>
-	</tbody>
-</table>
+		    <%= paginate @products, class: "paginate" %>
+		</tbody>
+	</table>
+</div>
 
 

@@ -2,12 +2,6 @@
 <table class="table">
 	<tr>
 		<th>画像</th>
-		<th>投稿者</th>
-		<th>タイトル</th>
-		<th>本文</th>
-		<th></th>
-	</tr>
-	<tr>
 		<td>
 			<% if @column.column_images.present? %>
 			  <% @column.column_images.each do |image| %>
@@ -17,15 +11,27 @@
 			    <%= image_tag 'no_image.jpg',size: '400*400'%>
 			<% end %>
 		</td>
+	</tr>
+	<tr>
+		<th>投稿者</th>
 		<td>
 			<%= link_to(consumers_fermer_path(@consumer)) do %>
 			<%= @column.fermer.name %>
 			<% end %>
 		</td>
+	</tr>
+	<tr>
+		<th>タイトル</th>
 		<td><%= link_to @column.title, fermers_column_path %></td>
+	</tr>
+	<tr>
+		<th>本文</th>
 		<td><%= @column.body %></td>
+	</tr>
+	<tr>
+		<th></th>
 		<td>
-				<%= render 'consumers/column_favorites/favorite_form' ,column: @column, favorite: @favorite %>
+			<%= render 'consumers/column_favorites/favorite_form' ,column: @column, favorite: @favorite %>
 		</td>
 	</tr>
 </table>

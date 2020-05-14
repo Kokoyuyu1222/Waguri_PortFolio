@@ -82,16 +82,31 @@ white-space: nowrap;
     img {
       width: 100%;
     }
+    .star{
+      width: 20px;
+      height:20px;
+      margin-left:20px;
+    }
 }
 
 @media screen and (max-width:768px) {  
     img {
       width: 100%;
     }
+    .star{
+      width: 20px;
+      height:20px;
+      margin-left:20px;
+    }
 }
 
 @media screen and (max-width:425px) {  
     img {
       width: 100%;
+    }
+    .star{
+      width: 20px;
+      height:20px;
+      margin-left:20px;
     }
 }

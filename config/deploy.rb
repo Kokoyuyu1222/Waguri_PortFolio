@@ -5,7 +5,7 @@ set :application, "Waguri_PortFolio"
 set :repo_url, "git@github.com:Kokoyuyu1222/Waguri_PortFolio.git"
 
 set :deploy_to, "/home/ec2-user/Waguri_PortFolio"
-set :rbenv_ruby, '2.5.7'
+set :rbenv_ruby, '2.5.8'
 set :linked_files, %w{config/master.key .env}
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 

@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_04_18_112220) do
 
-  create_table "admins", force: :cascade do |t|
+  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -24,16 +24,16 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "book_marks", force: :cascade do |t|
-    t.integer "consumer_id", null: false
-    t.integer "fermer_id", null: false
+  create_table "book_marks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "consumer_id", null: false
+    t.bigint "fermer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["consumer_id"], name: "index_book_marks_on_consumer_id"
     t.index ["fermer_id"], name: "index_book_marks_on_fermer_id"
   end
 
-  create_table "brands", force: :cascade do |t|
+  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "category_id"
     t.integer "brand_status"
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "cards", force: :cascade do |t|
-    t.integer "consumer_id", null: false
+  create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "consumer_id", null: false
     t.string "payjp_id", null: false
     t.string "customer_id", null: false
     t.datetime "created_at", null: false
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.index ["consumer_id"], name: "index_cards_on_consumer_id"
   end
 
-  create_table "cart_products", force: :cascade do |t|
+  create_table "cart_products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "consumer_id"
     t.integer "product_id"
     t.integer "quantity"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.integer "category_status"
     t.datetime "created_at", null: false
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
-  create_table "column_comments", force: :cascade do |t|
+  create_table "column_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "comment"
     t.integer "fermer_id"
     t.integer "consumer_id"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "column_favorites", force: :cascade do |t|
+  create_table "column_favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "fermer_id"
     t.integer "consumer_id"
     t.integer "column_id"
@@ -84,14 +84,14 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "column_images", force: :cascade do |t|
+  create_table "column_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "column_id"
     t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "columns", force: :cascade do |t|
+  create_table "columns", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.integer "fermer_id"
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "consumers", force: :cascade do |t|
+  create_table "consumers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.index ["reset_password_token"], name: "index_consumers_on_reset_password_token", unique: true
   end
 
-  create_table "destinations", force: :cascade do |t|
+  create_table "destinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "consumer_id"
     t.integer "postcode"
     t.string "name"
@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "fermer_reviews", force: :cascade do |t|
+  create_table "fermer_reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "comment"
     t.integer "consumer_id"
     t.integer "fermer_id"
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "fermers", force: :cascade do |t|
+  create_table "fermers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -178,7 +178,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.index ["reset_password_token"], name: "index_fermers_on_reset_password_token", unique: true
   end
 
-  create_table "order_products", force: :cascade do |t|
+  create_table "order_products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "product_id"
     t.integer "quantity"
     t.integer "product_status", default: 0
@@ -188,7 +188,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "consumer_id"
     t.integer "order_status", default: 0
     t.integer "payment_method"
@@ -206,7 +206,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "product_comments", force: :cascade do |t|
+  create_table "product_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "comment"
     t.integer "consumer_id"
     t.integer "product_id"
@@ -216,14 +216,14 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "product_images", force: :cascade do |t|
+  create_table "product_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "image_id"
     t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "products", force: :cascade do |t|
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.integer "brand_id"
     t.integer "category_id"
@@ -237,11 +237,12 @@ ActiveRecord::Schema.define(version: 2020_04_18_112220) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "stocks", force: :cascade do |t|
+  create_table "stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "product_id"
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "cards", "consumers"
 end
